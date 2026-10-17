@@ -101,6 +101,8 @@ python tests/classroom_smoke.py
 
 `npm run build` 生成 `dist/` 静态网页，可部署到 GitHub Pages 等静态站点，并支持仓库子路径。公开发布包只包含程序和通用词库，自动排除 `.local` 中的个人书籍、老师资料、学习进度和临时访问密钥；在线版本的个人资料需要用户在浏览器本地重新导入。
 
-已准备 `.github/workflows/deploy-pages.yml`，仅允许手动触发发布，没有设置 push 时自动发布。用户已确认向 GitHub 仓库写入代码及公开上线网站。当前连接调用 Pages 读取和创建接口均收到 `403 Resource not accessible by integration`，网站尚未上线；需在 GitHub 仓库 Settings → Pages 中启用 GitHub Actions 来源，再手动运行此工作流。仓库目前为私有仓库，能否启用 Pages 取决于账户方案；不要为发布擅自改成公开仓库。
+已准备 `.github/workflows/deploy-pages.yml`，仅允许手动触发发布，没有设置 push 时自动发布。用户已确认向 GitHub 仓库写入代码及公开上线网站，代码已推送到 `main`。GitHub Actions 上的安装、13项测试和静态构建已通过，但当前连接和工作流自动启用 Pages 均收到 `403 Resource not accessible by integration`，网站尚未上线。最近的验证记录：<https://github.com/sugARIboo-m/-my-first-project/actions/runs/39007738088>。
+
+需由仓库管理员打开 <https://github.com/sugARIboo-m/-my-first-project/settings/pages>，在 Build and deployment → Source 选择 GitHub Actions，然后在 Actions → Publish Wordlane trial → Run workflow 手动运行发布。仓库目前为私有仓库，能否启用 Pages 取决于账户方案；不要为发布擅自改成公开仓库。待部署成功后，使用工作流提供的实际网址验证访问，不将预期网址或 localhost 当作已上线的网站。
 
 `npm run trial` 是另一种可选的临时受保护代理方式，默认绑定本机 3001 端口、转发已有的 3000 端口应用，使用随机访问密钥和 HttpOnly / Secure Cookie，最长运行3小时。它本身不提供公网入口；当前环境尝试 Cloudflare 临时通道时收到403，未建立外网试用网址。访问密钥写入被忽略的 `.local/trial-session.json`，不要提交该文件。
