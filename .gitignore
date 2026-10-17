@@ -1,0 +1,9 @@
+node_modules/
+.test-artifacts/
+.DS_Store
+
+# Personal uploaded books and generated reading text
+.local/
+
+# Reproducible browser build
+dist/
