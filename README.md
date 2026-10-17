@@ -11,7 +11,9 @@ npm ci
 npm run dev
 ```
 
-启动后，在运行这两个命令的电脑上用浏览器访问 `http://localhost:3000`。可通过 `PORT=8080 npm start` 改端口。本项目尚未部署到公网；云环境内的进程不会自动成为你的电脑可访问的网站。
+在线试用：<https://sugariboo-m.github.io/-my-first-project/>。
+
+本地启动后，在运行这两个命令的电脑上用浏览器访问 `http://localhost:3000`。可通过 `PORT=8080 npm start` 改端口。云环境内的进程不会自动成为你的电脑可访问的网站。
 
 ## 能做什么
 
@@ -66,7 +68,7 @@ python tests/browser_smoke.py
 
 阅读词汇释义来自应用自行编写的辅助词表，只有实际出现在章节中、且被匹配或由用户确认的词才会加入。原文例句不自动翻译，避免把未核实的翻译当作书中内容。
 
-个人书籍全文不会写入 JSON 学习进度备份，备份只含选入的词和例句。因此在另一台设备或纯 Git 检出中，需要重新选择自己的 EPUB。云环境快照可以保留 `.local` 文件，但源代码仓库不保留这份个人文件。服务没有公开部署。
+个人书籍全文不会写入 JSON 学习进度备份，备份只含选入的词和例句。因此在另一台设备或纯 Git 检出中，需要重新选择自己的 EPUB。云环境快照可以保留 `.local` 文件，但源代码仓库不保留这份个人文件。公开网站也需要用户在浏览器中重新导入自己的 EPUB。
 
 真实 EPUB 流程检查（需要当前环境的个人阅读资料库）：
 
@@ -101,8 +103,8 @@ python tests/classroom_smoke.py
 
 `npm run build` 生成 `dist/` 静态网页，可部署到 GitHub Pages 等静态站点，并支持仓库子路径。公开发布包只包含程序和通用词库，自动排除 `.local` 中的个人书籍、老师资料、学习进度和临时访问密钥；在线版本的个人资料需要用户在浏览器本地重新导入。
 
-已准备 `.github/workflows/deploy-pages.yml`，仅允许手动触发发布，没有设置 push 时自动发布。用户已确认向 GitHub 仓库写入代码及公开上线网站，代码已推送到 `main`。GitHub Actions 上的安装、13项测试和静态构建已通过，但当前连接和工作流自动启用 Pages 均收到 `403 Resource not accessible by integration`，网站尚未上线。最近的验证记录：<https://github.com/sugARIboo-m/-my-first-project/actions/runs/39007738088>。
+`.github/workflows/deploy-pages.yml` 仅允许手动触发发布，没有设置 push 时自动发布。用户已确认源码公开，亲自在 GitHub 将仓库设为公开，并将 Pages 来源设为 GitHub Actions。2026-10-17 发布成功：<https://github.com/sugARIboo-m/-my-first-project/actions/runs/39008403915>。安装、13项测试、静态构建和 Pages 部署均通过，实际网址返回 HTTP 200：<https://sugariboo-m.github.io/-my-first-project/>。
 
-需由仓库管理员打开 <https://github.com/sugARIboo-m/-my-first-project/settings/pages>，在 Build and deployment → Source 选择 GitHub Actions，然后在 Actions → Publish Wordlane trial → Run workflow 手动运行发布。仓库目前为私有仓库，能否启用 Pages 取决于账户方案；不要为发布擅自改成公开仓库。待部署成功后，使用工作流提供的实际网址验证访问，不将预期网址或 localhost 当作已上线的网站。
+以后更新网页：在 Actions → Publish Wordlane trial → Run workflow 中选择 `main` 并运行，等待部署成功后验证实际网址。当前 GitHub 连接不具备修改仓库可见性或首次启用 Pages 的管理权限，此类设置需由仓库管理员在 GitHub 网页处理。
 
 `npm run trial` 是另一种可选的临时受保护代理方式，默认绑定本机 3001 端口、转发已有的 3000 端口应用，使用随机访问密钥和 HttpOnly / Secure Cookie，最长运行3小时。它本身不提供公网入口；当前环境尝试 Cloudflare 临时通道时收到403，未建立外网试用网址。访问密钥写入被忽略的 `.local/trial-session.json`，不要提交该文件。
