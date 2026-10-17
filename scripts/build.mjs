@@ -18,7 +18,7 @@ for(const file of files){
 }
 for(const [src,dest] of [['node_modules/pdfjs-dist/build/pdf.mjs','vendor/pdf.mjs'],['node_modules/pdfjs-dist/build/pdf.worker.mjs','vendor/pdf.worker.mjs'],['node_modules/fflate/esm/browser.js','vendor/fflate.js']])await copyFile(path.join(root,src),path.join(out,dest));
 for(const [src,dest] of [['node_modules/pdfjs-dist/LICENSE','vendor/LICENSE-pdfjs.txt'],['node_modules/fflate/LICENSE','vendor/LICENSE-fflate.txt']])await copyFile(path.join(root,src),path.join(out,dest));
-await writeFile(path.join(out,'sw.js'),`const CACHE='wordlane-static-v1';
+await writeFile(path.join(out,'sw.js'),`const CACHE='wordlane-static-v2';
 const base=new URL('./',self.location.href);
 const assets=${JSON.stringify(['./',...files,'vendor/pdf.mjs','vendor/pdf.worker.mjs','vendor/fflate.js'])}.map(p=>new URL(p,base).href);
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(assets)));self.skipWaiting();});
