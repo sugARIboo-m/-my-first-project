@@ -62,6 +62,7 @@ html[data-theme=dark] .danger-button{background:#aa707b}
 @media(max-width:540px){.breakdown-panel{display:block}.breakdown-panel .donut-wrap{margin:24px 0}.breakdown-panel .donut{width:166px;height:166px;padding:18px}.breakdown-panel .category-list{padding-top:0;gap:13px}.breakdown-panel .category-row,.breakdown-panel .category-value{font-size:12px}.breakdown-panel .category-row small{font-size:11px;width:30px;display:block}.metric-foot{font-size:9px;flex-wrap:wrap;row-gap:5px}.balance-bottom{font-size:9px}.row-actions-heading,.row-actions{width:44px}.edit-entry{width:44px;height:44px}.transaction-name b{max-width:132px}.transaction-name small{max-width:128px}.dialog-title button{min-width:44px;min-height:44px}}
 
 /* Era colors live inside artwork and Garden components; global Morrow tokens remain unchanged. */
+.morrow-cloud{padding:25px;margin:24px 0;scroll-margin-top:24px;min-width:0}.cloud-heading{display:flex;justify-content:space-between;gap:25px;align-items:flex-start}.cloud-heading h2{font-size:23px;line-height:1.45;font-weight:500;margin:10px 0}.cloud-status{font-size:12px;color:var(--accent);max-width:280px;line-height:1.8;flex-shrink:0}.cloud-help{font-size:12px;line-height:1.8;color:var(--muted);overflow-wrap:anywhere}.cloud-actions{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.cloud-conflict{padding:18px;border:1px solid var(--border);border-radius:12px;margin-top:18px}.cloud-conflict p{font-size:13px;line-height:1.8}.cloud-setup{font-size:12px;color:var(--accent);display:inline-block;min-height:44px;padding-top:12px}#settings-dialog>a.garden-button{display:block;margin:16px 0}#cloud-auth-dialog input{font-size:16px}.cloud-help,.cloud-status{font-variant-numeric:tabular-nums}@media(max-width:650px){.cloud-heading{display:block}.morrow-cloud{padding:20px}.cloud-status{max-width:none}.cloud-heading h2{font-size:20px}}
 .eras-section{margin:55px 0 20px;scroll-margin-top:24px;border-top:1px solid var(--border);padding-top:44px}
 .eras-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:27px}
 .garden-eyebrow{font-size:10px;letter-spacing:2.1px;color:var(--muted);font-weight:500}
@@ -257,8 +258,8 @@ function upsertRecord(records, next) {
 }
 
 const messages={
- en:{personalFinance:'PERSONAL FINANCE',workspace:'Your workspace',dashboard:'Dashboard',transactions:'Transactions',accounts:'Accounts',savingsGoals:'Savings goals',settings:'Settings',slogan:'Make a little room for tomorrow.',littleSteps:'Little steps. A life that feels like you.',yourSpace:'Your personal space',demoProfile:'Design preview',overview:'Overview',demoData:'Demo data',yourMoney:'A LITTLE CLARITY, EVERY DAY',greeting:'A little more clarity.',welcome:'Your everyday finances, with tomorrow in mind.',addTransaction:'Add transaction',totalBalance:'Total balance',acrossAccounts:'Across 4 accounts',monthlyIncome:'Monthly income',monthlyExpenses:'Monthly expenses',remainingBudget:'Remaining budget',incomeNote:'A little room to grow',thisMonth:'This month',ofBudget:'of budget',monthlyLimit:'Monthly limit',overBudget:'Your spending is over budget. Take a moment to review the details.',spendingOverview:'The bigger picture',spendingSubtitle:'A little perspective on your money.',lastSix:'Last 6 months',income:'Income',expenses:'Expenses',expense:'Expense',insight:'You’re making room for tomorrow. Your spending is within budget.',whereItGoes:'Where it goes',categoryBreakdown:'A closer look at this month.',totalSpent:'Total spent',recentTransactions:'The everyday details',everydayDetails:'Little moments, thoughtfully recorded.',transaction:'Transaction',category:'Category',account:'Account',amount:'Amount',previewOnly:'Preview transactions · changes reset on reload',dreamsSubtitle:'Good things, a little closer.',nextChapter:'YOUR NEXT CHAPTER',travelFund:'A little getaway',byJune:'Jun 2027',emergencyFund:'Peace of mind fund',goals:'Goals',noCloud:'Interface preview · cloud sync is not connected',language:'Language',appearance:'Appearance',system:'System',light:'Light',dark:'Dark',previewExplanation:'This is an interactive design preview with fictional data. It does not access your original Xiaoman data or connect to a cloud account.',accountSummary:'Account summary',manualAccounts:'Illustrative, manually recorded balances. No bank, WeChat or Alipay account is connected.',entryExplanation:'Try the interaction. This entry only changes the in-memory preview and will disappear when you reload.',type:'Type',addToPreview:'Add to preview',dining:'Food & drink',shopping:'Shopping',transport:'Transport',housing:'Home & bills',other:'Other',allTransactions:'All transactions',onlyExpenses:'Expenses only',onlyIncome:'Income only',noTransactions:'No transactions in this view.',october:'October 2026',september:'September 2026',invalidAmount:'Enter an amount greater than zero with up to two decimal places.',saved:'Added to the preview. Your original data is unchanged.',invalidName:'Enter a transaction name.',today:'Today',oct17:'Oct 17',oct16:'Oct 16',sep17:'Sep 17',sep16:'Sep 16',coffee:'An afternoon pause',groceries:'A few everyday essentials',metro:'On the way home',salary:'October, well earned',rental:'A place to call home',wechat:'WeChat',alipay:'Alipay',bank:'Bank card',cash:'Cash',savingsAccount:'Savings account',alipayPocket:'Alipay Pocket',manualBalance:'Manual balance',spendingChart:'Monthly income and expenses, May through October',previousChart:'Monthly income and expenses, April through September',salaryCategory:'Salary',cny:'CNY'},
- zh:{personalFinance:'马马记账 · 个人财务',workspace:'我的空间',dashboard:'总览',transactions:'收支账本',accounts:'账户',savingsGoals:'存钱目标',settings:'设置',slogan:'给明天，留一点余地。',littleSteps:'一点点积累，靠近喜欢的生活。',yourSpace:'我的个人空间',demoProfile:'设计预览',overview:'我的财务',demoData:'演示数据',yourMoney:'让每一天，都更清楚一点',greeting:'把日子，慢慢理好。',welcome:'照顾好今天的生活，也为明天留一点余地。',addTransaction:'记一笔',totalBalance:'存款总额',acrossAccounts:'来自 4 个账户',monthlyIncome:'本月收入',monthlyExpenses:'本月支出',remainingBudget:'剩余预算',incomeNote:'积累，多一点可能',thisMonth:'本月',ofBudget:'预算已使用',monthlyLimit:'月度预算',overBudget:'本月支出已超出预算，可以看看哪些地方需要调整。',spendingOverview:'看看生活的全貌',spendingSubtitle:'退后一点，看清收支的节奏。',lastSix:'最近六个月',income:'收入',expenses:'支出',expense:'支出',insight:'正在为明天留出空间。这个月的支出仍在预算之内。',whereItGoes:'钱都花在哪儿',categoryBreakdown:'看看这个月的小日常。',totalSpent:'支出合计',recentTransactions:'日常里的每一笔',everydayDetails:'认真记录，也认真生活。',transaction:'账单',category:'分类',account:'账户',amount:'金额',previewOnly:'演示账单 · 刷新后恢复初始状态',dreamsSubtitle:'想要的生活，又近了一点。',nextChapter:'生活的下一章',travelFund:'一场小小的旅行',byJune:'2027 年 6 月',emergencyFund:'让人安心的备用金',goals:'存钱',noCloud:'界面预览 · 云同步尚未连接',language:'语言',appearance:'外观',system:'跟随系统',light:'浅色',dark:'深色',previewExplanation:'这是使用虚构数据的可交互设计预览。不会读取原版小满数据，也未连接云端账户。',accountSummary:'账户总览',manualAccounts:'此处是演示用的手动余额，没有连接银行、微信或支付宝真实账户。',entryExplanation:'试着记一笔。记录只保留在此次预览内存中，刷新后消失，不影响原版数据。',type:'收支类型',addToPreview:'添加到预览',dining:'餐饮',shopping:'购物',transport:'交通',housing:'居住账单',other:'其他',allTransactions:'全部账单',onlyExpenses:'只看支出',onlyIncome:'只看收入',noTransactions:'当前没有此类账单。',october:'2026 年 10 月',september:'2026 年 9 月',invalidAmount:'请填写大于零的金额，最多两位小数。',saved:'已添加到预览，原版数据未改变。',invalidName:'请填写账单名称。',today:'今天',oct17:'10 月 17 日',oct16:'10 月 16 日',sep17:'9 月 17 日',sep16:'9 月 16 日',coffee:'午后的一点松弛',groceries:'补齐生活的小日常',metro:'在回家的路上',salary:'十月，努力有了回响',rental:'一个可以安心的家',wechat:'微信',alipay:'支付宝',bank:'银行卡',cash:'现金',savingsAccount:'银行储蓄账户',alipayPocket:'支付宝小荷包',manualBalance:'手动余额',spendingChart:'五月至十月的月度收入和支出',previousChart:'四月至九月的月度收入和支出',salaryCategory:'工资',cny:'人民币'}
+ en:{personalFinance:'PERSONAL FINANCE',workspace:'Your workspace',dashboard:'Dashboard',transactions:'Transactions',accounts:'Accounts',savingsGoals:'Savings goals',settings:'Settings',slogan:'Make a little room for tomorrow.',littleSteps:'Little steps. A life that feels like you.',yourSpace:'Your personal space',demoProfile:'Design preview',overview:'Overview',demoData:'Demo data',yourMoney:'A LITTLE CLARITY, EVERY DAY',greeting:'A little more clarity.',welcome:'Your everyday finances, with tomorrow in mind.',addTransaction:'Add transaction',totalBalance:'Total balance',acrossAccounts:'Across 4 accounts',monthlyIncome:'Monthly income',monthlyExpenses:'Monthly expenses',remainingBudget:'Remaining budget',incomeNote:'A little room to grow',thisMonth:'This month',ofBudget:'of budget',monthlyLimit:'Monthly limit',overBudget:'Your spending is over budget. Take a moment to review the details.',spendingOverview:'The bigger picture',spendingSubtitle:'A little perspective on your money.',lastSix:'Last 6 months',income:'Income',expenses:'Expenses',expense:'Expense',insight:'You’re making room for tomorrow. Your spending is within budget.',whereItGoes:'Where it goes',categoryBreakdown:'A closer look at this month.',totalSpent:'Total spent',recentTransactions:'The everyday details',everydayDetails:'Little moments, thoughtfully recorded.',transaction:'Transaction',category:'Category',account:'Account',amount:'Amount',previewOnly:'Preview transactions · changes reset on reload',dreamsSubtitle:'Good things, a little closer.',nextChapter:'YOUR NEXT CHAPTER',travelFund:'A little getaway',byJune:'Jun 2027',emergencyFund:'Peace of mind fund',goals:'Goals',noCloud:'Demo overview · Eras sync has separate controls',language:'Language',appearance:'Appearance',system:'System',light:'Light',dark:'Dark',previewExplanation:'The overview uses fictional data. Actual Eras goals are saved separately; sign in and explicitly enable Eras sync in the Cloud panel.',accountSummary:'Account summary',manualAccounts:'Illustrative, manually recorded balances. No bank, WeChat or Alipay account is connected.',entryExplanation:'Try the interaction. This entry only changes the in-memory preview and will disappear when you reload.',type:'Type',addToPreview:'Add to preview',dining:'Food & drink',shopping:'Shopping',transport:'Transport',housing:'Home & bills',other:'Other',allTransactions:'All transactions',onlyExpenses:'Expenses only',onlyIncome:'Income only',noTransactions:'No transactions in this view.',october:'October 2026',september:'September 2026',invalidAmount:'Enter an amount greater than zero with up to two decimal places.',saved:'Added to the preview. Your original data is unchanged.',invalidName:'Enter a transaction name.',today:'Today',oct17:'Oct 17',oct16:'Oct 16',sep17:'Sep 17',sep16:'Sep 16',coffee:'An afternoon pause',groceries:'A few everyday essentials',metro:'On the way home',salary:'October, well earned',rental:'A place to call home',wechat:'WeChat',alipay:'Alipay',bank:'Bank card',cash:'Cash',savingsAccount:'Savings account',alipayPocket:'Alipay Pocket',manualBalance:'Manual balance',spendingChart:'Monthly income and expenses, May through October',previousChart:'Monthly income and expenses, April through September',salaryCategory:'Salary',cny:'CNY'},
+ zh:{personalFinance:'马马记账 · 个人财务',workspace:'我的空间',dashboard:'总览',transactions:'收支账本',accounts:'账户',savingsGoals:'存钱目标',settings:'设置',slogan:'给明天，留一点余地。',littleSteps:'一点点积累，靠近喜欢的生活。',yourSpace:'我的个人空间',demoProfile:'设计预览',overview:'我的财务',demoData:'演示数据',yourMoney:'让每一天，都更清楚一点',greeting:'把日子，慢慢理好。',welcome:'照顾好今天的生活，也为明天留一点余地。',addTransaction:'记一笔',totalBalance:'存款总额',acrossAccounts:'来自 4 个账户',monthlyIncome:'本月收入',monthlyExpenses:'本月支出',remainingBudget:'剩余预算',incomeNote:'积累，多一点可能',thisMonth:'本月',ofBudget:'预算已使用',monthlyLimit:'月度预算',overBudget:'本月支出已超出预算，可以看看哪些地方需要调整。',spendingOverview:'看看生活的全貌',spendingSubtitle:'退后一点，看清收支的节奏。',lastSix:'最近六个月',income:'收入',expenses:'支出',expense:'支出',insight:'正在为明天留出空间。这个月的支出仍在预算之内。',whereItGoes:'钱都花在哪儿',categoryBreakdown:'看看这个月的小日常。',totalSpent:'支出合计',recentTransactions:'日常里的每一笔',everydayDetails:'认真记录，也认真生活。',transaction:'账单',category:'分类',account:'账户',amount:'金额',previewOnly:'演示账单 · 刷新后恢复初始状态',dreamsSubtitle:'想要的生活，又近了一点。',nextChapter:'生活的下一章',travelFund:'一场小小的旅行',byJune:'2027 年 6 月',emergencyFund:'让人安心的备用金',goals:'存钱',noCloud:'首页为演示 · Eras 同步单独管理',language:'语言',appearance:'外观',system:'跟随系统',light:'浅色',dark:'深色',previewExplanation:'首页使用虚构演示数据。实际 Eras 目标单独保存；请在云端面板登录并主动开启 Eras 同步。',accountSummary:'账户总览',manualAccounts:'此处是演示用的手动余额，没有连接银行、微信或支付宝真实账户。',entryExplanation:'试着记一笔。记录只保留在此次预览内存中，刷新后消失，不影响原版数据。',type:'收支类型',addToPreview:'添加到预览',dining:'餐饮',shopping:'购物',transport:'交通',housing:'居住账单',other:'其他',allTransactions:'全部账单',onlyExpenses:'只看支出',onlyIncome:'只看收入',noTransactions:'当前没有此类账单。',october:'2026 年 10 月',september:'2026 年 9 月',invalidAmount:'请填写大于零的金额，最多两位小数。',saved:'已添加到预览，原版数据未改变。',invalidName:'请填写账单名称。',today:'今天',oct17:'10 月 17 日',oct16:'10 月 16 日',sep17:'9 月 17 日',sep16:'9 月 16 日',coffee:'午后的一点松弛',groceries:'补齐生活的小日常',metro:'在回家的路上',salary:'十月，努力有了回响',rental:'一个可以安心的家',wechat:'微信',alipay:'支付宝',bank:'银行卡',cash:'现金',savingsAccount:'银行储蓄账户',alipayPocket:'支付宝小荷包',manualBalance:'手动余额',spendingChart:'五月至十月的月度收入和支出',previousChart:'四月至九月的月度收入和支出',salaryCategory:'工资',cny:'人民币'}
 };
 Object.assign(messages.en, {
   dateLabel:'Date', noteOptional:'Note · optional', notePlaceholder:'A little context for this moment…',
@@ -427,7 +428,7 @@ const ERA_MESSAGES = {
   en:{
     eras:'Eras',garden:'Garden',collection:'Collection',wrapped:'Wrapped',later:'After Garden review',
     eyebrow:'MORROW ERAS / 01',title:'A little room to bloom.',subtitle:'Every little saving has its own era. A quiet place for the things you’re growing toward.',
-    local:'Saved on this browser · cloud sync is not connected',localHelp:'Garden records are saved locally. The Dashboard ledger is still a demo; its transactions never grow these gardens.',
+    local:'Saved on this browser · see Cloud for sync status',localHelp:'Garden records are saved locally. The Dashboard ledger is still a demo; its transactions never grow these gardens.',
     myGardens:'Your savings gardens',newGoal:'Plant a goal',editGoal:'Tend your goal',noGoals:'Your next chapter starts small.',emptyHelp:'Create a savings goal and record its current saved amount. No fictional balances will be added.',
     explore:'Find your era',exploreHelp:'An artwork studio: these stage samples never change your savings.',sample:'Artwork sample · not financial data',showcase:'Four eras, five ways to grow',showcaseHelp:'All 20 original vector artworks. Growth thresholds are the same for every theme.',
     seed:'Seed',sprout:'Sprout',growing:'Growing',blooming:'Blooming',fullBloom:'Full Bloom',
@@ -455,14 +456,14 @@ const ERA_MESSAGES = {
     gardenStorageUnavailable:'Local storage is unavailable. Nothing has been marked as saved. Try another browser or allow site storage.',
     gardenExportFailed:'The image could not be exported. Your goal data is still saved.',invalidDate:'Choose a valid calendar date.',
     currentEra:'Your current era',allLocal:'Local goals, not additional assets',loading:'Opening your Garden…',
-    pendingCloud:'Cloud sync is not configured',confirmBackup:'I have downloaded the current Garden backup',
+    pendingCloud:'Cloud sync is managed in the Cloud panel',confirmBackup:'I have downloaded the current Garden backup',
     memoryTitle:'A little victory, remembered.',memoryCaption:'An original Morrow Garden keepsake',
     allocationNote:'Balances are manually recorded allocations, not bank-verified funds.',invalidStage:'Set a valid target to start your garden.'
   },
   zh:{
     eras:'Eras',garden:'花园',collection:'收藏',wrapped:'年度回顾',later:'花园确认后开发',
     eyebrow:'MORROW ERAS / 01',title:'给未来，种一点期待。',subtitle:'每一份小小的积累，都有属于自己的时代。慢慢靠近，你想要的生活。',
-    local:'已保存到当前浏览器 · 云同步尚未连接',localHelp:'花园目标在本机保存。首页账本仍为演示数据，其中的交易不会让花园生长。',
+    local:'已保存到当前浏览器 · 同步状态见云端面板',localHelp:'花园目标在本机保存。首页账本仍为演示数据，其中的交易不会让花园生长。',
     myGardens:'我的储蓄花园',newGoal:'种下一个目标',editGoal:'照顾这个目标',noGoals:'生活的下一章，从一点点开始。',emptyHelp:'创建储蓄目标，记录已经存下的金额。这里不会自动添加虚构余额。',
     explore:'找到你的 Era',exploreHelp:'这里是视觉展台：阶段样本不会改变你的储蓄。',sample:'视觉样本 · 非财务数据',showcase:'四种主题，五个生长阶段',showcaseHelp:'20 张原创矢量图。每个主题都遵循同一套真实进度规则。',
     seed:'种子',sprout:'萌芽',growing:'生长',blooming:'初绽',fullBloom:'盛放',
@@ -490,7 +491,7 @@ const ERA_MESSAGES = {
     gardenStorageUnavailable:'本机存储不可用，没有将操作标记为保存成功。请允许网站存储或换用浏览器。',
     gardenExportFailed:'图片暂时无法导出，已保存的目标数据不受影响。',invalidDate:'请选择有效的日期。',
     currentEra:'正在经历的 Era',allLocal:'本机目标，不是额外资产',loading:'正在打开你的花园……',
-    pendingCloud:'云同步尚未配置',confirmBackup:'我已下载当前花园备份',
+    pendingCloud:'云同步在云端面板管理',confirmBackup:'我已下载当前花园备份',
     memoryTitle:'把这一点小小的胜利，留住。',memoryCaption:'Morrow 原创花园纪念卡',
     allocationNote:'金额由你手动记录，不代表银行已核验的资金。',invalidStage:'设置有效目标金额后，花园就可以开始生长。'
   }
@@ -637,61 +638,276 @@ function annualGardenSummary(state,year,currency,at) {
     hasAnyData:records.length>0||adjustments.length>0||completed.length>0};
 }
 
+// Public browser configuration. Never put secret/service_role keys here.
+const MORROW_CLOUD_CONFIG = Object.freeze({
+  url: 'https://mzptoebqxxpearklbqhy.supabase.co',
+  publishableKey: 'sb_publishable_don1cMC8VmYEm_WCy_oBxw_QaEtFaKj'
+});
 
-function createGardenStore() {
+function cloudCanonical(value) {
+  if(Array.isArray(value))return '['+value.map(cloudCanonical).join(',')+']';
+  if(value&&typeof value==='object')return '{'+Object.keys(value).sort().map(key=>JSON.stringify(key)+':'+cloudCanonical(value[key])).join(',')+'}';
+  return JSON.stringify(value);
+}
+const cloudStateEqual=(a,b)=>cloudCanonical(a)===cloudCanonical(b);
+function cloudMetadata(value) {
+  return {enabled:false,generation:0,dirty:false,remoteVersion:0,pending:null,lastSynced:null,...value};
+}
+function cloudPrepare(state,metadata,id) {
+  const meta=cloudMetadata(metadata);
+  return meta.pending?meta:{...meta,pending:{id,payload:state,generation:meta.generation,expectedVersion:meta.remoteVersion}};
+}
+function cloudAcknowledge(state,metadata,result,requestId) {
+  const meta=cloudMetadata(metadata),pending=meta.pending;
+  // Another tab may have acknowledged this request or prepared a newer one.
+  if(!pending||pending.id!==requestId)return meta;
+  if(!Number.isSafeInteger(result.version)||result.version<=pending.expectedVersion)throw new Error('cloudInvalidResponse');
+  return {...meta,remoteVersion:result.version,pending:null,
+    dirty:meta.generation!==pending.generation||!cloudStateEqual(state,pending.payload),lastSynced:new Date().toISOString()};
+}
+
+
+function createGardenStore({name='morrow-garden-v1'}={}) {
   let database;
-  const changes=typeof BroadcastChannel==='function'?new BroadcastChannel('morrow-garden-updates'):null;
+  const listeners=new Set();
+  const changes=typeof BroadcastChannel==='function'?new BroadcastChannel(name+'-updates'):null;
+  const emit=()=>listeners.forEach(callback=>callback());
+  if(changes)changes.onmessage=emit;
   async function open() {
     if(database)return database;
     database=await new Promise((resolve,reject)=>{
-      const request=indexedDB.open('morrow-garden-v1',1);
-      request.onupgradeneeded=()=>{
-        request.result.createObjectStore('state');
-        request.result.createObjectStore('recovery',{autoIncrement:true});
-      };
-      request.onsuccess=()=>{
-        const result=request.result;
-        result.onversionchange=()=>{result.close();database=null;};resolve(result);
-      };
-      request.onerror=()=>reject(new Error('gardenStorageUnavailable'));
-      request.onblocked=()=>reject(new Error('gardenStorageUnavailable'));
-    });
-    return database;
+      const request=indexedDB.open(name,1);
+      request.onupgradeneeded=()=>{request.result.createObjectStore('state');request.result.createObjectStore('recovery',{autoIncrement:true});};
+      request.onsuccess=()=>{const result=request.result;result.onversionchange=()=>{result.close();database=null;};resolve(result);};
+      request.onerror=request.onblocked=()=>reject(new Error('gardenStorageUnavailable'));
+    });return database;
   }
-  async function read() {
+  async function readCloud() {
     const db=await open();
     return new Promise((resolve,reject)=>{
-      const transaction=db.transaction('state','readonly');
-      const request=transaction.objectStore('state').get('current');let state;
-      request.onsuccess=()=>{try{state=validateGardenState(request.result??emptyGardenState());}catch(error){reject(error);}};
-      transaction.oncomplete=()=>resolve(state);transaction.onerror=()=>reject(new Error('gardenStorageUnavailable'));
-      transaction.onabort=()=>reject(new Error('gardenStorageUnavailable'));
+      const tx=db.transaction('state','readonly'),table=tx.objectStore('state');let state,meta,error;
+      table.get('current').onsuccess=event=>{try{state=validateGardenState(event.target.result??emptyGardenState());}catch(e){error=e;}};
+      table.get('cloud').onsuccess=event=>meta=cloudMetadata(event.target.result);
+      tx.oncomplete=()=>error?reject(error):resolve({state,meta});
+      tx.onerror=tx.onabort=()=>reject(new Error('gardenStorageUnavailable'));
     });
   }
-  async function update(reducer,{recovery=false}={}) {
+  async function atomic(reducer,{recovery=false}={}) {
     const db=await open();
     return new Promise((resolve,reject)=>{
-      const transaction=db.transaction(['state','recovery'],'readwrite');
-      const table=transaction.objectStore('state');const request=table.get('current');let next,error,changed=false;
-      request.onsuccess=()=>{
-        try{
-          const current=validateGardenState(request.result??emptyGardenState());
-          next=validateGardenState(reconcileAchievements(validateGardenState(reducer(current)),new Date().toISOString()));
-          if(recovery||request.result?.schemaVersion===1){
-            // Upgrade only adds metadata; retain the original raw snapshot.
-            if(!transaction.objectStoreNames.contains('recovery'))throw new Error('gardenMigrationRequired');
-            transaction.objectStore('recovery').add({createdAt:new Date().toISOString(),state:request.result??current});
-          }
-          changed=JSON.stringify(request.result??emptyGardenState())!==JSON.stringify(next);
-          if(changed)table.put(next,'current');
-        }catch(problem){error=problem;transaction.abort();}
+      const tx=db.transaction(['state','recovery'],'readwrite'),table=tx.objectStore('state');let result,error,changed=false;
+      table.get('current').onsuccess=event=>{
+        const raw=event.target.result;
+        table.get('cloud').onsuccess=metadataEvent=>{
+          try {
+            const current=validateGardenState(raw??emptyGardenState()),metadata=cloudMetadata(metadataEvent.target.result);
+            const next=reducer(current,metadata);next.state=validateGardenState(next.state);
+            if(recovery||raw?.schemaVersion===1)tx.objectStore('recovery').add({createdAt:new Date().toISOString(),state:raw??current});
+            changed=!cloudStateEqual(raw??emptyGardenState(),next.state);
+            if(changed)table.put(next.state,'current');
+            if(!cloudStateEqual(metadata,next.meta))table.put(next.meta,'cloud');
+            result=next.result??next.state;
+          }catch(problem){error=problem;tx.abort();}
+        };
       };
-      transaction.oncomplete=()=>{if(changed)changes?.postMessage('changed');resolve(next);};
-      transaction.onerror=()=>reject(error??new Error('gardenStorageUnavailable'));
-      transaction.onabort=()=>reject(error??new Error('gardenStorageUnavailable'));
+      tx.oncomplete=()=>{if(changed){changes?.postMessage('changed');emit();}resolve(result);};
+      tx.onerror=tx.onabort=()=>reject(error??new Error('gardenStorageUnavailable'));
     });
   }
-  return {read,update,onchange(callback){if(changes)changes.onmessage=callback;}};
+  return {
+    read:async()=>(await readCloud()).state,
+    readCloud,
+    update(reducer,options){return atomic((current,meta)=>{
+      const state=validateGardenState(reconcileAchievements(validateGardenState(reducer(current)),new Date().toISOString()));
+      return {state,meta:cloudStateEqual(current,state)?meta:{...meta,generation:meta.generation+1,dirty:true}};
+    },options);},
+    setCloudEnabled(enabled){return atomic((state,meta)=>({state,meta:{...meta,enabled}}));},
+    prepareCloud(id){return atomic((state,meta)=>{const next=cloudPrepare(state,meta,id);return {state,meta:next,result:next.pending};});},
+    acknowledgeCloud(result,requestId){return atomic((state,meta)=>({state,meta:cloudAcknowledge(state,meta,result,requestId)}));},
+    adoptCloud(remote,expectedGeneration){return atomic((state,meta)=>{
+      if(meta.generation!==expectedGeneration||meta.dirty||meta.pending)throw new Error('cloudLocalChanged');
+      return {state:remote.payload,meta:{...meta,remoteVersion:remote.version,lastSynced:new Date().toISOString()}};
+    },{recovery:true});},
+    resolveCloud(remote,choice,expectedGeneration){return atomic((state,meta)=>{
+      if(meta.generation!==expectedGeneration)throw new Error('cloudLocalChanged');
+      return {state:choice==='remote'?remote.payload:state,
+        meta:{...meta,pending:null,remoteVersion:remote.version,dirty:choice!=='remote',generation:meta.generation+1}};
+    },{recovery:true});},
+    onchange(callback){listeners.add(callback);return ()=>listeners.delete(callback);}
+  };
+}
+
+
+function createMorrowCloudClient({config=MORROW_CLOUD_CONFIG,fetcher=fetch,storage=localStorage}={}) {
+  const sessionKey='morrow-auth-'+new URL(config.url).hostname;
+  const readSession=()=>{try{const s=JSON.parse(storage.getItem(sessionKey));return s?.access_token&&s?.refresh_token&&/^[a-f0-9-]{36}$/i.test(s.user?.id)?s:null;}catch{return null;}};
+  let session=readSession(),refreshing;
+  function saveSession(value){session=value;value?storage.setItem(sessionKey,JSON.stringify(value)):storage.removeItem(sessionKey);}
+  async function request(path,{method='GET',body,token}={}) {
+    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
+    try {
+      const response=await fetcher(config.url+path,{method,headers:{apikey:config.publishableKey,...(body?{'Content-Type':'application/json'}:{}),...(token?{Authorization:'Bearer '+token}:{})},body:body?JSON.stringify(body):undefined,signal:controller.signal});
+      const data=await response.json().catch(()=>null);
+      if(!response.ok){const error=new Error(response.status===401||response.status===403?'cloudAuthRequired':data?.code==='PGRST202'||response.status===404?'cloudSchemaRequired':response.status===429?'cloudRateLimit':'cloudRequestFailed');error.status=response.status;throw error;}
+      return data;
+    } catch(error){if(error.status)throw error;throw new Error('cloudNetworkError');}
+    finally{clearTimeout(timer);}
+  }
+  async function token() {
+    if(!session)throw new Error('cloudAuthRequired');
+    if(session.expires_at*1000>Date.now()+60000)return session.access_token;
+    if(!refreshing)refreshing=(async()=>{
+      const refresh=async()=>{
+        session=readSession();if(!session)throw new Error('cloudAuthRequired');
+        if(session.expires_at*1000>Date.now()+60000)return session.access_token;
+        const priorUser=session.user.id;
+        const next=await request('/auth/v1/token?grant_type=refresh_token',{method:'POST',body:{refresh_token:session.refresh_token}});
+        if(next.user?.id!==priorUser)throw new Error('cloudAuthRequired');
+        saveSession(next);return next.access_token;
+      };
+      return globalThis.navigator?.locks?globalThis.navigator.locks.request(sessionKey,refresh):refresh();
+    })().finally(()=>refreshing=null);
+    return refreshing;
+  }
+  return {
+    getSession:()=>session,
+    sessionKey,
+    async signIn(email,password){const next=await request('/auth/v1/token?grant_type=password',{method:'POST',body:{email,password}});if(!next?.user?.id)throw new Error('cloudAuthRequired');saveSession(next);return next;},
+    async signUp(email,password){const result=await request('/auth/v1/signup',{method:'POST',body:{email,password}});if(result?.access_token)saveSession(result);return result;},
+    async signOut(){if(session){try{await request('/auth/v1/logout',{method:'POST',token:await token()});}catch{/* Local sign-out remains available offline. */}}saveSession(null);},
+    async rpc(name,body={}){return request('/rest/v1/rpc/'+name,{method:'POST',body,token:await token()});}
+  };
+}
+
+
+function createErasSync({store,client,onStatus=()=>{},online=()=>navigator.onLine,id=()=>crypto.randomUUID()}) {
+  let stopped=false,running=false,timer,retry=2000,conflict=null,activeEnabled=false;
+  const report=(status,extra={})=>onStatus({status,conflict,enabled:activeEnabled,...extra});
+  function schedule(delay=0){clearTimeout(timer);timer=null;if(!stopped)timer=setTimeout(()=>{timer=null;tick();},delay);}
+  function remoteState(value){
+    if(!value||!Number.isSafeInteger(value.version)||value.version<0)throw new Error('cloudInvalidResponse');
+    return {...value,payload:validateGardenState(value.payload)};
+  }
+  async function tick(){
+    if(stopped||running)return;
+    running=true;
+    try {
+      const local=await store.readCloud();
+      activeEnabled=local.meta.enabled;
+      if(!local.meta.enabled){report('cloudDisabled');return;}
+      if(!online()){report('cloudOffline');return;}
+      if(conflict){report('cloudConflict');return;}
+      report('cloudSyncing');
+      // Persist the request before fetch; retry the same immutable payload/id.
+      if(local.meta.pending||local.meta.dirty){
+        const pending=await store.prepareCloud(id());
+        if(stopped||!activeEnabled)return;
+        const response=await client.rpc('morrow_eras_commit',{p_request_id:pending.id,p_expected_version:pending.expectedVersion,p_payload:pending.payload});
+        if(stopped)return;
+        if(response?.status==='conflict'){
+          conflict=remoteState(response);report('cloudConflict');return;
+        }
+        if(response?.status!=='ok')throw new Error('cloudInvalidResponse');
+        await store.acknowledgeCloud(response,pending.id);
+        if(!activeEnabled){report('cloudDisabled');return;}
+        report('cloudPending');retry=2000;schedule(0);return;
+      }
+      const remote=remoteState(await client.rpc('morrow_eras_read'));
+      if(stopped||!activeEnabled)return;
+      if(remote.version!==local.meta.remoteVersion){
+        if(remote.version===0&&local.meta.remoteVersion>0)throw new Error('cloudRemoteReset');
+        await store.adoptCloud(remote,local.meta.generation);
+      }else if(!cloudStateEqual(remote.payload,local.state)&&remote.version>0){
+        // A same-version mismatch requires review rather than silent replacement.
+        conflict=remote;report('cloudConflict');return;
+      }
+      retry=2000;report('cloudSynced');
+    } catch(error){report(error.message==='cloudLocalChanged'?'cloudPending':error.message);retry=Math.min(retry*2,60000);}
+    finally{running=false;if(activeEnabled&&!timer&&!stopped)schedule(retry===2000?15000:retry);}
+  }
+  const unsubscribe=store.onchange(()=>{if(activeEnabled&&!conflict)report('cloudPending');schedule(150);});
+  const resume=()=>schedule(0);
+  globalThis.addEventListener?.('online',resume);
+  globalThis.addEventListener?.('focus',resume);
+  return {
+    start:resume,
+    async enable(){await store.setCloudEnabled(true);activeEnabled=true;resume();},
+    async disable(){await store.setCloudEnabled(false);activeEnabled=false;clearTimeout(timer);timer=null;report('cloudDisabled');},
+    async conflictCopies(){if(!conflict)throw new Error('cloudLocalChanged');const local=await store.readCloud();return {local:local.state,remote:conflict.payload,generation:local.meta.generation};},
+    async resolve(choice,generation){if(!conflict)throw new Error('cloudLocalChanged');await store.resolveCloud(conflict,choice,generation);conflict=null;resume();},
+    stop(){stopped=true;clearTimeout(timer);unsubscribe();globalThis.removeEventListener?.('online',resume);globalThis.removeEventListener?.('focus',resume);}
+  };
+}
+
+const CLOUD_MESSAGES={
+  en:{title:'A little room, on every device.',subtitle:'Morrow Cloud · Eras',scope:'Sync covers actual Eras goals, imported backup snapshots, keepsakes, reviews and Wrapped. The overview ledger, accounts and budgets remain demo features.',local:'Not signed in · local gardens stay on this browser',email:'Email',password:'Password',login:'Sign in',signup:'Create Morrow account',submit:'Continue',close:'Close',checkEmail:'Check your email to confirm your account, then sign in here.',cloudDisabled:'Sync paused · saved on this device',cloudOffline:'Offline · changes remain saved here',cloudSyncing:'Syncing…',cloudSynced:'Eras is up to date',cloudPending:'Local changes are waiting to sync',cloudConflict:'Both devices have changes · review required',cloudNetworkError:'Connection unavailable. Local changes are safe; sync will retry.',cloudAuthRequired:'Please sign in again. Your local changes are kept.',cloudRequestFailed:'Could not complete the request. Check your details or try again.',cloudRateLimit:'Too many requests. Please wait a moment.',cloudSchemaRequired:'Database setup required · run the GitHub SQL script first',cloudInvalidResponse:'Unexpected server response. No local data was replaced.',cloudLocalChanged:'Local data changed. Download both copies again before choosing.',cloudRemoteReset:'The remote document is missing. Local data was kept; check the database.',enable:'Enable Eras sync',pause:'Pause sync',retry:'Sync now',logout:'Sign out',consent:'I agree to upload my Eras data, including any complete Xiaoman backups I explicitly imported. Demo data is excluded.',account:'Signed-in space',guestNote:'Local guest gardens are kept separately. To move them, export a Garden backup before signing in, then restore it in your signed-in space.',passwordHelp:'Use your Morrow account password, never the Supabase database password. For a new account use at least 8 characters.',invalid:'Enter a valid email and password (at least 8 characters when creating an account).',conflictHelp:'Nothing was automatically overwritten. Download both copies, inspect them, then select one complete version. Versions are not automatically combined.',copies:'Download both copies',useLocal:'Use this device’s version',useRemote:'Use the cloud version',backups:'I saved both downloaded JSON files before selecting a version.',backupFirst:'Save both copies and confirm first.',privacy:'Authentication tokens are stored on this browser to keep you signed in. Sign out on shared devices. Pausing sync does not erase existing cloud copies.',signoutHelp:'Sign out? Unsynced changes stay in this account’s local space on this browser; sign in again to resume.',setup:'Database setup instructions',localStatus:'Saved locally',enabled:'Cloud sync enabled',disabled:'Cloud sync paused'},
+  zh:{title:'在每台设备，为明天留一点余地。',subtitle:'Morrow 云端 · Eras',scope:'同步范围：实际 Eras 目标、已导入的完整备份、纪念成就、复盘及年度回顾。首页账单、账户和预算仍是演示功能。',local:'尚未登录 · 本地花园保存在当前浏览器',email:'邮箱',password:'密码',login:'登录',signup:'创建 Morrow 账户',submit:'继续',close:'关闭',checkEmail:'请先在邮箱中确认账户，再回到这里登录。',cloudDisabled:'同步已暂停 · 数据保存在本机',cloudOffline:'当前离线 · 修改已保存在本机',cloudSyncing:'正在同步…',cloudSynced:'Eras 已是最新状态',cloudPending:'本地修改等待同步',cloudConflict:'两台设备都有修改 · 需要选择版本',cloudNetworkError:'暂时无法连接。本地修改已保留，将自动重试。',cloudAuthRequired:'请重新登录，本地修改会保留。',cloudRequestFailed:'请求未完成，请检查填写内容或稍后再试。',cloudRateLimit:'请求较多，请稍等再试。',cloudSchemaRequired:'数据库尚未配置 · 请先运行 GitHub 中的 SQL 脚本',cloudInvalidResponse:'服务器响应异常，没有替换本地数据。',cloudLocalChanged:'本地数据发生变化，请重新下载双方副本后选择。',cloudRemoteReset:'云端文档缺失，已保留本地数据，请检查数据库。',enable:'开启 Eras 同步',pause:'暂停同步',retry:'立即同步',logout:'退出登录',consent:'我同意上传 Eras 数据，包括我明确导入过的完整小满备份；不包含首页演示数据。',account:'已登录的独立空间',guestNote:'未登录时的花园会单独保留。需要迁移时，请先导出花园备份，登录后在账户空间恢复。',passwordHelp:'请使用 Morrow 账户密码，不是 Supabase 数据库密码。创建账户时至少使用 8 个字符。',invalid:'请填写有效邮箱和密码（创建账户至少 8 个字符）。',conflictHelp:'双方数据均未被自动覆盖。请下载并检查两个副本，再选择保留的完整版本；不会自动合并金额。',copies:'下载双方副本',useLocal:'使用本机版本',useRemote:'使用云端版本',backups:'我已保存下载的两个 JSON 文件，再选择保留版本。',backupFirst:'请先保存双方副本并确认。',privacy:'登录令牌保存在当前浏览器以维持登录。共用设备请退出登录；暂停同步不会删除已有云端副本。',signoutHelp:'确定退出？未同步修改仍保存在当前浏览器的该账户空间，重新登录后可继续同步。',setup:'数据库配置说明',localStatus:'已保存在本机',enabled:'已开启云同步',disabled:'已暂停云同步'}
+};
+
+
+function mountMorrowCloud({getLanguage}) {
+  const client=createMorrowCloudClient(),session=client.getSession();
+  // Login/logout reloads before changing namespaces. No guest/account auto-merge.
+  const store=createGardenStore(session?{name:'morrow-garden-user-'+session.user.id}:{});
+  const t=key=>CLOUD_MESSAGES[getLanguage()][key]??CLOUD_MESSAGES[getLanguage()].cloudRequestFailed;
+  const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const host=document.createElement('section');host.id='morrow-cloud';host.className='morrow-cloud panel';
+  document.querySelector('.dashboard-grid').before(host);
+  const modal=document.createElement('dialog');modal.className='garden-dialog';modal.id='cloud-auth-dialog';document.body.append(modal);
+  let status=session?'cloudDisabled':'local',enabled=false,busy=false,sync,conflict=false,copies=null,notice=null,consentApproved=false,backupsConfirmed=false;
+  const settings=document.createElement('a');settings.className='garden-button';settings.href='#morrow-cloud';
+  document.querySelector('#settings-dialog .settings-info').before(settings);
+  settings.onclick=()=>document.querySelector('#settings-dialog').close();
+  function render(){
+    settings.textContent=t('subtitle');
+    host.innerHTML=`<div class="cloud-heading"><div><span class="garden-eyebrow">${t('subtitle')}</span><h2>${t('title')}</h2></div><p class="cloud-status" role="status">${esc(t(status))}</p></div><p class="cloud-help">${t('scope')}</p><p class="cloud-help">${t('guestNote')}</p>
+      ${session?`<p class="cloud-help">${t('account')} · ${esc(session.user.email??'')}</p>${!enabled?`<label class="garden-checkbox"><input id="cloud-consent" type="checkbox" ${consentApproved?'checked':''}><span>${t('consent')}</span></label>`:''}<div class="cloud-actions"><button class="garden-button" data-cloud="${enabled?'pause':'enable'}">${t(enabled?'pause':'enable')}</button><button class="garden-button" data-cloud="retry" ${!enabled?'disabled':''}>${t('retry')}</button><button class="garden-button" data-cloud="logout">${t('logout')}</button></div>`:`<div class="cloud-actions"><button class="garden-button" data-cloud="login">${t('login')}</button><button class="garden-button" data-cloud="signup">${t('signup')}</button></div>`}
+      ${conflict?`<div class="cloud-conflict"><p>${t('conflictHelp')}</p><button class="garden-button" data-cloud="copies">${t('copies')}</button><label class="garden-checkbox"><input type="checkbox" id="cloud-backups" ${backupsConfirmed?'checked':''} ${copies?'':'disabled'}><span>${t('backups')}</span></label><div class="cloud-actions"><button class="garden-button" data-cloud="local" ${copies?'':'disabled'}>${t('useLocal')}</button><button class="garden-button" data-cloud="remote" ${copies?'':'disabled'}>${t('useRemote')}</button></div></div>`:''}
+      <p class="cloud-help">${t('privacy')}</p><a class="cloud-setup" href="https://github.com/sugARIboo-m/-my-first-project/blob/morrow/eras-delivery-20261018/morrow/SUPABASE_SETUP.md" target="_blank" rel="noopener">${t('setup')} ↗</a>${notice?`<p class="field-error" role="alert">${esc(t(notice))}</p>`:''}`;
+  }
+  host.onchange=event=>{if(event.target.id==='cloud-consent')consentApproved=event.target.checked;if(event.target.id==='cloud-backups')backupsConfirmed=event.target.checked;};
+  function showAuth(kind){
+    modal.innerHTML=`<form id="cloud-auth-form"><div class="dialog-title"><h2>${t(kind)}</h2><button type="button" data-cloud-close aria-label="${t('close')}">×</button></div><p class="dialog-help">${t('passwordHelp')}</p><div class="form-grid"><label class="full-width"><span>${t('email')}</span><input name="email" type="email" autocomplete="email" required maxlength="254"></label><label class="full-width"><span>${t('password')}</span><input name="password" type="password" autocomplete="${kind==='login'?'current-password':'new-password'}" required ${kind==='signup'?'minlength="8"':''} maxlength="256"></label></div><p class="field-error" id="cloud-auth-error" role="alert" hidden></p><button class="primary form-submit">${t('submit')}</button></form>`;
+    modal.querySelector('[data-cloud-close]').onclick=()=>modal.close();
+    modal.querySelector('form').onsubmit=async event=>{
+      event.preventDefault();if(busy)return;const form=event.target,submit=form.querySelector('.form-submit');busy=true;submit.disabled=true;
+      try{
+        const fields=Object.fromEntries(new FormData(form));
+        if(kind==='login')await client.signIn(fields.email.trim(),fields.password);
+        else await client.signUp(fields.email.trim(),fields.password);
+        form.reset();
+        if(client.getSession()){sync?.stop();location.reload();}
+        else{modal.close();notice='checkEmail';render();}
+      }catch(error){const p=form.querySelector('#cloud-auth-error');p.textContent=t(error.message);p.hidden=false;}
+      finally{busy=false;submit.disabled=false;}
+    };modal.showModal();modal.querySelector('[name=email]').focus();
+  }
+  function download(name,state){const url=URL.createObjectURL(new Blob([JSON.stringify({format:'morrow-garden',exportedAt:new Date().toISOString(),state},null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+  host.onclick=async event=>{
+    const control=event.target.closest('[data-cloud]');if(!control||control.disabled||busy)return;
+    const action=control.dataset.cloud;notice=null;
+    if(action==='login'||action==='signup'){showAuth(action);return;}
+    if(action==='enable'&&!host.querySelector('#cloud-consent')?.checked){notice='consent';render();return;}
+    if((action==='local'||action==='remote')&&(!copies||!host.querySelector('#cloud-backups')?.checked)){notice='backupFirst';render();return;}
+    busy=true;control.disabled=true;
+    try{
+      if(action==='enable'){enabled=true;await sync.enable();}
+      if(action==='pause'){enabled=false;await sync.disable();}
+      if(action==='retry')sync.start();
+      if(action==='logout'&&confirm(t('signoutHelp'))){sync?.stop();await client.signOut();location.reload();return;}
+      if(action==='copies'){copies=await sync.conflictCopies();backupsConfirmed=false;download('Morrow-Conflict-Device.json',copies.local);download('Morrow-Conflict-Cloud.json',copies.remote);}
+      if(action==='local'||action==='remote'){await sync.resolve(action,copies.generation);copies=null;conflict=false;}
+    }catch(error){notice=error.message;if(error.message==='cloudLocalChanged')copies=null;}
+    finally{busy=false;render();}
+  };
+  if(session){
+    sync=createErasSync({store,client,onStatus:info=>{status=info.status;enabled=info.enabled;conflict=!!info.conflict;render();}});
+    store.readCloud().then(local=>{enabled=local.meta.enabled;render();sync.start();}).catch(()=>{notice='cloudRequestFailed';render();});
+  }
+  // A different account in another tab must never use this tab's old namespace.
+  window.addEventListener('storage',event=>{if(event.key===client.sessionKey){try{const next=JSON.parse(event.newValue);if(next?.user?.id!==session?.user?.id){sync?.stop();location.reload();}}catch{sync?.stop();location.reload();}}});
+  window.addEventListener('morrow:language',()=>{if(modal.open)modal.close();render();});
+  render();return {store};
 }
 
 
@@ -794,14 +1010,13 @@ function renderErasExperiences({host,state,store,getLanguage,onState,view,prefer
 }
 
 
-function mountEras({getLanguage}) {
+function mountEras({getLanguage,store=createGardenStore()}) {
   const query=selector=>document.querySelector(selector);
   const translate=key=>ERA_MESSAGES[getLanguage()][key]??key;
   const escape=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const format=(amount,currency='CNY')=>new Intl.NumberFormat(getLanguage()==='en'?'en-US':'zh-CN',{style:'currency',currency,currencyDisplay:'narrowSymbol',minimumFractionDigits:2,maximumFractionDigits:2}).format(amount/100);
   const identifier=()=>crypto.randomUUID();
   const now=()=>new Date().toISOString();
-  const store=createGardenStore();
   let state=emptyGardenState(),ready=false,storageError=null,selectedTheme='eternal-bloom',sampleStage=2;
   let editingGoal=null,pendingImport=null,backupAcknowledged=false,busy=false,noticeTimer;
   let activeView='garden';const extraPreferences={};
@@ -1221,7 +1436,8 @@ window.addEventListener('scroll',()=>{
     activeSection(current);
   });
 },{passive:true});
-const erasApp = mountEras({getLanguage:()=>language});
+const cloudApp = mountMorrowCloud({getLanguage:()=>language});
+const erasApp = mountEras({getLanguage:()=>language,store:cloudApp.store});
 activeSection('dashboard-section');render();
 
 })();

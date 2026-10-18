@@ -33,3 +33,8 @@ npm run test:preview
 Garden、Collection、Wrapped 可使用本机保存或明确导入的数据。首页账本、账户和预算仍是标明的演示界面；预算及愿望清单相关成就保持锁定。尚未配置 Supabase 登录、云端同步、实际银行连接或 PWA 安装。SQL 为未执行的提案，不能据此宣称 RLS 或跨设备同步已验证。
 
 导入、恢复前请备份；旧版应用仍保留于此目录根部的 `index.html`，不会自动清空 `xiaoman-v1`。
+
+
+## Supabase 配置更新
+
+已新增实际 Eras 登录与快照同步代码，托管部署仍待验证。请优先阅读 [SUPABASE_SETUP.md](SUPABASE_SETUP.md)，只运行其中指定的当前 SQL；旧版表结构提案不是前置步骤。

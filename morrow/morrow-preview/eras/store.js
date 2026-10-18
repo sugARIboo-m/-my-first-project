@@ -1,58 +1,73 @@
 import {emptyGardenState,validateGardenState} from './domain.js';
 import {reconcileAchievements} from './experience-domain.js';
+import {cloudMetadata,cloudPrepare,cloudAcknowledge,cloudStateEqual} from '../cloud/state.js';
 
-export function createGardenStore() {
+export function createGardenStore({name='morrow-garden-v1'}={}) {
   let database;
-  const changes=typeof BroadcastChannel==='function'?new BroadcastChannel('morrow-garden-updates'):null;
+  const listeners=new Set();
+  const changes=typeof BroadcastChannel==='function'?new BroadcastChannel(name+'-updates'):null;
+  const emit=()=>listeners.forEach(callback=>callback());
+  if(changes)changes.onmessage=emit;
   async function open() {
     if(database)return database;
     database=await new Promise((resolve,reject)=>{
-      const request=indexedDB.open('morrow-garden-v1',1);
-      request.onupgradeneeded=()=>{
-        request.result.createObjectStore('state');
-        request.result.createObjectStore('recovery',{autoIncrement:true});
-      };
-      request.onsuccess=()=>{
-        const result=request.result;
-        result.onversionchange=()=>{result.close();database=null;};resolve(result);
-      };
-      request.onerror=()=>reject(new Error('gardenStorageUnavailable'));
-      request.onblocked=()=>reject(new Error('gardenStorageUnavailable'));
-    });
-    return database;
+      const request=indexedDB.open(name,1);
+      request.onupgradeneeded=()=>{request.result.createObjectStore('state');request.result.createObjectStore('recovery',{autoIncrement:true});};
+      request.onsuccess=()=>{const result=request.result;result.onversionchange=()=>{result.close();database=null;};resolve(result);};
+      request.onerror=request.onblocked=()=>reject(new Error('gardenStorageUnavailable'));
+    });return database;
   }
-  async function read() {
+  async function readCloud() {
     const db=await open();
     return new Promise((resolve,reject)=>{
-      const transaction=db.transaction('state','readonly');
-      const request=transaction.objectStore('state').get('current');let state;
-      request.onsuccess=()=>{try{state=validateGardenState(request.result??emptyGardenState());}catch(error){reject(error);}};
-      transaction.oncomplete=()=>resolve(state);transaction.onerror=()=>reject(new Error('gardenStorageUnavailable'));
-      transaction.onabort=()=>reject(new Error('gardenStorageUnavailable'));
+      const tx=db.transaction('state','readonly'),table=tx.objectStore('state');let state,meta,error;
+      table.get('current').onsuccess=event=>{try{state=validateGardenState(event.target.result??emptyGardenState());}catch(e){error=e;}};
+      table.get('cloud').onsuccess=event=>meta=cloudMetadata(event.target.result);
+      tx.oncomplete=()=>error?reject(error):resolve({state,meta});
+      tx.onerror=tx.onabort=()=>reject(new Error('gardenStorageUnavailable'));
     });
   }
-  async function update(reducer,{recovery=false}={}) {
+  async function atomic(reducer,{recovery=false}={}) {
     const db=await open();
     return new Promise((resolve,reject)=>{
-      const transaction=db.transaction(['state','recovery'],'readwrite');
-      const table=transaction.objectStore('state');const request=table.get('current');let next,error,changed=false;
-      request.onsuccess=()=>{
-        try{
-          const current=validateGardenState(request.result??emptyGardenState());
-          next=validateGardenState(reconcileAchievements(validateGardenState(reducer(current)),new Date().toISOString()));
-          if(recovery||request.result?.schemaVersion===1){
-            // Upgrade only adds metadata; retain the original raw snapshot.
-            if(!transaction.objectStoreNames.contains('recovery'))throw new Error('gardenMigrationRequired');
-            transaction.objectStore('recovery').add({createdAt:new Date().toISOString(),state:request.result??current});
-          }
-          changed=JSON.stringify(request.result??emptyGardenState())!==JSON.stringify(next);
-          if(changed)table.put(next,'current');
-        }catch(problem){error=problem;transaction.abort();}
+      const tx=db.transaction(['state','recovery'],'readwrite'),table=tx.objectStore('state');let result,error,changed=false;
+      table.get('current').onsuccess=event=>{
+        const raw=event.target.result;
+        table.get('cloud').onsuccess=metadataEvent=>{
+          try {
+            const current=validateGardenState(raw??emptyGardenState()),metadata=cloudMetadata(metadataEvent.target.result);
+            const next=reducer(current,metadata);next.state=validateGardenState(next.state);
+            if(recovery||raw?.schemaVersion===1)tx.objectStore('recovery').add({createdAt:new Date().toISOString(),state:raw??current});
+            changed=!cloudStateEqual(raw??emptyGardenState(),next.state);
+            if(changed)table.put(next.state,'current');
+            if(!cloudStateEqual(metadata,next.meta))table.put(next.meta,'cloud');
+            result=next.result??next.state;
+          }catch(problem){error=problem;tx.abort();}
+        };
       };
-      transaction.oncomplete=()=>{if(changed)changes?.postMessage('changed');resolve(next);};
-      transaction.onerror=()=>reject(error??new Error('gardenStorageUnavailable'));
-      transaction.onabort=()=>reject(error??new Error('gardenStorageUnavailable'));
+      tx.oncomplete=()=>{if(changed){changes?.postMessage('changed');emit();}resolve(result);};
+      tx.onerror=tx.onabort=()=>reject(error??new Error('gardenStorageUnavailable'));
     });
   }
-  return {read,update,onchange(callback){if(changes)changes.onmessage=callback;}};
+  return {
+    read:async()=>(await readCloud()).state,
+    readCloud,
+    update(reducer,options){return atomic((current,meta)=>{
+      const state=validateGardenState(reconcileAchievements(validateGardenState(reducer(current)),new Date().toISOString()));
+      return {state,meta:cloudStateEqual(current,state)?meta:{...meta,generation:meta.generation+1,dirty:true}};
+    },options);},
+    setCloudEnabled(enabled){return atomic((state,meta)=>({state,meta:{...meta,enabled}}));},
+    prepareCloud(id){return atomic((state,meta)=>{const next=cloudPrepare(state,meta,id);return {state,meta:next,result:next.pending};});},
+    acknowledgeCloud(result,requestId){return atomic((state,meta)=>({state,meta:cloudAcknowledge(state,meta,result,requestId)}));},
+    adoptCloud(remote,expectedGeneration){return atomic((state,meta)=>{
+      if(meta.generation!==expectedGeneration||meta.dirty||meta.pending)throw new Error('cloudLocalChanged');
+      return {state:remote.payload,meta:{...meta,remoteVersion:remote.version,lastSynced:new Date().toISOString()}};
+    },{recovery:true});},
+    resolveCloud(remote,choice,expectedGeneration){return atomic((state,meta)=>{
+      if(meta.generation!==expectedGeneration)throw new Error('cloudLocalChanged');
+      return {state:choice==='remote'?remote.payload:state,
+        meta:{...meta,pending:null,remoteVersion:remote.version,dirty:choice!=='remote',generation:meta.generation+1}};
+    },{recovery:true});},
+    onchange(callback){listeners.add(callback);return ()=>listeners.delete(callback);}
+  };
 }

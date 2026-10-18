@@ -1,0 +1,42 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {cloudCanonical,cloudMetadata,cloudPrepare,cloudAcknowledge,cloudStateEqual} from '../cloud/state.js';
+import {createMorrowCloudClient} from '../cloud/client.js';
+
+test('cloud comparison tolerates PostgreSQL JSONB key ordering without changing array order',()=>{
+  assert(cloudStateEqual({b:2,a:[{d:4,c:3}]},{a:[{c:3,d:4}],b:2}));
+  assert(!cloudStateEqual([1,2],[2,1]));assert.equal(cloudCanonical(null),'null');
+});
+test('durable pending snapshot reuses its request id and payload after further local changes',()=>{
+  const state={balance:100},meta=cloudPrepare(state,cloudMetadata({generation:1,dirty:true}),'op1');
+  const again=cloudPrepare({balance:200},{...meta,generation:2},'op2');
+  assert.equal(again.pending.id,'op1');assert.deepEqual(again.pending.payload,state);
+});
+test('acknowledgement only clears dirty if the exact submitted generation is still current',()=>{
+  const state={balance:100},meta=cloudPrepare(state,cloudMetadata({generation:1,dirty:true}),'op1');
+  assert.equal(cloudAcknowledge(state,meta,{version:1},'op1').dirty,false);
+  const updated=cloudAcknowledge({balance:200},{...meta,generation:2},{version:1},'op1');
+  assert.equal(updated.dirty,true);assert.equal(updated.remoteVersion,1);assert.equal(updated.pending,null);
+});
+test('late acknowledgements from another tab cannot clear a newer pending request',()=>{
+  const meta=cloudPrepare({balance:100},cloudMetadata({dirty:true}),'new');
+  assert.deepEqual(cloudAcknowledge({balance:100},meta,{version:1},'old'),meta);
+  assert.throws(()=>cloudAcknowledge({balance:100},meta,{version:0},'new'),/cloudInvalidResponse/);
+});
+function memoryStorage(){const values=new Map();return {getItem:key=>values.get(key)??null,setItem:(key,value)=>values.set(key,value),removeItem:key=>values.delete(key)};}
+test('public key goes in apikey; RPC uses the authenticated access token and normalizes failures',async()=>{
+  const calls=[],storage=memoryStorage(),config={url:'https://example.supabase.co',publishableKey:'sb_publishable_test'};
+  const session={access_token:'synthetic-access',refresh_token:'synthetic-refresh',expires_at:Math.floor(Date.now()/1000)+3600,user:{id:'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'}};
+  const client=createMorrowCloudClient({config,storage,fetcher:async(url,options)=>{calls.push({url,options});return {ok:true,json:async()=>url.includes('/token?')?session:{version:0}};}});
+  await client.signIn('test@example.test','synthetic-password');await client.rpc('morrow_eras_read');
+  assert.equal(calls[1].options.headers.apikey,config.publishableKey);assert.equal(calls[1].options.headers.Authorization,'Bearer synthetic-access');
+  assert.equal(client.getSession().user.id,session.user.id);
+  const missing=createMorrowCloudClient({config,storage,fetcher:async()=>({ok:false,status:404,json:async()=>({code:'PGRST202',message:'Do not echo sensitive details'})})});
+  await assert.rejects(()=>missing.rpc('morrow_eras_read'),/cloudSchemaRequired/);
+});
+test('network errors never expose request contents, and signed-out clients cannot call RPC',async()=>{
+  const config={url:'https://example.supabase.co',publishableKey:'sb_publishable_test'};
+  const client=createMorrowCloudClient({config,storage:memoryStorage(),fetcher:async()=>{throw new Error('untrusted server detail');}});
+  await assert.rejects(()=>client.signIn('test@example.test','private'),/^Error: cloudNetworkError$/);
+  await assert.rejects(()=>client.rpc('morrow_eras_read'),/cloudAuthRequired/);
+});

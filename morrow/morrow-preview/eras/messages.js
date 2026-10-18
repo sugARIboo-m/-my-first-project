@@ -2,7 +2,7 @@ export const ERA_MESSAGES = {
   en:{
     eras:'Eras',garden:'Garden',collection:'Collection',wrapped:'Wrapped',later:'After Garden review',
     eyebrow:'MORROW ERAS / 01',title:'A little room to bloom.',subtitle:'Every little saving has its own era. A quiet place for the things you’re growing toward.',
-    local:'Saved on this browser · cloud sync is not connected',localHelp:'Garden records are saved locally. The Dashboard ledger is still a demo; its transactions never grow these gardens.',
+    local:'Saved on this browser · see Cloud for sync status',localHelp:'Garden records are saved locally. The Dashboard ledger is still a demo; its transactions never grow these gardens.',
     myGardens:'Your savings gardens',newGoal:'Plant a goal',editGoal:'Tend your goal',noGoals:'Your next chapter starts small.',emptyHelp:'Create a savings goal and record its current saved amount. No fictional balances will be added.',
     explore:'Find your era',exploreHelp:'An artwork studio: these stage samples never change your savings.',sample:'Artwork sample · not financial data',showcase:'Four eras, five ways to grow',showcaseHelp:'All 20 original vector artworks. Growth thresholds are the same for every theme.',
     seed:'Seed',sprout:'Sprout',growing:'Growing',blooming:'Blooming',fullBloom:'Full Bloom',
@@ -30,14 +30,14 @@ export const ERA_MESSAGES = {
     gardenStorageUnavailable:'Local storage is unavailable. Nothing has been marked as saved. Try another browser or allow site storage.',
     gardenExportFailed:'The image could not be exported. Your goal data is still saved.',invalidDate:'Choose a valid calendar date.',
     currentEra:'Your current era',allLocal:'Local goals, not additional assets',loading:'Opening your Garden…',
-    pendingCloud:'Cloud sync is not configured',confirmBackup:'I have downloaded the current Garden backup',
+    pendingCloud:'Cloud sync is managed in the Cloud panel',confirmBackup:'I have downloaded the current Garden backup',
     memoryTitle:'A little victory, remembered.',memoryCaption:'An original Morrow Garden keepsake',
     allocationNote:'Balances are manually recorded allocations, not bank-verified funds.',invalidStage:'Set a valid target to start your garden.'
   },
   zh:{
     eras:'Eras',garden:'花园',collection:'收藏',wrapped:'年度回顾',later:'花园确认后开发',
     eyebrow:'MORROW ERAS / 01',title:'给未来，种一点期待。',subtitle:'每一份小小的积累，都有属于自己的时代。慢慢靠近，你想要的生活。',
-    local:'已保存到当前浏览器 · 云同步尚未连接',localHelp:'花园目标在本机保存。首页账本仍为演示数据，其中的交易不会让花园生长。',
+    local:'已保存到当前浏览器 · 同步状态见云端面板',localHelp:'花园目标在本机保存。首页账本仍为演示数据，其中的交易不会让花园生长。',
     myGardens:'我的储蓄花园',newGoal:'种下一个目标',editGoal:'照顾这个目标',noGoals:'生活的下一章，从一点点开始。',emptyHelp:'创建储蓄目标，记录已经存下的金额。这里不会自动添加虚构余额。',
     explore:'找到你的 Era',exploreHelp:'这里是视觉展台：阶段样本不会改变你的储蓄。',sample:'视觉样本 · 非财务数据',showcase:'四种主题，五个生长阶段',showcaseHelp:'20 张原创矢量图。每个主题都遵循同一套真实进度规则。',
     seed:'种子',sprout:'萌芽',growing:'生长',blooming:'初绽',fullBloom:'盛放',
@@ -65,7 +65,7 @@ export const ERA_MESSAGES = {
     gardenStorageUnavailable:'本机存储不可用，没有将操作标记为保存成功。请允许网站存储或换用浏览器。',
     gardenExportFailed:'图片暂时无法导出，已保存的目标数据不受影响。',invalidDate:'请选择有效的日期。',
     currentEra:'正在经历的 Era',allLocal:'本机目标，不是额外资产',loading:'正在打开你的花园……',
-    pendingCloud:'云同步尚未配置',confirmBackup:'我已下载当前花园备份',
+    pendingCloud:'云同步在云端面板管理',confirmBackup:'我已下载当前花园备份',
     memoryTitle:'把这一点小小的胜利，留住。',memoryCaption:'Morrow 原创花园纪念卡',
     allocationNote:'金额由你手动记录，不代表银行已核验的资金。',invalidStage:'设置有效目标金额后，花园就可以开始生长。'
   }

@@ -39,3 +39,8 @@ The unit/domain suite now contains 27 tests covering original finance rules, Gar
 Browser checks: 360/390/768/1440 widths, EN/ZH, light/dark, inline validation, date/account/note entry, search/category filters, cross-month and income/expense edits, delete/cancel, unchanged savings balances, empty states, keyboard shortcuts, reset after reload and no JavaScript errors. No real-device Safari/PWA validation, persistent migration, Supabase or production deployment is claimed.
 
 The original application remains at ../index.html. The owner accepted the initial visual direction; this pass refines interactions while keeping the legacy implementation and storage separate.
+
+
+## Cloud integration update
+
+The `cloud/` module adds password authentication, isolated per-user IndexedDB, opt-in Eras snapshot sync, durable retry IDs, CAS conflicts and two-copy recovery. See [SUPABASE_SETUP.md](../SUPABASE_SETUP.md) for the current standalone SQL. Hosted Supabase connectivity, real devices and deployment are still unverified; prior local-only limitations above describe the earlier build.

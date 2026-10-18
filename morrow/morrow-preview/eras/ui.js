@@ -5,14 +5,13 @@ import {renderGardenSvg} from './art.js';
 import {createGardenStore} from './store.js';
 import {renderErasExperiences} from './experiences.js';
 
-export function mountEras({getLanguage}) {
+export function mountEras({getLanguage,store=createGardenStore()}) {
   const query=selector=>document.querySelector(selector);
   const translate=key=>ERA_MESSAGES[getLanguage()][key]??key;
   const escape=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const format=(amount,currency='CNY')=>new Intl.NumberFormat(getLanguage()==='en'?'en-US':'zh-CN',{style:'currency',currency,currencyDisplay:'narrowSymbol',minimumFractionDigits:2,maximumFractionDigits:2}).format(amount/100);
   const identifier=()=>crypto.randomUUID();
   const now=()=>new Date().toISOString();
-  const store=createGardenStore();
   let state=emptyGardenState(),ready=false,storageError=null,selectedTheme='eternal-bloom',sampleStage=2;
   let editingGoal=null,pendingImport=null,backupAcknowledged=false,busy=false,noticeTimer;
   let activeView='garden';const extraPreferences={};

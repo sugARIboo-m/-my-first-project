@@ -1,6 +1,7 @@
 import {parseAmount, isCalendarDate, monthWindow, summarize, upsertRecord} from './domain.js';
 import {messages} from './messages.js';
 import {mountEras} from './eras/ui.js';
+import {mountMorrowCloud} from './cloud/ui.js';
 
 const $ = selector => document.querySelector(selector);
 let language = 'en', appearance = 'system', selectedMonth = '2026-10';
@@ -257,5 +258,6 @@ window.addEventListener('scroll',()=>{
     activeSection(current);
   });
 },{passive:true});
-const erasApp = mountEras({getLanguage:()=>language});
+const cloudApp = mountMorrowCloud({getLanguage:()=>language});
+const erasApp = mountEras({getLanguage:()=>language,store:cloudApp.store});
 activeSection('dashboard-section');render();
