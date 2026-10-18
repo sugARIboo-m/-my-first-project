@@ -1,3 +1,4 @@
+import { validateLearningProfile } from './level.js';
 export const DAY = 86400000;
 export function dayKey(date = new Date()) {
   return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
@@ -59,6 +60,7 @@ export function extractCandidates(text, knownWords, limit=80) {
 }
 export function validateBackup(data) {
   if(!data || data.version!==1 || !data.plan || !Array.isArray(data.customWords) || !Array.isArray(data.materials) || !data.progress || !data.history || !Array.isArray(data.favorites)) throw new Error('这不是有效的词间备份文件');
+  validateLearningProfile(data.learningProfile);
   const safeText=(s,max=500)=>typeof s==='string' && s.length<=max;
   if(data.plan.month !== undefined && (typeof data.plan.month !== 'string' || (data.plan.month && !/^\d{4}-\d{2}$/.test(data.plan.month)))) throw new Error('备考月份格式不正确');
   if(!safeText(data.plan.exam,100) || !safeText(data.plan.date,10) || !Number.isInteger(data.plan.goal) || data.plan.goal<1 || data.plan.goal>100 || !Number.isInteger(data.plan.target) || data.plan.target<1 || data.plan.target>50000 || !Number.isInteger(data.plan.minutes) || data.plan.minutes<1 || data.plan.minutes>180) throw new Error('学习计划格式不正确');

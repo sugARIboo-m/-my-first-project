@@ -1,3 +1,4 @@
+import subprocess
 """Verify the uploaded personal book plus normal local EPUB import."""
 from pathlib import Path
 import json, os
@@ -7,6 +8,8 @@ source=os.environ.get('EPUB_PATH')
 with sync_playwright() as p:
     b=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/usr/bin/chromium'),headless=True,args=['--no-sandbox'])
     page=b.new_page(viewport={'width':1440,'height':1050})
+    legacy_seed=subprocess.check_output(['node','--input-type=module','-e',"import{emptyState}from'./core.js';const s=emptyState();s.learningProfile={enabled:false,cutoff:0,known:[],unknown:[]};console.log(JSON.stringify(s));"],cwd=ROOT,text=True)
+    page.add_init_script("if(!localStorage.getItem('wordlane.v1'))localStorage.setItem('wordlane.v1',"+json.dumps(legacy_seed)+");")
     errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
     page.goto(os.environ.get('APP_URL','http://127.0.0.1:3000'),wait_until='networkidle')
     page.wait_for_function("JSON.parse(localStorage.getItem('wordlane.v1')||'{}').readingLibraryImported===true")
@@ -21,6 +24,7 @@ with sync_playwright() as p:
     page.locator('#epub-chapter').select_option('1')
     expect(page.locator('#file-status')).to_contain_text('Boys')
     page.locator('#extract-button').click()
+    expect(page.locator('[data-form=material-save]')).to_be_visible(timeout=60000)
     count=page.locator('[name=candidate]:checked').count()
     assert count>0
     page.locator('[data-form=material-save] button[type=submit]').click()
@@ -53,6 +57,7 @@ with sync_playwright() as p:
         page.locator('#epub-chapter').select_option('41')
         expect(page.locator('#material-text')).not_to_be_empty()
         page.locator('#extract-button').click()
+        expect(page.locator('[data-form=material-save]')).to_be_visible(timeout=60000)
         assert page.locator('[name=candidate]:checked').count()>0
     assert not errors,errors
     print('PASS: real EPUB parsing, 43 reading sections, auto first-chapter import, chapter merge, source-specific sentences, learning, progress on reload and standalone EPUB file input.')

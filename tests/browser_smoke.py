@@ -1,3 +1,4 @@
+import subprocess
 """Run against npm run dev; requires Playwright and a Chromium binary."""
 from pathlib import Path
 import json, os, tempfile
@@ -9,6 +10,8 @@ with sync_playwright() as p:
     browser=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/usr/bin/chromium'),headless=True,args=['--no-sandbox'])
     context=browser.new_context(viewport={'width':1440,'height':1050},accept_downloads=True)
     page=context.new_page()
+    legacy_seed=subprocess.check_output(['node','--input-type=module','-e',"import{emptyState}from'./core.js';const s=emptyState();s.learningProfile={enabled:false,cutoff:0,known:[],unknown:[]};console.log(JSON.stringify(s));"],cwd=ROOT,text=True)
+    page.add_init_script("if(!localStorage.getItem('wordlane.v1'))localStorage.setItem('wordlane.v1',"+json.dumps(legacy_seed)+");")
     errors=[]
     page.on('pageerror',lambda e:errors.append(str(e)))
     page.goto(os.environ.get('APP_URL','http://127.0.0.1:3000'),wait_until='networkidle')
@@ -37,12 +40,13 @@ with sync_playwright() as p:
     expect(page.get_by_role('heading',name='Everything I Know About Love',exact=True)).to_be_visible()
     expect(page.get_by_role('heading',name='新时代大学商务英语综合教程 2',exact=True)).to_be_visible()
     page.locator('[data-action=reimport][data-id=material-reading]').first.click()
-    page.locator('#material-text').fill('We cherish every memory. We can discover comfort and serendipity. A curious reader can cherish a memory of yesterday.')
+    page.locator('#material-text').fill('We cherish every memory. We can discover comfort and serendipity. A curious reader can cherish a memory of yesterday. A flimbleflamble appeared on the way.')
     page.locator('#extract-button').click()
+    expect(page.locator('[data-form=material-save]')).to_be_visible(timeout=60000)
     expect(page.locator('#modal-title')).to_contain_text('Everything I Know About Love')
     assert page.locator('[name=candidate]:checked').count()>=5
     # Unknown words cannot be saved without a supplied meaning.
-    unknown=page.locator('.candidate-row').filter(has=page.locator('input[placeholder="补充释义后勾选"]')).filter(has=page.locator('input:not([readonly]):not([type=checkbox])'))
+    unknown=page.locator('.candidate-row').filter(has=page.locator('input[data-candidate-meaning][value=""]'))
     first=unknown.first
     if first.count():
         first.locator('[type=checkbox]').check()
@@ -56,7 +60,8 @@ with sync_playwright() as p:
     assert len(material['wordIds'])>=5
     assert material['contexts']['daily-cherish']=='We cherish every memory.'
     page.locator('[data-action=material-study][data-id=material-reading]').click()
-    expect(page.locator('.example-en')).to_contain_text('We can discover comfort and')
+    page.locator('[data-action=reveal]').click()  # Reveal the cloze in the spelling mode selected earlier.
+    assert page.locator('.example-en').inner_text() in material['contexts'].values()
     page.locator('[data-action=nav][data-view=materials]').first.click()
     page.screenshot(path=str(ART/'materials.png'),full_page=True)
     page.locator('[data-action=nav][data-view=library]').click()
@@ -95,6 +100,7 @@ with sync_playwright() as p:
     expect(page.locator('#file-status')).to_contain_text('已读取',timeout=30000)
     expect(page.locator('#material-text')).to_have_value(__import__('re').compile('cherish'))
     page.locator('#extract-button').click()
+    expect(page.locator('[data-form=material-save]')).to_be_visible(timeout=60000)
     page.locator('[data-form=material-save] button[type=submit]').click()
     page.locator('[data-action=nav][data-view=stats]').first.click()
     expect(page.get_by_text('累计学习单词',exact=True)).to_be_visible()

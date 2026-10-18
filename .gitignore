@@ -1,6 +1,8 @@
 node_modules/
 .test-artifacts/
 .DS_Store
+__pycache__/
+*.pyc
 
 # Personal uploaded books and generated reading text
 .local/

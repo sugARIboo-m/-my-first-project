@@ -1,3 +1,4 @@
+import subprocess
 """Exercise the personal classroom pack and actual uploaded Office files."""
 from pathlib import Path
 import json,os
@@ -8,6 +9,8 @@ pack=json.loads((ROOT/'.local/course-library.json').read_text())
 with sync_playwright() as p:
  b=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/usr/bin/chromium'),headless=True,args=['--no-sandbox'])
  context=b.new_context(viewport={'width':1440,'height':1050});page=context.new_page();errors=[]
+ legacy_seed=subprocess.check_output(['node','--input-type=module','-e',"import{emptyState}from'./core.js';const s=emptyState();s.learningProfile={enabled:false,cutoff:0,known:[],unknown:[]};console.log(JSON.stringify(s));"],cwd=ROOT,text=True)
+ page.add_init_script("if(!localStorage.getItem('wordlane.v1'))localStorage.setItem('wordlane.v1',"+json.dumps(legacy_seed)+");")
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.goto(os.environ.get('APP_URL','http://127.0.0.1:3000'),wait_until='networkidle')
  page.wait_for_function("JSON.parse(localStorage.getItem('wordlane.v1')||'{}').courseImportVersions!==undefined")

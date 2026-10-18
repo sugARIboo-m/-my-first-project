@@ -5,7 +5,7 @@ import path from 'node:path';
 const root = fileURLToPath(new URL('.', import.meta.url));
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml', '.json': 'application/json', '.txt': 'text/plain; charset=utf-8', '.webmanifest': 'application/manifest+json' };
 const allowed = new Set(['index.html', 'styles.css', 'app.js', 'core.js', 'data.js', 'sw.js', 'icon.svg', 'manifest.webmanifest', 'vendor/pdf.mjs', 'vendor/pdf.worker.mjs', 'epub.js', 'glossary.js', 'vendor/fflate.js', 'reading-library.json', 'course-library.json', 'office.js', 'course.js']);
-for (const file of ['features.css','features.js','activities.js','dictionary.js']) allowed.add(file);
+for (const file of ['features.css','features.js','activities.js','dictionary.js','level.css','level.js','level-ui.js','selection.js','frequency.js','selection-lexicon.js','frequency-DATA-NOTICE.txt']) allowed.add(file);
 const port = Number(process.env.PORT || 3000);
 const server = http.createServer(async (req, res) => {
   const pathname = new URL(req.url, 'http://localhost').pathname;
