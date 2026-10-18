@@ -11,7 +11,7 @@ with sync_playwright() as p:
     page=context.new_page()
     errors=[]
     page.on('pageerror',lambda e:errors.append(str(e)))
-    page.goto('http://127.0.0.1:3000',wait_until='networkidle')
+    page.goto(os.environ.get('APP_URL','http://127.0.0.1:3000'),wait_until='networkidle')
     expect(page.get_by_text('大学英语四级',exact=True)).to_be_visible()
     expect(page.get_by_role('heading',name='achieve',exact=True)).to_be_visible()
     page.locator('[data-action=start]').click()
@@ -111,10 +111,11 @@ with sync_playwright() as p:
     page.screenshot(path=str(ART/'desktop.png'),full_page=True)
     assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
     mobile=browser.new_page(viewport={'width':390,'height':844},is_mobile=True,has_touch=True)
-    mobile.goto('http://127.0.0.1:3000',wait_until='networkidle')
+    mobile.goto(os.environ.get('APP_URL','http://127.0.0.1:3000'),wait_until='networkidle')
     assert not mobile.evaluate('document.documentElement.scrollWidth>innerWidth')
     mobile.screenshot(path=str(ART/'mobile.png'),full_page=True)
-    mobile.locator('[data-action=nav][data-view=materials]').first.click()
+    mobile.locator('[data-action=more]').click()
+    mobile.locator('#modal [data-action=nav][data-view=materials]').click()
     assert not mobile.evaluate('document.documentElement.scrollWidth>innerWidth')
     mobile.screenshot(path=str(ART/'mobile-materials.png'),full_page=True)
     assert not errors,errors

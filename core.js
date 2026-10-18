@@ -84,6 +84,18 @@ export function validateBackup(data) {
   if(data.courseImportVersions !== undefined && (!data.courseImportVersions || typeof data.courseImportVersions!=='object' || Array.isArray(data.courseImportVersions) || Object.entries(data.courseImportVersions).some(([k,v])=>!safeText(k,100)||!safeText(v,100)))) throw new Error('课堂同步记录格式不正确');
   if(data.courseTasks !== undefined && (!data.courseTasks || typeof data.courseTasks!=='object' || Array.isArray(data.courseTasks) || Object.entries(data.courseTasks).some(([k,v])=>!safeText(k,200)||typeof v!=='boolean'))) throw new Error('课堂任务记录格式不正确');
   const validId=id=> typeof id==='string' && id.length<=120 && !['__proto__','constructor','prototype'].includes(id);
+  if (data.activities !== undefined) {
+    const a=data.activities;
+    if(!a || typeof a!=='object' || !a.days || !a.mistakes || typeof a.days!=='object' || typeof a.mistakes!=='object' || Array.isArray(a.days) || Array.isArray(a.mistakes) || Object.keys(a.days).length>3660 || Object.keys(a.mistakes).length>10000) throw new Error('探索练习记录格式不正确');
+    for(const [date,d] of Object.entries(a.days)) {
+      if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||!d||!Number.isInteger(d.answered)||d.answered<0||!Number.isInteger(d.correct)||d.correct<0||d.correct>d.answered||!Array.isArray(d.rewarded)||d.rewarded.length>10000||d.rewarded.some(id=>!validId(id))||new Set(d.rewarded).size!==d.rewarded.length||d.rewarded.length>d.correct||!Array.isArray(d.completed)||d.completed.some(t=>!['daily','context','mistakes'].includes(t))||!Number.isInteger(d.dailyBest)||d.dailyBest<0||d.dailyBest>5) throw new Error('每日挑战记录格式不正确');
+    }
+    for(const [id,m] of Object.entries(a.mistakes)) if(!validId(id)||!m||!Number.isInteger(m.wrongCount)||m.wrongCount<1||!Number.isFinite(m.lastAt)||m.lastAt<0) throw new Error('错词记录格式不正确');
+  }
+  for(const w of data.customWords) if(w.dictionarySource!==undefined) {
+    const d=w.dictionarySource;
+    if(!d||d.name!=='WordNet'||d.version!=='3.0'||!safeText(d.lemma,80)||!safeText(d.definition,5000)||typeof d.synset!=='string'||!/^([nvars]):\d{8}$/.test(d.synset)) throw new Error('词典来源格式不正确');
+  }
   for(const [id,p] of Object.entries(data.progress)) if(!validId(id)||!p||![p.interval,p.due,p.successes,p.lapses,p.lastReviewed].every(x=>Number.isFinite(x)&&x>=0)) throw new Error('学习进度格式不正确');
   for(const [key,h] of Object.entries(data.history)) if(!/^\d{4}-\d{2}-\d{2}$/.test(key)||!h||!Number.isInteger(h.attempts)||h.attempts<0||!Number.isInteger(h.correct)||h.correct<0||h.correct>h.attempts||!Array.isArray(h.learned)||!Array.isArray(h.reviewed)||[...h.learned,...h.reviewed].some(id=>!validId(id))) throw new Error('学习记录格式不正确');
   if(data.favorites.some(id=>!validId(id))) throw new Error('收藏格式不正确');
