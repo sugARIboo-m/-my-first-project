@@ -1,0 +1,1 @@
+{"name":"little-savings","version":"0.1.0","private":true,"type":"module","scripts":{"start":"python3 -m http.server 3000 --bind 0.0.0.0","test":"node --test tests/*.test.js","preview":"python3 -m http.server 3010 --bind 127.0.0.1 --directory morrow-preview","build:preview":"node morrow-preview/build.mjs","test:preview":"node --test morrow-preview/tests/*.test.js"}}

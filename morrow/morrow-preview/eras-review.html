@@ -1,0 +1,1228 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f5f5f7"><title>Morrow — Interface preview</title><style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;color-scheme:light;--bg:#f5f5f7;--surface:#fff;--side:#eeeef1;--text:#343a46;--muted:#858690;--border:#e7e7ec;--accent:#68768c;--active:#e0e3e9;--sage:#9baa84;--pink:#b98991;--chart-line:#efeff3;--shadow:0 3px 18px #343a4603;--blue-soft:#edf0f5;--field:#f6f6f8}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-size:13px;-webkit-font-smoothing:antialiased}button,input,select{font:inherit;color:inherit}button,a,input,select{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button,a,select{touch-action:manipulation}button{border:0}a{text-decoration:none;color:inherit}svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.sprite{position:absolute;width:0;height:0;overflow:hidden}.sidebar{position:fixed;inset:0 auto 0 0;width:222px;padding:33px 19px 20px;background:var(--side);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:10}.brand{display:flex;align-items:center;gap:11px;padding:0 10px;font-size:23px;font-weight:650;letter-spacing:-.7px}.brand-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:var(--text);color:var(--surface);font-family:Georgia,serif;font-size:32px;font-weight:400;padding-bottom:5px;letter-spacing:-3px;padding-right:4px}.brand-caption{display:block;font-size:9px;font-weight:400;letter-spacing:.5px;color:var(--muted);margin-top:5px}.nav-caption{font-size:9px;color:var(--muted);letter-spacing:1.6px;text-transform:uppercase;padding:48px 15px 15px}.navigation{display:grid;gap:6px}.navigation a,.navigation button,.settings-button{display:flex;align-items:center;text-align:left;gap:12px;padding:13px 15px;border-radius:9px;font-size:12px;white-space:nowrap;background:none;color:var(--muted);width:100%}.navigation .active{background:var(--active);color:var(--accent);font-weight:600}.nav-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);margin-left:auto}.nav-count{margin-left:auto;font-size:10px;color:var(--muted)}.sidebar-bottom{margin-top:auto}.tomorrow-card{padding:21px 15px;margin:25px 7px 20px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(140deg,var(--surface),transparent)}.tomorrow-card svg{color:var(--sage);width:23px;height:23px}.tomorrow-card p{font-family:Georgia,serif;font-style:italic;line-height:1.5;font-size:17px;color:var(--accent);margin:11px 0}.tomorrow-card small{font-size:9px;color:var(--muted);line-height:1.7}.settings-button{padding-bottom:20px}.profile{display:flex;align-items:center;gap:10px;padding:18px 8px 0;border-top:1px solid var(--border)}.avatar{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#dad5d3;color:#6d6566;font-family:Georgia,serif;font-size:16px}.profile b{font-size:11px;font-weight:500}.profile small{display:block;font-size:9px;color:var(--muted);margin-top:4px}.profile>svg{width:14px;margin-left:auto;color:var(--muted)}main{margin-left:222px;max-width:1700px;padding:0 35px}.topbar{height:73px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);font-size:10px;color:var(--muted)}.topbar b{font-weight:500;color:var(--text)}.breadcrumb{margin:0 12px;color:#bebfc6}.toolbar{display:flex;align-items:center;gap:17px}.preview-badge{display:flex;align-items:center;gap:6px;color:var(--accent);font-size:9px}.preview-badge i{width:5px;height:5px;background:var(--accent);border-radius:50%}.language-button{background:none;color:var(--accent);font-size:11px;padding:7px}.icon-button{display:grid;place-items:center;background:var(--surface);border:1px solid var(--border);border-radius:8px;width:30px;height:30px}.icon-button svg{width:15px;height:15px}.avatar.small{width:28px;height:28px;font-size:13px}header{padding:31px 0 27px;display:flex;justify-content:space-between;gap:15px;align-items:center}.eyebrow{font-size:8px;letter-spacing:2px;color:var(--muted);font-weight:500;text-transform:uppercase}h1{font-size:29px;font-weight:550;letter-spacing:-1px;margin:10px 0}header p{font-size:11px;color:var(--muted);margin:0;line-height:1.6}.header-actions{display:flex;gap:11px;align-items:center;padding-top:15px}select{border:1px solid var(--border);border-radius:8px;background:var(--surface);padding:10px 12px;font-size:10px;max-width:100%;outline-offset:3px}.primary{display:flex;justify-content:center;align-items:center;gap:7px;background:var(--accent);color:#fff;border-radius:8px;padding:11px 14px;font-size:10px;font-weight:500;box-shadow:0 3px 8px #68768c18;white-space:nowrap}.primary svg{width:15px;height:15px}.metrics{display:grid;grid-template-columns:1.13fr 1fr 1fr 1fr;gap:16px;margin-bottom:23px}.metric{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:19px 19px 17px;position:relative;overflow:hidden;min-height:156px;box-shadow:var(--shadow)}.metric-label{display:flex;align-items:center;justify-content:space-between;gap:5px;color:var(--muted);font-size:10px}.metric strong{display:block;font-size:27px;font-weight:550;letter-spacing:-1px;font-variant-numeric:tabular-nums;margin-top:18px;position:relative;z-index:1}.metric-symbol{border-radius:7px;width:25px;height:25px;display:grid;place-items:center}.metric-symbol svg{width:14px;height:14px}.sage{background:#9baa8418;color:#8b9c76}.pink{background:#b9899118;color:#b98991}.blue{background:var(--blue-soft);color:var(--accent)}.metric-foot{display:flex;justify-content:space-between;gap:6px;font-size:8px;color:var(--muted);margin-top:17px;position:relative;z-index:1}.sage-text{color:#8b9c76}.pink-text{color:#b98991}.balance-card{background:linear-gradient(115deg,#758299,#5e6d85);color:white;border:0}.balance-card .metric-label{color:#e4e8f0}.balance-card .metric-label svg{opacity:.65;width:17px}.balance-card strong{font-size:30px;margin-top:25px}.balance-bottom{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-size:8px;color:#e2e6ef}.balance-bottom>span{display:flex;align-items:center;gap:6px}.tiny-dot{width:4px;height:4px;border-radius:50%;background:#c2cfbf}.card-arrow{border-radius:50%;background:#ffffff1a;color:white;width:21px;height:21px;font-size:13px}.balance-waves{position:absolute;right:-35px;bottom:-15px;width:100%;height:120px;stroke:white;opacity:.11;stroke-width:1}.mini-chart{display:flex;gap:4px;height:16px;position:absolute;bottom:0;right:20px;opacity:.14;align-items:flex-end}.mini-chart i{display:block;width:9px;height:55%;border-radius:2px 2px 0 0;background:var(--sage)}.mini-chart i:nth-child(3n){height:95%}.mini-chart i:nth-child(3n + 1){height:35%}.mini-chart i:nth-child(4n){height:70%}.pink-chart i{background:var(--pink)}.budget-line{height:4px;background:var(--blue-soft);border-radius:5px;margin-top:19px;overflow:hidden}.budget-line span{display:block;width:69.8%;height:100%;background:#a7b1c2;border-radius:5px}.metric:last-child .metric-foot{margin-top:9px}.dashboard-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:23px}.panel{border:1px solid var(--border);background:var(--surface);border-radius:13px;padding:22px 23px;box-shadow:var(--shadow);min-width:0;scroll-margin-top:20px}.section-title{display:flex;align-items:center;justify-content:space-between;gap:10px}h2{font-size:13px;letter-spacing:-.1px;font-weight:600;margin:0}.section-title p{font-size:9px;color:var(--muted);margin:7px 0 0}.period-chip{font-size:8px;background:var(--field);border:1px solid var(--border);padding:7px 10px;border-radius:6px;color:var(--muted);white-space:nowrap}.chart-legend{display:flex;gap:16px;margin:23px 0 8px 32px;font-size:8px;color:var(--muted)}.chart-legend>span{display:flex;align-items:center;gap:5px}.chart-legend i,.category-dot{width:6px;height:6px;border-radius:2px;display:inline-block}.sage-fill{background:#afba9c}.pink-fill{background:#bc98a0}.chart-legend .chart-unit{margin-left:auto;font-size:7px}.bar-chart{display:flex;height:174px;gap:10px;margin-bottom:13px}.axis-labels{display:flex;flex-direction:column;justify-content:space-between;font-size:8px;color:#a6a6af;width:23px;padding-bottom:22px}.chart-grid{flex:1;position:relative;min-width:0}.gridlines{position:absolute;inset:0 0 22px;display:flex;flex-direction:column;justify-content:space-between}.gridlines i{border-top:1px dashed var(--chart-line);height:1px}.bars{display:flex;justify-content:space-around;position:relative;height:100%;gap:10px}.bar-group{height:100%;display:flex;align-items:flex-end;justify-content:center;gap:7px;flex:1;position:relative;padding-bottom:23px}.bar-group i{display:block;width:19px;max-width:27%;border-radius:4px 4px 0 0;background:#afba9c;position:relative;animation:bar-in .7s both;transform-origin:bottom}.bar-group i:nth-child(2){background:#bc98a0}.bar-group:last-child i{background:#93a47f}.bar-group:last-child i:nth-child(2){background:#ac808a}.bar-group>span{position:absolute;bottom:0;font-size:8px;color:var(--muted)}.chart-insight{display:flex;align-items:center;gap:9px;border-radius:8px;background:var(--field);padding:9px 11px;margin-top:12px}.insight-icon{display:grid;place-items:center;width:24px;height:24px;border-radius:6px;background:var(--surface);color:var(--sage)}.insight-icon svg{width:14px;height:14px}.chart-insight p{font-size:9px;margin:0;color:var(--muted);line-height:1.6}.muted-icon{color:#b5b8c0;width:15px}.donut-wrap{display:flex;justify-content:center;margin:20px 0 21px}.donut{width:146px;height:146px;border-radius:50%;background:conic-gradient(#7f8ca3 0 42%,#c1a3ab 42% 66%,#a9b698 66% 82%,#d3c9c2 82% 92%,#dce0e7 92% 100%);padding:16px;transform:rotate(-90deg)}.donut-hole{background:var(--surface);border:5px solid var(--surface);border-radius:50%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;transform:rotate(90deg)}.donut-hole>span{font-size:8px;color:var(--muted)}.donut-hole strong{font-size:22px;font-weight:550;letter-spacing:-.8px;margin:6px 0;font-variant-numeric:tabular-nums}.donut-hole small{font-size:7px;color:var(--muted)}.category-list{display:grid;gap:10px}.category-row{display:flex;align-items:center;gap:7px;font-size:9px}.category-row .category-name{color:var(--muted)}.category-row .category-value{margin-left:auto;font-variant-numeric:tabular-nums}.category-row small{font-size:8px;color:var(--muted);width:25px;text-align:right}.table-wrap{overflow:auto;margin-top:18px}table{width:100%;border-collapse:collapse;text-align:left;white-space:nowrap}th{font-size:8px;font-weight:400;color:var(--muted);border-bottom:1px solid var(--border);padding:0 0 11px}th:last-child,td:last-child{text-align:right}td{padding:12px 0;border-bottom:1px solid var(--border);font-size:9px}tr:last-child td{border:0}.transaction-name{display:flex;align-items:center;gap:10px}.transaction-icon{display:grid;place-items:center;background:var(--field);border:1px solid var(--border);width:31px;height:31px;border-radius:9px;color:var(--accent)}.transaction-icon svg{width:15px;height:15px}.transaction-name b{font-weight:500;font-size:10px}.transaction-name small{display:block;font-size:8px;color:var(--muted);margin-top:5px}.category-pill{font-size:8px;background:var(--field);padding:5px 7px;border-radius:5px;color:var(--muted)}.account-text{color:var(--muted)}.transaction-amount{font-variant-numeric:tabular-nums;font-weight:500}.transaction-amount.income{color:#8b9c76}.table-foot{border-top:1px solid var(--border);padding-top:13px;margin-top:3px;font-size:8px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}.table-foot svg{width:12px;height:12px;color:#a3a7b0}.count-pill{font-size:9px;width:22px;height:22px;border:1px solid var(--border);border-radius:7px;display:grid;place-items:center;color:var(--muted)}.goal-cover{height:102px;border-radius:9px;overflow:hidden;margin-top:19px;position:relative}.goal-cover>svg{width:100%;height:100%;stroke:none}.goal-cover>span{position:absolute;top:13px;left:13px;color:#52615b;background:#ffffffab;border:1px solid #ffffff80;border-radius:5px;padding:5px 7px;font-size:8px;backdrop-filter:blur(8px)}.goal-cover>.cover-arrow{left:auto;right:12px;font-size:13px;background:none;border:0;padding:0}.goal-item{padding:15px 0 0}.goal-heading{display:flex;align-items:center;justify-content:space-between}.goal-heading b{font-size:11px;font-weight:500;display:flex;align-items:center;gap:6px}.goal-heading small{font-size:9px;color:var(--accent)}.goal-numbers{display:flex;align-items:center;justify-content:space-between;margin-top:9px;gap:5px}.goal-numbers strong{font-size:10px;font-weight:500;font-variant-numeric:tabular-nums}.goal-numbers strong span{font-size:8px;color:var(--muted);font-weight:400}.goal-numbers>small{font-size:8px;color:var(--muted)}.progress{height:4px;background:var(--blue-soft);border-radius:5px;overflow:hidden;margin-top:11px}.progress span{height:100%;display:block;background:#8d9ab0;border-radius:5px}.second-goal{margin-top:17px;border-top:1px solid var(--border)}.sage-progress span{background:#acb897}.goal-spark{font-size:17px;color:var(--sage)}footer{display:flex;justify-content:space-between;gap:15px;font-size:8px;color:var(--muted);padding:23px 0}.footer-dot{margin:0 6px;color:#b0b2ba}.footer-preview{color:#9799a3}.tabbar{display:none}button,a,select{transition:background .18s,transform .18s,box-shadow .18s}button:active{transform:scale(.97)}.navigation a:hover,.navigation button:hover,.settings-button:hover{background:var(--active)}.metric{transition:transform .2s,box-shadow .2s}.metric:hover{transform:translateY(-2px);box-shadow:0 6px 22px #343a460a}:focus-visible{outline:2px solid var(--accent);outline-offset:4px}dialog{background:var(--surface);color:var(--text);border:1px solid var(--border);width:min(440px,calc(100vw - 32px));border-radius:18px;padding:25px;box-shadow:0 30px 80px #20263030}dialog::backdrop{background:#252c3845;backdrop-filter:blur(4px)}.dialog-title{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:18px}.dialog-title h2{font-size:18px}.dialog-title button{background:var(--field);width:30px;height:30px;border-radius:50%;font-size:22px;color:var(--muted)}.setting-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid var(--border);font-size:12px}.settings-info{display:flex;align-items:flex-start;gap:10px;background:var(--field);border-radius:10px;padding:13px;margin-top:20px;color:var(--muted)}.settings-info svg{width:16px}.settings-info p,.dialog-help{font-size:11px;line-height:1.7;margin:0;color:var(--muted)}.dialog-help{margin:15px 0}.account-row{display:flex;gap:12px;align-items:center;padding:16px 0;border-bottom:1px solid var(--border)}.account-row>svg{color:var(--accent)}.account-row b{font-size:12px;font-weight:500}.account-row small{display:block;font-size:10px;color:var(--muted);margin-top:5px}.account-row>strong{margin-left:auto;font-size:14px;font-weight:500;font-variant-numeric:tabular-nums}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.form-grid label{display:grid;gap:8px;font-size:11px}.form-grid input,.form-grid select{width:100%;min-width:0;border:1px solid var(--border);padding:11px;background:var(--field);border-radius:8px;font-size:13px}.form-submit{width:100%;padding:13px;margin-top:22px}.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);border:1px solid var(--border);background:var(--surface);color:var(--text);box-shadow:0 8px 28px #20263018;padding:14px 20px;border-radius:12px;z-index:30;font-size:12px;max-width:90vw}.empty-state{font-size:12px;color:var(--muted);text-align:center;padding:25px}html[data-theme=dark]{color-scheme:dark;--bg:#20232b;--surface:#292d36;--side:#242730;--text:#eeeef2;--muted:#a3a5b1;--border:#383d49;--accent:#9baac1;--active:#343c4b;--chart-line:#3a3e49;--shadow:0 3px 18px #00000008;--blue-soft:#343c4a;--field:#30343e}html[data-theme=dark] .primary{background:#68768c}html[data-theme=dark] .brand-icon{background:#8795ac;color:#fff}html[data-theme=dark] .goal-cover{filter:brightness(.8)}@keyframes bar-in{from{transform:scaleY(.05);opacity:.1}to{transform:scaleY(1);opacity:1}}@media(min-width:1500px){main{padding:0 50px}.metric{min-height:174px}.metric strong{font-size:33px}.balance-card strong{font-size:35px}.bar-chart{height:195px}.goal-cover{height:115px}.panel{padding:25px}}@media(max-width:1100px){.sidebar{width:185px;padding-left:13px;padding-right:13px}main{margin-left:185px;padding:0 23px}.brand{font-size:20px}.brand-icon{width:37px;height:37px}.metrics{gap:10px}.metric{padding:16px 13px}.metric strong{font-size:23px}.balance-card strong{font-size:25px}.metric-label{font-size:9px}.dashboard-grid{gap:16px;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}.panel{padding:19px 16px}.header-actions{gap:7px}.header-actions .primary{padding:11px 10px}h1{font-size:27px}.tomorrow-card{padding:15px 10px}.tomorrow-card p{font-size:15px}.metric-foot{font-size:7px}.goal-numbers{flex-wrap:wrap}}@media(max-width:800px){.sidebar{display:none}main{margin-left:0;padding:0 24px}.metrics{grid-template-columns:1fr 1fr}.metric{min-height:150px;padding:20px}.metric strong{font-size:29px}.balance-card strong{font-size:30px}.metric-label{font-size:11px}.metric-foot{font-size:9px}.balance-bottom{font-size:9px}.dashboard-grid{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}footer{padding-bottom:110px}.tabbar{position:fixed;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:space-around;border-top:1px solid var(--border);background:color-mix(in srgb,var(--surface) 91%,transparent);backdrop-filter:blur(18px);padding:10px 10px calc(10px + env(safe-area-inset-bottom));z-index:15}.tabbar a,.tabbar button{display:flex;align-items:center;flex-direction:column;gap:5px;color:var(--muted);font-size:9px;background:none;min-width:50px;min-height:44px;justify-content:center}.tabbar .active{color:var(--accent)}.tabbar .tab-add{background:var(--accent);color:#fff;border-radius:14px;min-width:46px;height:43px;transform:translateY(-4px);box-shadow:0 4px 13px #68768c33}.tab-add svg{width:23px;height:23px}.toast{bottom:100px}.navigation a,.navigation button,.primary{min-height:40px}.topbar{height:65px;padding-top:env(safe-area-inset-top)}}@media(max-width:540px){main{padding:0 18px}.topbar>span{font-size:10px}.breadcrumb{margin:0 7px}.toolbar{gap:8px}.avatar.small{display:none}.preview-badge{font-size:8px}.icon-button{width:30px;height:30px}.language-button{padding:5px;min-height:36px}header{padding:27px 0 22px;display:block}.eyebrow{font-size:8px}h1{font-size:30px;margin:10px 0 9px}header p{font-size:11px}.header-actions{justify-content:space-between;padding-top:20px}.header-actions select{font-size:11px;padding:11px 12px}.header-actions .primary{font-size:11px;padding:11px 13px}.metrics{gap:11px;margin-bottom:18px}.metric{padding:16px;min-height:145px}.metric strong{font-size:25px;letter-spacing:-.8px}.balance-card strong{font-size:27px;margin-top:22px}.metric-label{font-size:10px;gap:4px}.metric-label>svg{display:none}.metric-symbol{width:21px;height:21px}.metric-symbol svg{width:12px;height:12px}.metric-foot{font-size:7px;gap:4px;margin-top:19px}.balance-bottom{font-size:7px;margin-top:20px}.metric:last-child .metric-foot{font-size:7px}.budget-line{margin-top:20px}.dashboard-grid{grid-template-columns:1fr;gap:17px}.panel{padding:21px 19px}.section-title h2{font-size:14px}.section-title p{font-size:10px}.chart-legend{font-size:9px;margin-top:23px}.bar-chart{height:185px}.bar-group i{width:20px}.bar-group>span,.axis-labels{font-size:9px}.chart-insight p{font-size:10px}.donut{width:155px;height:155px;padding:17px}.donut-hole strong{font-size:23px}.donut-hole>span{font-size:9px}.donut-hole small{font-size:8px}.breakdown-panel{display:grid;grid-template-columns:1fr 1fr;column-gap:15px}.breakdown-panel .section-title{grid-column:1/-1}.donut-wrap{margin:24px 0 8px}.category-list{padding-top:14px;gap:12px;align-content:center}.category-row{font-size:9px;gap:5px}.category-row small{font-size:8px;width:22px}.category-dot{width:5px;height:5px;flex-shrink:0}.category-value{font-size:9px}.transactions-panel{order:3}.goals-panel{order:4}th{font-size:9px}td{padding:14px 0}.transaction-name b{font-size:11px}.transaction-name small{font-size:9px}.transaction-name{gap:8px}.transaction-icon{width:30px;height:30px}.category-pill{font-size:8px}.transaction-amount{font-size:10px}table th:nth-child(3),table td:nth-child(3){display:none}.table-foot{font-size:8px;padding-top:15px}.goal-cover{height:125px}.goal-cover>span{font-size:9px}.goal-heading b{font-size:12px}.goal-heading small{font-size:10px}.goal-numbers strong{font-size:12px}.goal-numbers strong span,.goal-numbers>small{font-size:9px}.progress{height:5px}.goal-item{padding-top:17px}.second-goal{margin-top:20px;padding-bottom:5px}footer{font-size:8px;line-height:1.7;flex-direction:column;gap:5px}.footer-preview{font-size:8px}.preview-badge{max-width:100px}.topbar .toolbar{gap:7px}.setting-row select{font-size:12px}.brand{font-size:22px}}@media(max-width:365px){main{padding:0 12px}.metric{padding:14px 12px}.metric strong{font-size:23px}.breakdown-panel{column-gap:7px}.donut{width:133px;height:133px;padding:14px}.donut-hole strong{font-size:20px}.category-row{font-size:8px}.category-value{font-size:8px}.category-row small{display:none}.preview-badge{display:none}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Readable text and constrained chart columns at every breakpoint. */
+.bar-group{min-width:0}.bars{gap:6px}.bar-group{gap:5px}.bar-group i{flex-shrink:1}
+@media(min-width:801px){.metric-label{font-size:12px}.metric-foot{font-size:10px}.balance-bottom{font-size:10px}.section-title h2{font-size:15px}.section-title p{font-size:11px}.period-chip{font-size:10px}.chart-legend{font-size:10px}.axis-labels,.bar-group>span{font-size:10px}.chart-insight p{font-size:11px}.category-row{font-size:11px}.category-row small{font-size:10px}.donut-hole>span{font-size:10px}.donut-hole small{font-size:9px}th{font-size:10px}td{font-size:11px}.transaction-name b{font-size:12px}.transaction-name small{font-size:10px}.category-pill{font-size:10px}.table-foot{font-size:10px}.goal-heading b{font-size:13px}.goal-heading small{font-size:11px}.goal-numbers strong{font-size:12px}.goal-numbers strong span,.goal-numbers>small{font-size:10px}.navigation a,.navigation button,.settings-button{font-size:13px}.header-actions .primary,select{font-size:12px}.topbar{font-size:11px}.preview-badge{font-size:10px}.tomorrow-card small{font-size:10px}.profile b{font-size:12px}.profile small{font-size:10px}footer{font-size:10px}.metric:last-child .metric-foot{font-size:9px}.goal-cover>span{font-size:10px}}
+@media(max-width:540px){.bar-group{gap:5px}.bar-group i{width:18px;max-width:35%}.bars{gap:8px}}
+
+.card-arrow{display:grid;place-items:center}.card-arrow svg{width:12px;height:12px}.cover-arrow svg{width:15px;height:15px}
+
+/* Detail pass: reading, forms, search and clear, explicit secondary actions. */
+:root{--muted:#696d79}
+html[data-theme=dark]{--muted:#acb0bd}
+.topbar{font-size:12px}.navigation a,.navigation button,.settings-button{min-height:44px}
+.header-actions .primary,.header-actions select{min-height:44px}
+.icon-button,.language-button{min-width:44px;min-height:44px}
+.card-arrow{position:relative}.card-arrow::before{content:"";position:absolute;inset:-12px}
+button:hover{filter:brightness(.97)}button:disabled{cursor:wait;opacity:.6}
+.period-chip{font-size:11px}.section-title p{line-height:1.6}
+.preview-scope{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:11px;line-height:1.6;margin:-12px 0 21px}
+.preview-scope::before{content:"";display:block;background:var(--accent);width:5px;height:5px;border-radius:50%}
+.ledger-tools{display:flex;gap:10px;align-items:center;margin-top:22px}
+.search-field{display:flex;flex:1;min-width:0;align-items:center;gap:9px;background:var(--field);border:1px solid var(--border);border-radius:9px;padding:0 12px;min-height:44px;color:var(--muted)}
+.search-field:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.search-field svg{width:17px;height:17px}.search-field input{border:0;background:transparent;min-width:0;width:100%;min-height:44px;outline:none;font-size:12px;color:var(--text)}
+.search-field input::placeholder{color:var(--muted);opacity:1}
+.ledger-tools select{min-height:44px;font-size:11px;max-width:37%}
+.ledger-status{display:flex;justify-content:space-between;align-items:center;min-height:34px;font-size:11px;color:var(--muted);gap:10px}
+.text-action{background:transparent;font-size:11px;color:var(--accent);padding:9px 0;min-height:40px}
+.table-wrap{margin-top:3px}th:last-child,td:last-child{text-align:right}
+th:nth-last-child(2),td:nth-last-child(2){text-align:right}
+.row-actions-heading{width:42px}.row-actions{width:42px;padding-right:0}
+.edit-entry{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:8px;color:var(--accent);background:transparent}
+.edit-entry:hover{background:var(--blue-soft)}.edit-entry svg{width:16px;height:16px}
+.transaction-name{min-width:0}.transaction-name b{display:block;max-width:220px;overflow:hidden;text-overflow:ellipsis}
+.transaction-name small{max-width:210px;overflow:hidden;text-overflow:ellipsis}
+.over-budget{color:var(--pink)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+form{margin:0}.form-grid{gap:17px}.form-grid label{font-size:12px;line-height:1.5;color:var(--muted)}
+.form-grid input,.form-grid select,.form-grid textarea{font:inherit;font-size:14px;min-height:46px;border:1px solid var(--border);background:var(--field);color:var(--text);border-radius:9px;padding:11px 12px;width:100%;min-width:0}
+.form-grid textarea{resize:vertical;line-height:1.6}.form-grid .full-width{grid-column:1/-1}
+.form-grid [aria-invalid=true]{border-color:var(--pink);outline:2px solid #b9899130}
+.field-error{font-size:12px;line-height:1.6;color:var(--pink);margin:16px 0 0}
+.form-submit{min-height:46px;margin-top:22px;font-size:13px}
+.delete-from-form{display:block;background:transparent;color:var(--pink);font-size:12px;min-height:44px;margin:10px auto 0;padding:10px 16px}
+.delete-from-form[hidden]{display:none}
+.dialog-help{font-size:12px}.dialog-title button{min-width:40px;min-height:40px}
+.setting-row{font-size:13px}.setting-row select{font-size:13px;min-height:44px}
+.delete-preview{margin:20px 0;border:1px solid var(--border);padding:15px;border-radius:10px;font-size:13px;line-height:1.7;overflow-wrap:anywhere;background:var(--field)}
+.confirm-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:25px}
+.secondary-button,.danger-button{min-height:44px;border-radius:9px;padding:11px 15px;font-size:12px}
+.secondary-button{background:var(--field);color:var(--text);border:1px solid var(--border)}
+.danger-button{background:#9c5e69;color:#fff}
+html[data-theme=dark] .danger-button{background:#aa707b}
+@media(min-width:1101px){.metric-label{font-size:12px}.metric-foot{font-size:11px}.balance-bottom{font-size:10px}.category-row{font-size:12px}.category-row small{font-size:10px}th{font-size:11px}td{font-size:12px}.transaction-name b{font-size:13px}.transaction-name small{font-size:11px}.category-pill{font-size:10px}.table-foot{font-size:10px}.preview-badge{font-size:11px}.spending-panel{min-height:365px}}
+@media(max-width:800px){.search-field input{font-size:16px}.form-grid input,.form-grid select,.form-grid textarea{font-size:16px}.ledger-tools select{font-size:12px}.transaction-name b{max-width:190px}.tabbar{padding-bottom:calc(10px + env(safe-area-inset-bottom))}.preview-scope{font-size:10px}}
+@media(max-width:540px){.ledger-tools{flex-wrap:wrap;gap:10px}.search-field{flex-basis:100%}.ledger-tools select{max-width:none;min-width:150px}.transactions-panel .section-title{align-items:flex-start}.transactions-panel .section-title>select{min-height:40px;font-size:10px}.ledger-status{font-size:11px}.transaction-name b{font-size:12px;max-width:140px}.transaction-name small{font-size:10px;max-width:135px}.transaction-icon{width:27px;height:27px}.transaction-name{gap:7px}.transaction-amount{font-size:11px}.row-actions-heading,.row-actions{width:33px}.edit-entry{width:33px;height:44px}.category-pill{font-size:9px}th{font-size:10px}.table-foot{font-size:9px}.preview-scope{font-size:10px;max-width:100%;margin-bottom:18px}.form-grid{gap:15px}dialog{max-height:calc(100dvh - 40px);overflow:auto;padding:22px}.transaction-icon svg{width:14px;height:14px}.category-row{font-size:10px}.category-value{font-size:10px}.category-row small{font-size:8px}.table-wrap{margin-top:5px}}
+@media(max-width:365px){.transaction-icon{display:none}.transaction-name b{max-width:135px}.transaction-name small{max-width:130px}.category-row{font-size:9px}.category-value{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.metric:hover{transform:none}}
+
+@media(max-width:540px){.breakdown-panel{display:block}.breakdown-panel .donut-wrap{margin:24px 0}.breakdown-panel .donut{width:166px;height:166px;padding:18px}.breakdown-panel .category-list{padding-top:0;gap:13px}.breakdown-panel .category-row,.breakdown-panel .category-value{font-size:12px}.breakdown-panel .category-row small{font-size:11px;width:30px;display:block}.metric-foot{font-size:9px;flex-wrap:wrap;row-gap:5px}.balance-bottom{font-size:9px}.row-actions-heading,.row-actions{width:44px}.edit-entry{width:44px;height:44px}.transaction-name b{max-width:132px}.transaction-name small{max-width:128px}.dialog-title button{min-width:44px;min-height:44px}}
+
+/* Era colors live inside artwork and Garden components; global Morrow tokens remain unchanged. */
+.eras-section{margin:55px 0 20px;scroll-margin-top:24px;border-top:1px solid var(--border);padding-top:44px}
+.eras-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:27px}
+.garden-eyebrow{font-size:10px;letter-spacing:2.1px;color:var(--muted);font-weight:500}
+.eras-heading h2{font-size:34px;font-weight:500;letter-spacing:-1px;margin:12px 0}
+.eras-heading p{font-size:13px;line-height:1.8;color:var(--muted);max-width:540px;margin:0}
+.garden-local-status{display:flex;gap:7px;font-size:11px;align-items:center;color:var(--muted);padding-bottom:5px;line-height:1.7;max-width:270px}
+.garden-local-status i{width:5px;height:5px;flex-shrink:0;background:var(--accent);border-radius:50%}
+.eras-tabs{display:flex;gap:26px;border-bottom:1px solid var(--border);padding-bottom:16px}
+.eras-tabs a,.eras-tabs>span{font-size:13px;line-height:1.8}.eras-tabs a{color:var(--accent);font-weight:600}
+.eras-tabs>span{color:var(--muted)}.eras-tabs small{display:block;font-size:9px;font-weight:400;color:var(--muted)}
+.garden-boundary{font-size:11px;line-height:1.8;color:var(--muted);margin:18px 0 30px}
+.garden-section-title{display:flex;justify-content:space-between;align-items:center;gap:22px;margin:26px 0 20px}
+.garden-section-title h3{font-size:19px;font-weight:500;letter-spacing:-.3px;margin:8px 0}
+.garden-section-title p{font-size:12px;color:var(--muted);line-height:1.7;margin:0}
+.garden-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.garden-button{border:1px solid var(--border);background:var(--surface);color:var(--accent);font-size:12px;padding:11px 15px;border-radius:9px;min-height:44px}
+.garden-button:disabled{opacity:.45;cursor:not-allowed}.garden-actions .garden-button:first-child{background:var(--accent);color:var(--surface);border-color:var(--accent)}
+.saved-gardens{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.saved-garden{border:1px solid var(--border);border-radius:17px;overflow:hidden;background:var(--surface);min-width:0}
+.garden-art-wrap{position:relative;background:var(--field)}
+.garden-art{width:100%;height:auto;display:block;fill:none;stroke:none;aspect-ratio:5/3}
+.garden-art *{stroke-linejoin:round}.garden-stage-tag,.garden-pause-tag{position:absolute;top:16px;left:16px;background:#ffffffbf;border:1px solid #ffffff70;color:#4f5260;font-size:10px;border-radius:7px;padding:6px 9px;backdrop-filter:blur(8px)}
+.garden-pause-tag{left:auto;right:16px}.saved-garden-body{padding:22px}
+.saved-garden-heading{display:flex;align-items:center;justify-content:space-between;gap:15px}
+.garden-theme-name{font-size:10px;color:var(--muted);letter-spacing:.3px}
+.saved-garden-heading h3{font-size:19px;font-weight:500;letter-spacing:-.3px;margin:8px 0;overflow-wrap:anywhere}
+.garden-edit{display:grid;place-items:center;min-width:44px;height:44px;border:1px solid var(--border);background:var(--field);color:var(--accent);border-radius:10px}
+.garden-edit svg{width:17px;height:17px}.garden-amounts{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin:20px 0 15px;font-variant-numeric:tabular-nums}
+.garden-amounts strong{font-size:26px;font-weight:500;letter-spacing:-.7px}.garden-amounts>span{font-size:12px;color:var(--muted)}
+.garden-progress{height:5px;background:var(--field);border-radius:5px;overflow:hidden}
+.garden-progress>span{display:block;height:100%;background:var(--era-accent,var(--accent));border-radius:5px;transition:width .6s ease}
+.garden-progress-label{display:flex;justify-content:space-between;font-size:11px;gap:10px;color:var(--muted);margin:10px 0 18px}
+.garden-date{font-size:12px;line-height:1.6;color:var(--text);margin:10px 0 4px}.garden-forecast{font-size:10px;line-height:1.7;color:var(--muted);margin:0}
+.garden-legacy{color:var(--accent);font-size:10px;background:var(--blue-soft);padding:7px 9px;border-radius:7px;display:inline-block;margin:14px 0 0}
+.garden-empty{grid-column:1/-1;background:var(--surface);border:1px dashed var(--border);padding:42px 25px;border-radius:17px;text-align:center}
+.garden-seed-mark{display:grid;place-items:center;margin:0 auto 15px;width:48px;height:48px;border:1px solid var(--border);border-radius:50%;background:var(--field);font-size:40px;color:var(--accent)}
+.garden-empty h3{font-size:20px;font-weight:500;margin:10px 0}.garden-empty p{font-size:12px;line-height:1.8;color:var(--muted);max-width:450px;margin:0 auto 20px}
+.garden-data-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:21px 0 38px}.garden-data-actions>span{margin-left:auto;font-size:11px;color:var(--muted)}
+.garden-studio{border:1px solid var(--border);background:var(--surface);border-radius:18px;padding:27px}
+.garden-studio>.garden-section-title{margin-top:0}.garden-sample-pill{font-size:10px;color:var(--muted);background:var(--field);border:1px solid var(--border);border-radius:7px;padding:7px 9px;white-space:nowrap}
+.era-theme-picker{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:25px 0}
+.era-theme-option{display:flex;align-items:center;gap:10px;min-height:52px;padding:11px;border:1px solid var(--border);border-radius:11px;background:var(--surface);text-align:left;font-size:12px;color:var(--muted)}
+.era-theme-option.selected{border-color:var(--accent);color:var(--text);box-shadow:0 0 0 1px var(--accent)}
+.era-theme-swatch{width:25px;height:25px;flex-shrink:0;border-radius:50%;border:3px solid var(--surface);box-shadow:0 0 0 1px var(--border)}
+.garden-studio-scene{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:32px;align-items:center}
+.garden-studio-art{border-radius:15px;overflow:hidden}.garden-studio-copy{padding:20px 10px 20px 0}
+.garden-studio-copy>.garden-eyebrow{font-size:8px;letter-spacing:1px}.garden-studio-copy h3{font-size:28px;font-weight:500;line-height:1.2;letter-spacing:-.8px;margin:18px 0 15px}
+.garden-studio-copy p{font-size:12px;line-height:1.8;color:var(--muted);margin-bottom:27px}
+.garden-stage-number{font-size:52px;line-height:1.2;font-weight:300;letter-spacing:-2px;color:var(--accent)}.garden-stage-number span{font-size:16px;color:var(--muted);letter-spacing:0;margin-left:10px}
+.garden-studio-copy>b{display:block;font-size:12px;font-weight:500;margin-top:9px}
+.garden-stage-picker{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:25px;border-top:1px solid var(--border);padding-top:20px}
+.garden-stage-picker button{background:var(--field);border:1px solid transparent;border-radius:10px;min-height:75px;text-align:left;padding:12px;color:var(--muted)}
+.garden-stage-picker .selected{border-color:var(--accent);background:var(--blue-soft);color:var(--accent)}
+.garden-stage-picker button>span{font-size:9px;display:block;letter-spacing:1px}.garden-stage-picker b{font-weight:500;font-size:12px;display:block;margin:7px 0}.garden-stage-picker small{font-size:9px}
+.garden-contact-sheet{margin:30px 0;border:1px solid var(--border);border-radius:16px;padding:24px;background:var(--surface)}
+.garden-contact-sheet summary{font-size:16px;font-weight:500;cursor:pointer;line-height:1.6}.garden-contact-sheet>p{font-size:12px;color:var(--muted);line-height:1.8}
+.garden-matrix-row{margin-top:25px}.garden-matrix-row h4{font-size:13px;font-weight:500;margin:0 0 13px}.garden-matrix-stages{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;min-width:0}
+.garden-matrix-stages figure{margin:0;min-width:0}.garden-matrix-stages figcaption{font-size:10px;margin-top:10px;line-height:1.6;color:var(--text)}.garden-matrix-stages figcaption span{display:block;color:var(--muted);font-size:9px}
+.garden-memory{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:17px;margin-top:20px;font-size:11px;color:var(--muted)}
+.garden-memory .garden-button{font-size:11px}.garden-memory-note{font-size:10px;line-height:1.8;color:var(--muted)}
+.garden-dashboard{margin:0 0 23px;padding:0;overflow:hidden}.dashboard-garden-link{display:flex;align-items:center;gap:23px;padding-right:25px;min-height:120px}
+.dashboard-garden-art{width:190px;flex-shrink:0;align-self:stretch}.dashboard-garden-art .garden-art{height:100%;object-fit:cover}.dashboard-garden-link h2{font-size:18px;font-weight:500;margin:9px 0}
+.dashboard-garden-link p{font-size:12px;color:var(--muted);margin:0}.dashboard-garden-arrow{margin-left:auto;font-size:20px;color:var(--accent)}
+.dashboard-garden-empty{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px}.dashboard-garden-empty h2{font-size:17px;font-weight:500;margin:9px 0}.dashboard-garden-empty p{font-size:11px;color:var(--muted);margin:0}
+.garden-error{background:var(--surface);border:1px solid var(--pink);padding:18px;border-radius:11px;line-height:1.8;font-size:12px;display:flex;align-items:center;gap:18px}
+.garden-dialog{width:min(490px,calc(100vw - 32px))}.garden-dialog .form-grid{margin-top:20px}
+.garden-checkbox{display:flex;align-items:flex-start;gap:9px;font-size:12px;line-height:1.7;margin:18px 0 10px}.garden-checkbox input{width:18px;height:18px;accent-color:var(--accent);flex-shrink:0;margin-top:1px}
+.garden-import-summary{border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--field)}.garden-import-summary>div{display:flex;justify-content:space-between;gap:20px;font-size:12px;line-height:1.7;margin:7px 0}.garden-import-summary dt{color:var(--muted)}.garden-import-summary dd{margin:0;text-align:right;overflow-wrap:anywhere}
+.garden-milestone{animation:garden-milestone .8s ease-out}.garden-stem{animation:garden-stem .75s ease-out;transform-origin:300px 283px}
+@keyframes garden-milestone{0%{box-shadow:0 0 0 0 #b9a8c860}100%{box-shadow:0 0 0 12px #b9a8c800}}
+@keyframes garden-stem{from{opacity:.4;transform:scaleY(.91)}to{opacity:1;transform:scaleY(1)}}
+html[data-theme=dark] .garden-art-wrap,html[data-theme=dark] .garden-studio-art,html[data-theme=dark] .garden-matrix-stages .garden-art{filter:brightness(.84) saturate(.9)}
+html[data-theme=dark] .garden-actions .garden-button:first-child{background:#68768c;color:#fff}
+@media(max-width:1100px){.era-theme-option{font-size:10px;padding:9px;gap:7px}.garden-studio-scene{gap:20px}.garden-studio-copy h3{font-size:24px}.garden-section-title{gap:15px}.garden-actions{flex-wrap:wrap;justify-content:flex-end}.garden-local-status{font-size:10px;max-width:180px}}
+@media(max-width:800px){.eras-heading{align-items:flex-start;flex-direction:column;gap:15px}.garden-local-status{max-width:none}.saved-gardens{gap:16px}.saved-garden-body{padding:18px}.garden-amounts strong{font-size:23px}.era-theme-picker{grid-template-columns:1fr 1fr}.garden-studio{padding:22px}.garden-studio-scene{grid-template-columns:1fr}.garden-studio-copy{padding:3px 0 5px}.garden-stage-number{font-size:39px}.garden-studio-copy h3{margin:10px 0;font-size:25px}.garden-studio-copy p{margin-bottom:15px}.garden-stage-picker{margin-top:15px}.garden-studio-copy>.garden-eyebrow{font-size:9px}}
+@media(max-width:540px){.eras-section{padding-top:31px;margin-top:35px}.eras-heading h2{font-size:30px}.eras-heading p{font-size:12px}.eras-tabs{gap:23px}.eras-tabs a,.eras-tabs>span{font-size:12px}.eras-tabs small{font-size:9px}.garden-section-title{display:block;margin:25px 0 18px}.garden-section-title h3{font-size:20px}.garden-section-title p{font-size:11px}.garden-actions{justify-content:flex-start;margin-top:16px}.garden-button{font-size:12px;min-height:44px;padding:11px 13px}.saved-gardens{grid-template-columns:1fr}.saved-garden-body{padding:21px}.garden-amounts strong{font-size:28px}.garden-art-wrap .garden-art{aspect-ratio:5/3}.garden-progress-label{font-size:11px}.garden-date{font-size:12px}.garden-forecast{font-size:11px}.garden-data-actions{gap:8px}.garden-data-actions>span{margin-left:0;flex-basis:100%;margin-top:7px}.garden-sample-pill{display:inline-block;margin-top:13px;font-size:10px;white-space:normal}.garden-studio{padding:19px}.garden-studio>.garden-section-title{margin-bottom:15px}.era-theme-picker{gap:9px;margin:16px 0}.era-theme-option{font-size:11px;min-height:54px;padding:10px;gap:8px}.era-theme-swatch{width:22px;height:22px}.garden-studio-copy h3{font-size:26px}.garden-studio-copy p{font-size:12px}.garden-stage-picker{gap:5px}.garden-stage-picker button{padding:9px 6px;text-align:center;min-height:84px}.garden-stage-picker b{font-size:11px}.garden-stage-picker small{font-size:9px}.garden-contact-sheet{padding:19px}.garden-contact-sheet summary{font-size:15px}.garden-contact-sheet>p{font-size:11px}.garden-matrix-stages{grid-template-columns:repeat(5,130px);overflow-x:auto;padding-bottom:12px;scroll-snap-type:x proximity}.garden-matrix-stages figure{scroll-snap-align:start}.garden-matrix-stages figcaption{font-size:11px}.garden-matrix-stages figcaption span{font-size:10px}.dashboard-garden-empty{display:block;padding:21px}.dashboard-garden-empty h2{font-size:18px;line-height:1.5}.dashboard-garden-empty .garden-button{margin-top:17px}.dashboard-garden-link{gap:15px;padding-right:16px;min-height:110px}.dashboard-garden-art{width:110px}.dashboard-garden-art .garden-art{width:150px;max-width:none;transform:translateX(-18px)}.dashboard-garden-link h2{font-size:16px;line-height:1.4}.dashboard-garden-link p{font-size:11px}.dashboard-garden-arrow{display:none}.garden-eyebrow{font-size:9px}.garden-error{display:block}.garden-error .garden-button{margin-top:10px}.garden-dialog input,.garden-dialog select{font-size:16px}.garden-dialog{max-height:calc(100dvh - 35px);overflow:auto}.garden-stage-tag,.garden-pause-tag{font-size:11px}.garden-memory-note{font-size:11px}}
+html[data-garden-motion=reduce] .garden-stem,html[data-garden-motion=reduce] .garden-milestone{animation:none}
+html[data-garden-motion=reduce] .garden-progress>span{transition:none}
+@media(prefers-reduced-motion:reduce){.garden-stem,.garden-milestone{animation:none!important}.garden-progress>span{transition:none!important}}
+
+.eras-tabs button{background:none;color:var(--muted);font-size:13px;min-height:44px;padding:10px 0;position:relative}
+.eras-tabs button.selected{color:var(--accent);font-weight:600}.eras-tabs button.selected::after{content:"";position:absolute;bottom:-17px;left:0;right:0;height:2px;background:var(--accent);border-radius:2px}
+.eras-section>[hidden]{display:none!important}
+.eras-experiences{margin-top:30px}.collection-count{font-size:24px;font-weight:300;letter-spacing:-.8px;color:var(--accent)}
+.collection-filters{display:flex;gap:12px;margin:22px 0}.collection-filters select{min-height:44px}
+.collection-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.achievement-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:23px;text-align:left;color:var(--text);display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.achievement-card:hover{border-color:var(--accent);transform:translateY(-2px)}.achievement-card h4{font-size:16px;line-height:1.4;font-weight:500;margin:9px 0 10px}
+.achievement-card p{font-size:11px;line-height:1.8;color:var(--muted);margin:0 0 22px}.achievement-state{font-size:10px;color:var(--accent);margin-top:auto;line-height:1.7}.achievement-group{font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:20px}
+.era-vinyl{width:125px;height:125px;position:relative;border-radius:50%;background:repeating-radial-gradient(circle at center,transparent 0 4px,#ffffff22 4px 5px),linear-gradient(140deg,var(--record-two),var(--record-one));box-shadow:inset 0 0 0 1px #ffffff55,0 6px 15px #343a460a;display:grid;place-items:center;align-self:center;margin:10px auto 3px}
+.era-vinyl::before{content:"";position:absolute;inset:30%;border-radius:50%;background:var(--surface);opacity:.75}.era-vinyl span{position:relative;font:24px Georgia,serif;color:var(--accent);letter-spacing:-2px;padding-right:3px}.era-vinyl.locked{background:repeating-radial-gradient(circle at center,transparent 0 6px,var(--border) 6px 7px),var(--field);box-shadow:none}.era-vinyl.locked span{opacity:.65}
+.era-detail-code{font-size:11px;color:var(--muted);line-height:1.8}.era-threshold-form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-top:23px}.era-threshold-form label{font-size:12px;display:grid;gap:8px;color:var(--muted)}.era-threshold-form input{width:100%;min-width:0;padding:12px;border:1px solid var(--border);border-radius:9px;background:var(--field);color:var(--text);font:inherit}.era-threshold-form .field-error{grid-column:1/-1}
+.wrapped-selectors{display:flex;gap:10px}.wrapped-selectors select{min-height:44px}.wrapped-card{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--wrapped-light),color-mix(in srgb,var(--wrapped-light),var(--wrapped-accent) 32%));border:1px solid var(--border);border-radius:20px;min-height:430px;padding:42px;color:#343a46;display:flex;flex-direction:column}
+.wrapped-card::after{content:"";position:absolute;width:320px;height:320px;border:1px solid #ffffff60;border-radius:50%;right:-140px;bottom:-210px;box-shadow:0 0 0 30px #ffffff15,0 0 0 60px #ffffff10;pointer-events:none}
+.wrapped-kicker{font-size:10px;letter-spacing:2.5px;color:var(--wrapped-ink)}.wrapped-card h3{font-size:34px;letter-spacing:-1px;line-height:1.3;font-weight:500;max-width:620px;margin:26px 0}.wrapped-card dl{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin:22px 0}.wrapped-card dt{font-size:12px;color:#5b6371;line-height:1.6}.wrapped-card dd{margin:10px 0 0;font-size:36px;line-height:1.3;font-weight:400;letter-spacing:-1px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.wrapped-card p{font-size:12px;line-height:1.9;max-width:670px;color:#525b69}.wrapped-page{margin-top:auto;padding-top:25px;font-size:11px;letter-spacing:2px;color:var(--wrapped-ink)}
+.wrapped-controls{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:18px 0}.wrapped-dots{display:flex;align-items:center;gap:4px}.wrapped-dots button{width:28px;height:44px;background:none;position:relative}.wrapped-dots button::before{content:"";position:absolute;top:19px;left:11px;width:6px;height:6px;border-radius:50%;background:var(--border)}.wrapped-dots [aria-pressed=true]::before{background:var(--accent)}
+.wrapped-categories{list-style:none;margin:10px 0 20px;padding:0;max-width:650px}.wrapped-categories li{display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid #ffffff65;padding:12px 0;font-size:13px}.wrapped-categories b{font-weight:500;font-variant-numeric:tabular-nums}
+.monthly-review-box{border:1px solid var(--border);border-radius:15px;background:var(--surface);padding:25px;margin-top:30px}.monthly-review-box h3{font-size:18px;font-weight:500;margin:0}.monthly-review-box p{font-size:12px;color:var(--muted);line-height:1.8}.monthly-review-box label{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:15px}.monthly-review-box input{min-height:44px;border:1px solid var(--border);background:var(--field);color:var(--text);border-radius:8px;padding:10px}
+@media(max-width:1000px){.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wrapped-card{padding:30px}.era-threshold-form{grid-template-columns:1fr 1fr}.wrapped-card dd{font-size:30px}}
+@media(max-width:540px){.collection-grid{gap:12px}.achievement-card{padding:16px 13px;border-radius:13px}.achievement-card h4{font-size:14px}.achievement-card p{font-size:11px;margin-bottom:16px}.era-vinyl{width:95px;height:95px}.achievement-state{font-size:9px}.achievement-group{font-size:9px;letter-spacing:.2px}.collection-filters{gap:9px}.collection-filters select{font-size:12px;max-width:50%}.era-threshold-form input,.era-threshold-form select{font-size:16px}.wrapped-card{padding:26px 22px;min-height:440px;border-radius:16px}.wrapped-card h3{font-size:28px}.wrapped-card dl{grid-template-columns:1fr;gap:20px;margin:10px 0}.wrapped-card dt{font-size:11px}.wrapped-card dd{font-size:32px;margin-top:6px}.wrapped-card p{font-size:11px}.wrapped-card .wrapped-kicker{font-size:8px;letter-spacing:1.2px}.wrapped-controls{gap:8px}.wrapped-controls .garden-button{font-size:11px;padding:10px}.wrapped-dots{gap:0}.wrapped-dots button{width:22px}.wrapped-dots button::before{left:8px}.wrapped-selectors{margin-top:15px}.monthly-review-box{padding:21px}.monthly-review-box input{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.achievement-card:hover{transform:none}}
+
+.wrapped-categories span{min-width:0;overflow-wrap:anywhere}.wrapped-card>p,.monthly-review-box p{overflow-wrap:anywhere}
+
+</style></head><body>
+<svg class="sprite" aria-hidden="true"><defs>
+<symbol id="dashboard" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+<symbol id="arrows" viewBox="0 0 24 24"><path d="M4 7h16m-4-4 4 4-4 4M20 17H4m4-4-4 4 4 4"/></symbol>
+<symbol id="wallet" viewBox="0 0 24 24"><path d="M20 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-3M3 7h17v10h-7V9h7"/><path d="M16 13h.01"/></symbol>
+<symbol id="goal" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="m10 12 2 2 7-8"/></symbol>
+<symbol id="settings" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/></symbol>
+<symbol id="chevron" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+<symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+<symbol id="down" viewBox="0 0 24 24"><path d="M17 7 7 17M7 7v10h10"/></symbol>
+<symbol id="up" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+<symbol id="bag" viewBox="0 0 24 24"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+<symbol id="food" viewBox="0 0 24 24"><path d="M5 3v7m3-7v7M2 3v7a3 3 0 0 0 6 0m-3 3v8M18 3c-4 3-4 9 0 10V3Zm0 10v8"/></symbol>
+<symbol id="home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v11H3V10Z"/><path d="M9 21v-8h6v8"/></symbol>
+<symbol id="train" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="15" rx="4"/><path d="M5 10h14M9 14h.01M15 14h.01M8 18l-3 3m11-3 3 3"/></symbol>
+<symbol id="leaf" viewBox="0 0 24 24"><path d="M20 3C5 0 1 14 8 18s14-3 12-15ZM5 21 17 8"/></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></symbol>
+<symbol id="edit" viewBox="0 0 24 24"><path d="m15 4 5 5M4 20l4-1L20 7a2 2 0 0 0-4-4L4 15v5Z"/></symbol><symbol id="search-icon" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol></defs></svg>
+<aside class="sidebar"><a href="#dashboard-section" class="brand"><span class="brand-icon">m.</span><span>Morrow<span class="brand-caption" data-i="personalFinance"></span></span></a><div class="nav-caption" data-i="workspace"></div><nav class="navigation"><a class="active" href="#dashboard-section"><svg><use href="#dashboard"/></svg><span data-i="dashboard"></span><span class="nav-dot"></span></a><a href="#transactions-section"><svg><use href="#arrows"/></svg><span data-i="transactions"></span></a><button data-dialog="accounts"><svg><use href="#wallet"/></svg><span data-i="accounts"></span><span class="nav-count">4</span></button><a href="#goals-section"><svg><use href="#goal"/></svg><span data-i="savingsGoals"></span></a></nav><div class="sidebar-bottom"><div class="tomorrow-card"><svg><use href="#leaf"/></svg><p data-i="slogan"></p><small data-i="littleSteps"></small></div><button class="settings-button" data-dialog="settings"><svg><use href="#settings"/></svg><span data-i="settings"></span></button><div class="profile"><span class="avatar">M</span><div><b data-i="yourSpace"></b><small data-i="demoProfile"></small></div><svg><use href="#chevron"/></svg></div></div></aside>
+<main id="dashboard-section"><div class="topbar"><span><span data-i="overview"></span><span class="breadcrumb"> / </span><b data-i="dashboard"></b></span><div class="toolbar"><span class="preview-badge"><i></i><span data-i="demoData"></span></span><button id="language" class="language-button" aria-label="Change language">中文</button><button class="icon-button" id="theme" aria-label="Appearance"><svg><use href="#sun"/></svg></button><span class="avatar small">M</span></div></div>
+<header><div><div class="eyebrow" data-i="yourMoney"></div><h1 data-i="greeting"></h1><p data-i="welcome"></p></div><div class="header-actions"><select id="month" aria-label="Month"></select><button class="primary" id="add"><svg><use href="#plus"/></svg><span data-i="addTransaction"></span></button></div></header><p class="preview-scope" data-i="previewScope"></p>
+<section class="metrics"><article class="metric balance-card"><div class="metric-label"><span data-i="totalBalance"></span><svg><use href="#wallet"/></svg></div><strong id="balance-value"></strong><div class="balance-bottom"><span><span class="tiny-dot"></span><span data-i="acrossAccounts"></span></span><button class="card-arrow" data-dialog="accounts" aria-label="View accounts"><svg><use href="#up"/></svg></button></div><svg class="balance-waves" viewBox="0 0 400 120" aria-hidden="true"><path d="M0 80C80 180 190-50 400 80M0 100C110 200 200-30 420 100M0 60C90 160 200-70 420 60"/></svg></article><article class="metric"><div class="metric-label"><span data-i="monthlyIncome"></span><span class="metric-symbol sage"><svg><use href="#down"/></svg></span></div><strong id="income-value"></strong><div class="metric-foot"><span class="sage-text" data-i="incomeNote"></span><span data-i="thisMonth"></span></div><div class="mini-chart sage-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article><article class="metric"><div class="metric-label"><span data-i="monthlyExpenses"></span><span class="metric-symbol pink"><svg><use href="#up"/></svg></span></div><strong id="expense-value"></strong><div class="metric-foot"><span class="pink-text" id="expense-note"></span><span data-i="ofBudget"></span></div><div class="mini-chart pink-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article><article class="metric"><div class="metric-label"><span data-i="remainingBudget"></span><span class="metric-symbol blue"><svg><use href="#goal"/></svg></span></div><strong id="remaining-value"></strong><div class="budget-line"><span></span></div><div class="metric-foot"><span data-i="monthlyLimit"></span><span>¥9,000</span></div></article></section>
+<div class="dashboard-grid"><section class="panel spending-panel"><div class="section-title"><div><h2 data-i="spendingOverview"></h2><p data-i="spendingSubtitle"></p></div><span class="period-chip" data-i="lastSix"></span></div><div class="chart-legend"><span><i class="sage-fill"></i><span data-i="income"></span></span><span><i class="pink-fill"></i><span data-i="expenses"></span></span><span class="chart-unit">CNY</span></div><div class="bar-chart" role="img" id="bar-chart"><div class="axis-labels"><span>20k</span><span>15k</span><span>10k</span><span>5k</span><span>0</span></div><div class="chart-grid"><div class="gridlines"><i></i><i></i><i></i><i></i><i></i></div><div id="bars" class="bars"></div></div></div><div class="chart-insight"><span class="insight-icon"><svg><use href="#leaf"/></svg></span><p data-i="insight"></p></div></section>
+<section class="panel breakdown-panel"><div class="section-title"><div><h2 data-i="whereItGoes"></h2><p data-i="categoryBreakdown"></p></div><svg class="muted-icon"><use href="#dashboard"/></svg></div><div class="donut-wrap"><div class="donut"><div class="donut-hole"><span data-i="totalSpent"></span><strong id="donut-value"></strong><small data-i="thisMonth"></small></div></div></div><div id="category-list" class="category-list"></div></section>
+<section class="panel transactions-panel" id="transactions-section"><div class="section-title"><div><h2 data-i="recentTransactions"></h2><p data-i="everydayDetails"></p></div><select id="transaction-filter" aria-label="Transaction filter"><option value="all"></option><option value="expense"></option><option value="income"></option></select></div><div class="ledger-tools"><label class="search-field"><svg><use href="#search-icon"/></svg><input type="search" id="search" autocomplete="off" data-placeholder="searchPlaceholder"></label><select id="category-filter" aria-label="Category"></select></div><div class="ledger-status"><span id="result-count" aria-live="polite"></span><button id="clear-filters" class="text-action" data-i="clearFilters" hidden></button></div><div class="table-wrap"><table><caption class="sr-only" data-i="transactionsCaption"></caption><thead><tr><th data-i="transaction"></th><th data-i="category"></th><th data-i="account"></th><th data-i="amount"></th><th class="row-actions-heading"><span class="sr-only" data-i="actions"></span></th></tr></thead><tbody id="transaction-rows"></tbody></table></div><p class="empty-state" id="empty-state" hidden data-i="noTransactions"></p><div class="table-foot"><span data-i="previewOnly"></span><svg><use href="#lock"/></svg></div></section>
+<section class="panel goals-panel" id="goals-section"><div class="section-title"><div><h2 data-i="savingsGoals"></h2><p data-i="dreamsSubtitle"></p></div><span class="count-pill">2</span></div><div class="goal-cover"><svg viewBox="0 0 500 150" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#d8e3e7"/><stop offset="1" stop-color="#ede6dd"/></linearGradient><linearGradient id="hill" x2="1" y2="1"><stop stop-color="#75877f"/><stop offset="1" stop-color="#acb5a1"/></linearGradient></defs><rect width="500" height="150" fill="url(#sky)"/><circle cx="365" cy="36" r="19" fill="#f7efe2"/><path d="M0 115 120 35 230 115 350 57 500 120v30H0Z" fill="#b5c0b9"/><path d="M0 125 160 65 300 135 440 78 500 100v50H0Z" fill="url(#hill)"/><path d="M0 150q180-70 300 0" fill="#d1d1b6"/><path d="m210 150 40-40 25 5-30 35" fill="#e7dfcf" opacity=".8"/></svg><span data-i="nextChapter"></span><span class="cover-arrow"><svg><use href="#up"/></svg></span></div><div class="goal-item"><div class="goal-heading"><b data-i="travelFund"></b><small>62%</small></div><div class="goal-numbers"><strong>¥12,400<span> / ¥20,000</span></strong><small data-i="byJune"></small></div><div class="progress"><span style="width:62%"></span></div></div><div class="goal-item second-goal"><div class="goal-heading"><b><span class="goal-spark">✧</span><span data-i="emergencyFund"></span></b><small>80%</small></div><div class="goal-numbers"><strong>¥24,000<span> / ¥30,000</span></strong></div><div class="progress sage-progress"><span style="width:80%"></span></div></div></section></div>
+<footer><span>Morrow <span class="footer-dot">·</span> <span data-i="slogan"></span></span><span class="footer-preview" data-i="noCloud"></span></footer></main>
+<nav class="tabbar"><a class="active" href="#dashboard-section"><svg><use href="#dashboard"/></svg><span data-i="overview"></span></a><a href="#transactions-section"><svg><use href="#arrows"/></svg><span data-i="transactions"></span></a><button id="mobile-add" class="tab-add" aria-label="Add transaction"><svg><use href="#plus"/></svg></button><a href="#goals-section"><svg><use href="#goal"/></svg><span data-i="goals"></span></a><button data-dialog="settings"><svg><use href="#settings"/></svg><span data-i="settings"></span></button></nav>
+<dialog id="settings-dialog"><div class="dialog-title"><h2 data-i="settings"></h2><button data-close aria-label="Close">×</button></div><label class="setting-row"><span data-i="language"></span><select id="language-setting"><option value="en">English</option><option value="zh">简体中文</option></select></label><label class="setting-row"><span data-i="appearance"></span><select id="appearance"><option value="system" data-i="system"></option><option value="light" data-i="light"></option><option value="dark" data-i="dark"></option></select></label><div class="settings-info"><svg><use href="#lock"/></svg><p data-i="previewExplanation"></p></div></dialog>
+<dialog id="accounts-dialog"><div class="dialog-title"><h2 data-i="accountSummary"></h2><button data-close aria-label="Close">×</button></div><div id="account-list"></div><p class="dialog-help" data-i="manualAccounts"></p></dialog>
+<dialog id="entry-dialog"><form id="entry-form" novalidate><div class="dialog-title"><h2 data-i="addTransaction"></h2><button type="button" data-close aria-label="Close">×</button></div><p class="dialog-help" data-i="entryExplanation"></p><div class="form-grid"><label><span data-i="type"></span><select name="type"><option value="expense" data-i="expense"></option><option value="income" data-i="income"></option></select></label><label><span data-i="amount"></span><input name="amount" maxlength="24" inputmode="decimal" required pattern="[0-9]+(\.[0-9]{1,2})?" placeholder="0.00"></label><label><span data-i="transaction"></span><input name="name" required maxlength="60"></label><label><span data-i="category"></span><select name="category"><option value="dining" data-i="dining"></option><option value="shopping" data-i="shopping"></option><option value="transport" data-i="transport"></option><option value="housing" data-i="housing"></option><option value="salaryCategory" data-i="salaryCategory"></option><option value="other" data-i="other"></option></select></label><label><span data-i="dateLabel"></span><input name="date" type="date" required min="1900-01-01" max="9999-12-31"></label><label><span data-i="account"></span><select name="account"><option value="cash" data-i="cash"></option><option value="wechat" data-i="wechat"></option><option value="alipay" data-i="alipay"></option><option value="bank" data-i="bank"></option></select></label><label class="full-width"><span data-i="noteOptional"></span><textarea name="note" rows="2" maxlength="160" data-placeholder="notePlaceholder"></textarea></label></div><p class="field-error" id="entry-error" role="alert" hidden></p><button class="primary form-submit"><svg><use href="#plus"/></svg><span data-i="addToPreview"></span></button></form></dialog><dialog id="delete-dialog"><div class="dialog-title"><h2 data-i="deleteTitle"></h2><button type="button" data-close aria-label="Close">×</button></div><p class="dialog-help" data-i="deleteExplanation"></p><div class="delete-preview" id="delete-preview"></div><div class="confirm-actions"><button class="secondary-button" data-close data-i="cancel"></button><button class="danger-button" id="confirm-delete" data-i="deleteTransaction"></button></div></dialog><div class="toast" role="status" hidden id="toast"></div><script>
+(()=>{
+// Pure preview-domain helpers. They never read or write browser storage.
+function parseAmount(input) {
+  const text = String(input).trim();
+  if (!/^\d+(\.\d{1,2})?$/.test(text)) throw new Error('invalidAmount');
+  const [whole, fraction = ''] = text.split('.');
+  const amount = BigInt(whole) * 100n + BigInt(fraction.padEnd(2, '0'));
+  if (amount <= 0n || amount > BigInt(Number.MAX_SAFE_INTEGER)) throw new Error('invalidAmount');
+  return Number(amount);
+}
+
+function isCalendarDate(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || value < '1900-01-01' || value > '9999-12-31') return false;
+  const date = new Date(value + 'T12:00:00Z');
+  return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
+}
+
+function monthWindow(month) {
+  const [year, number] = month.split('-').map(Number);
+  return Array.from({length: 6}, (_, index) => {
+    const date = new Date(Date.UTC(year, number - 6 + index, 15));
+    return date.toISOString().slice(0, 7);
+  });
+}
+
+function add(a, b) {
+  const value = a + b;
+  if (!Number.isSafeInteger(value) || value < 0) throw new Error('totalOverflow');
+  return value;
+}
+
+function summarize(base, records, month) {
+  const initial = base[month] ?? {income: 0, expense: 0, categories: {}};
+  const result = {
+    income: initial.income,
+    expense: initial.expense,
+    categories: new Map(Object.entries(initial.categories))
+  };
+  for (const record of records) {
+    if (record.date.slice(0, 7) !== month) continue;
+    result[record.type] = add(result[record.type], record.amount);
+    if (record.type === 'expense') {
+      result.categories.set(record.category, add(result.categories.get(record.category) ?? 0, record.amount));
+    }
+  }
+  return result;
+}
+
+function upsertRecord(records, next) {
+  if (!isCalendarDate(next.date)) throw new Error('invalidDate');
+  if (!['income', 'expense'].includes(next.type)) throw new Error('invalidType');
+  if (!Number.isSafeInteger(next.amount) || next.amount <= 0) throw new Error('invalidAmount');
+  const position = records.findIndex(record => record.id === next.id);
+  return position === -1
+    ? [next, ...records]
+    : records.map((record, index) => index === position ? next : record);
+}
+
+const messages={
+ en:{personalFinance:'PERSONAL FINANCE',workspace:'Your workspace',dashboard:'Dashboard',transactions:'Transactions',accounts:'Accounts',savingsGoals:'Savings goals',settings:'Settings',slogan:'Make a little room for tomorrow.',littleSteps:'Little steps. A life that feels like you.',yourSpace:'Your personal space',demoProfile:'Design preview',overview:'Overview',demoData:'Demo data',yourMoney:'A LITTLE CLARITY, EVERY DAY',greeting:'A little more clarity.',welcome:'Your everyday finances, with tomorrow in mind.',addTransaction:'Add transaction',totalBalance:'Total balance',acrossAccounts:'Across 4 accounts',monthlyIncome:'Monthly income',monthlyExpenses:'Monthly expenses',remainingBudget:'Remaining budget',incomeNote:'A little room to grow',thisMonth:'This month',ofBudget:'of budget',monthlyLimit:'Monthly limit',overBudget:'Your spending is over budget. Take a moment to review the details.',spendingOverview:'The bigger picture',spendingSubtitle:'A little perspective on your money.',lastSix:'Last 6 months',income:'Income',expenses:'Expenses',expense:'Expense',insight:'You’re making room for tomorrow. Your spending is within budget.',whereItGoes:'Where it goes',categoryBreakdown:'A closer look at this month.',totalSpent:'Total spent',recentTransactions:'The everyday details',everydayDetails:'Little moments, thoughtfully recorded.',transaction:'Transaction',category:'Category',account:'Account',amount:'Amount',previewOnly:'Preview transactions · changes reset on reload',dreamsSubtitle:'Good things, a little closer.',nextChapter:'YOUR NEXT CHAPTER',travelFund:'A little getaway',byJune:'Jun 2027',emergencyFund:'Peace of mind fund',goals:'Goals',noCloud:'Interface preview · cloud sync is not connected',language:'Language',appearance:'Appearance',system:'System',light:'Light',dark:'Dark',previewExplanation:'This is an interactive design preview with fictional data. It does not access your original Xiaoman data or connect to a cloud account.',accountSummary:'Account summary',manualAccounts:'Illustrative, manually recorded balances. No bank, WeChat or Alipay account is connected.',entryExplanation:'Try the interaction. This entry only changes the in-memory preview and will disappear when you reload.',type:'Type',addToPreview:'Add to preview',dining:'Food & drink',shopping:'Shopping',transport:'Transport',housing:'Home & bills',other:'Other',allTransactions:'All transactions',onlyExpenses:'Expenses only',onlyIncome:'Income only',noTransactions:'No transactions in this view.',october:'October 2026',september:'September 2026',invalidAmount:'Enter an amount greater than zero with up to two decimal places.',saved:'Added to the preview. Your original data is unchanged.',invalidName:'Enter a transaction name.',today:'Today',oct17:'Oct 17',oct16:'Oct 16',sep17:'Sep 17',sep16:'Sep 16',coffee:'An afternoon pause',groceries:'A few everyday essentials',metro:'On the way home',salary:'October, well earned',rental:'A place to call home',wechat:'WeChat',alipay:'Alipay',bank:'Bank card',cash:'Cash',savingsAccount:'Savings account',alipayPocket:'Alipay Pocket',manualBalance:'Manual balance',spendingChart:'Monthly income and expenses, May through October',previousChart:'Monthly income and expenses, April through September',salaryCategory:'Salary',cny:'CNY'},
+ zh:{personalFinance:'马马记账 · 个人财务',workspace:'我的空间',dashboard:'总览',transactions:'收支账本',accounts:'账户',savingsGoals:'存钱目标',settings:'设置',slogan:'给明天，留一点余地。',littleSteps:'一点点积累，靠近喜欢的生活。',yourSpace:'我的个人空间',demoProfile:'设计预览',overview:'我的财务',demoData:'演示数据',yourMoney:'让每一天，都更清楚一点',greeting:'把日子，慢慢理好。',welcome:'照顾好今天的生活，也为明天留一点余地。',addTransaction:'记一笔',totalBalance:'存款总额',acrossAccounts:'来自 4 个账户',monthlyIncome:'本月收入',monthlyExpenses:'本月支出',remainingBudget:'剩余预算',incomeNote:'积累，多一点可能',thisMonth:'本月',ofBudget:'预算已使用',monthlyLimit:'月度预算',overBudget:'本月支出已超出预算，可以看看哪些地方需要调整。',spendingOverview:'看看生活的全貌',spendingSubtitle:'退后一点，看清收支的节奏。',lastSix:'最近六个月',income:'收入',expenses:'支出',expense:'支出',insight:'正在为明天留出空间。这个月的支出仍在预算之内。',whereItGoes:'钱都花在哪儿',categoryBreakdown:'看看这个月的小日常。',totalSpent:'支出合计',recentTransactions:'日常里的每一笔',everydayDetails:'认真记录，也认真生活。',transaction:'账单',category:'分类',account:'账户',amount:'金额',previewOnly:'演示账单 · 刷新后恢复初始状态',dreamsSubtitle:'想要的生活，又近了一点。',nextChapter:'生活的下一章',travelFund:'一场小小的旅行',byJune:'2027 年 6 月',emergencyFund:'让人安心的备用金',goals:'存钱',noCloud:'界面预览 · 云同步尚未连接',language:'语言',appearance:'外观',system:'跟随系统',light:'浅色',dark:'深色',previewExplanation:'这是使用虚构数据的可交互设计预览。不会读取原版小满数据，也未连接云端账户。',accountSummary:'账户总览',manualAccounts:'此处是演示用的手动余额，没有连接银行、微信或支付宝真实账户。',entryExplanation:'试着记一笔。记录只保留在此次预览内存中，刷新后消失，不影响原版数据。',type:'收支类型',addToPreview:'添加到预览',dining:'餐饮',shopping:'购物',transport:'交通',housing:'居住账单',other:'其他',allTransactions:'全部账单',onlyExpenses:'只看支出',onlyIncome:'只看收入',noTransactions:'当前没有此类账单。',october:'2026 年 10 月',september:'2026 年 9 月',invalidAmount:'请填写大于零的金额，最多两位小数。',saved:'已添加到预览，原版数据未改变。',invalidName:'请填写账单名称。',today:'今天',oct17:'10 月 17 日',oct16:'10 月 16 日',sep17:'9 月 17 日',sep16:'9 月 16 日',coffee:'午后的一点松弛',groceries:'补齐生活的小日常',metro:'在回家的路上',salary:'十月，努力有了回响',rental:'一个可以安心的家',wechat:'微信',alipay:'支付宝',bank:'银行卡',cash:'现金',savingsAccount:'银行储蓄账户',alipayPocket:'支付宝小荷包',manualBalance:'手动余额',spendingChart:'五月至十月的月度收入和支出',previousChart:'四月至九月的月度收入和支出',salaryCategory:'工资',cny:'人民币'}
+};
+Object.assign(messages.en, {
+  dateLabel:'Date', noteOptional:'Note · optional', notePlaceholder:'A little context for this moment…',
+  searchPlaceholder:'Search name, note, category or account', searchLabel:'Search transactions',
+  allCategories:'All categories', clearFilters:'Clear filters', results:'{count} transactions',
+  actions:'Actions', editTransaction:'Edit transaction', updatePreview:'Save changes',
+  updated:'Changes saved to this preview.', deleteTitle:'Remove this transaction?',
+  deleteExplanation:'This removes one demo transaction and updates the monthly totals. Your original data is unchanged.',
+  deleteTransaction:'Remove transaction', cancel:'Keep transaction', removed:'Transaction removed from the preview.',
+  invalidDate:'Choose a valid calendar date.', invalidAccount:'Choose an account.', invalidCategory:'Choose a category.',
+  invalidType:'Choose income or expense.', totalOverflow:'This amount would exceed the supported total. Please enter a smaller amount.',
+  clearSearch:'Try another search or clear the filters.', noteTooLong:'Keep the note within 160 characters.',
+  nameTooLong:'Keep the transaction name within 60 characters.', monthLabel:'Ledger month',
+  close:'Close', chartSummary:'Six-month income and expenses in CNY.',
+  manualBalanceHint:'Manual savings balances stay unchanged when recording income or expenses.',
+  noSpending:'No spending this month', previewOnly:'Recent demo entries · all preview changes reset on reload',
+  transactionsCaption:'Recent demo transactions for the selected month',
+  monthBudget:'Monthly limit', previewScope:'Preview only · changes are not saved',
+  emptyMonth:'Start a new month with a little clarity.'
+});
+Object.assign(messages.zh, {
+  dateLabel:'日期', noteOptional:'备注 · 选填', notePlaceholder:'给这一笔，留下一点小记忆……',
+  searchPlaceholder:'搜索名称、备注、分类或账户', searchLabel:'搜索账单',
+  allCategories:'全部分类', clearFilters:'清除筛选', results:'{count} 笔账单',
+  actions:'操作', editTransaction:'编辑账单', updatePreview:'保存修改',
+  updated:'已保存此次预览中的修改。', deleteTitle:'删除这笔账单？',
+  deleteExplanation:'将删除这一笔演示账单，并更新月度统计。你的原版数据不会改变。',
+  deleteTransaction:'删除账单', cancel:'保留账单', removed:'已从预览中删除账单。',
+  invalidDate:'请选择有效的日期。', invalidAccount:'请选择账户。', invalidCategory:'请选择分类。',
+  invalidType:'请选择收入或支出。', totalOverflow:'该金额会使合计超出支持范围，请填写较小的金额。',
+  clearSearch:'试试其他关键词，或清除筛选。', noteTooLong:'备注请控制在 160 个字符以内。',
+  nameTooLong:'账单名称请控制在 60 个字符以内。', monthLabel:'账本月份',
+  close:'关闭', chartSummary:'最近六个月的人民币收入与支出。',
+  manualBalanceHint:'记账不会自动改变手动填写的储蓄余额。',
+  noSpending:'本月还没有支出', previewOnly:'近期演示账单 · 所有预览修改在刷新后重置',
+  transactionsCaption:'所选月份的近期演示账单',
+  monthBudget:'月度预算', previewScope:'仅供预览 · 修改不会持久保存',
+  emptyMonth:'新的一个月，慢慢理好生活。'
+});
+
+
+const ERA_THEMES = [
+  {id:'eternal-bloom',name:'Eternal Bloom',descriptionKey:'eternalDescription',palette:['#e9e3ed','#b9a8c8','#be98a7','#f4eef2'],flower:'pearl'},
+  {id:'pink-pony',name:'Pink Pony Garden',descriptionKey:'ponyDescription',palette:['#eee1e6','#a7647e','#764455','#d6a7b6'],flower:'star'},
+  {id:'charm',name:'Charm Garden',descriptionKey:'charmDescription',palette:['#e7e8dc','#9baa84','#71816e','#f1e8d4'],flower:'daisy'},
+  {id:'blue-hour',name:'Blue Hour Garden',descriptionKey:'blueDescription',palette:['#dfe5ed','#8192aa','#af8c98','#d5c8bd'],flower:'rose'}
+];
+const GARDEN_STAGES = ['seed','sprout','growing','blooming','fullBloom'];
+const GARDEN_CURRENCIES = ['CNY','USD','EUR','GBP'];
+const gardenMinor = value => Number.isSafeInteger(value) && value >= 0;
+
+function goalProgress(saved,target) {
+  if(!Number.isSafeInteger(saved)||!Number.isSafeInteger(target)||target<=0) return {valid:false,percent:0,stage:0,complete:false};
+  const current=BigInt(Math.max(0,saved)), total=BigInt(target);
+  const basisPoints=current>=total?10000n:current*10000n/total;
+  const percent=Number(basisPoints)/100;
+  const stage=current>=total?4:current*4n>=total*3n?3:current*2n>=total?2:current*4n>=total?1:0;
+  return {valid:true,percent,stage,complete:current>=total};
+}
+
+function emptyGardenState() {
+  return {schemaVersion:2,goals:[],operations:[],receipts:[],achievements:[],reviews:[],wrappedSnapshots:[],settings:{motion:'system',milestoneCurrency:'CNY',milestoneThresholds:[10000,50000,100000]}};
+}
+
+function validateGardenGoal(goal) {
+  if(!goal||typeof goal.id!=='string'||!/^[a-zA-Z0-9_-]{1,80}$/.test(goal.id)||typeof goal.name!=='string'||!goal.name.trim()||goal.name.length>80) throw new Error('gardenInvalidName');
+  if(!gardenMinor(goal.targetAmount)||goal.targetAmount===0||!gardenMinor(goal.currentSaved)) throw new Error('gardenInvalidAmount');
+  if(!GARDEN_CURRENCIES.includes(goal.currency)) throw new Error('gardenInvalidCurrency');
+  if(!ERA_THEMES.some(theme=>theme.id===goal.themeId)) throw new Error('gardenInvalidTheme');
+  if(goal.targetDate!==null&&!isCalendarDate(goal.targetDate)) throw new Error('invalidDate');
+  if(typeof goal.paused!=='boolean'||!['manual','legacy-total'].includes(goal.fundingMode)) throw new Error('gardenInvalidBackup');
+  if(!Number.isSafeInteger(goal.revision)||goal.revision<1)throw new Error('gardenInvalidBackup');
+  for(const key of ['createdAt','updatedAt']) if(typeof goal[key]!=='string'||!Number.isFinite(Date.parse(goal[key]))) throw new Error('gardenInvalidBackup');
+  if(goal.bloomedAt!==null&&(typeof goal.bloomedAt!=='string'||!Number.isFinite(Date.parse(goal.bloomedAt)))) throw new Error('gardenInvalidBackup');
+  if(goal.bloomedAt!==null&&!ERA_THEMES.some(theme=>theme.id===goal.bloomedThemeId))throw new Error('gardenInvalidBackup');
+  return goal;
+}
+
+function validateGardenState(state) {
+  if(!state||![1,2].includes(state.schemaVersion)||!Array.isArray(state.goals)||!Array.isArray(state.operations)||!Array.isArray(state.receipts)) throw new Error('gardenInvalidBackup');
+  const normalized={...state,schemaVersion:2,achievements:state.achievements??[],reviews:state.reviews??[],wrappedSnapshots:state.wrappedSnapshots??[],settings:{milestoneCurrency:'CNY',milestoneThresholds:[10000,50000,100000],...state.settings}};
+  if(!Array.isArray(normalized.achievements)||!Array.isArray(normalized.reviews)||!Array.isArray(normalized.wrappedSnapshots))throw new Error('gardenInvalidBackup');
+  const ids=new Set();
+  for(const goal of state.goals){validateGardenGoal(goal);if(ids.has(goal.id))throw new Error('gardenInvalidBackup');ids.add(goal.id);}
+  const operations=new Set();
+  for(const operation of state.operations){
+    if(!operation||typeof operation.id!=='string'||operations.has(operation.id)||typeof operation.kind!=='string'||typeof operation.at!=='string'||!Number.isFinite(Date.parse(operation.at)))throw new Error('gardenInvalidBackup');
+    operations.add(operation.id);
+  }
+  for(const receipt of state.receipts){if(!receipt||typeof receipt.digest!=='string'||typeof receipt.raw!=='string'||typeof receipt.at!=='string')throw new Error('gardenInvalidBackup');legacyGardenPreview(receipt.raw);}
+  if(!state.settings||!['system','reduce'].includes(state.settings.motion)) throw new Error('gardenInvalidBackup');
+  const achievementCodes=new Set();
+  for(const achievement of normalized.achievements){if(!achievement||!ACHIEVEMENT_DEFINITIONS.some(definition=>definition.code===achievement.code)||achievementCodes.has(achievement.code)||!Number.isFinite(Date.parse(achievement.unlockedAt))||!ERA_THEMES.some(theme=>theme.id===achievement.themeId))throw new Error('gardenInvalidBackup');achievementCodes.add(achievement.code);}
+  for(const review of normalized.reviews)if(!review||!['monthly','budget'].includes(review.kind)||typeof review.period!=='string'||!Number.isFinite(Date.parse(review.at)))throw new Error('gardenInvalidBackup');
+  const snapshotIds=new Set();
+  for(const snapshot of normalized.wrappedSnapshots){
+    if(!snapshot||typeof snapshot.id!=='string'||snapshotIds.has(snapshot.id)||!Number.isFinite(Date.parse(snapshot.generatedAt))||!snapshot.summary||!Number.isInteger(snapshot.year)||snapshot.year<1900||snapshot.year>9999||snapshot.summary.year!==snapshot.year||!GARDEN_CURRENCIES.includes(snapshot.summary.currency)||!snapshot.summary.hasAnyData)throw new Error('gardenInvalidBackup');
+    snapshotIds.add(snapshot.id);
+  }
+  const thresholds=normalized.settings.milestoneThresholds;
+  if(!GARDEN_CURRENCIES.includes(normalized.settings.milestoneCurrency)||!Array.isArray(thresholds)||thresholds.length!==3||thresholds.some((value,index)=>!gardenMinor(value)||value===0||(index>0&&value<=thresholds[index-1])))throw new Error('gardenInvalidBackup');
+  return normalized;
+}
+
+function saveGardenGoal(state,candidate,operationId,at,expectedRevision) {
+  if(state.operations.some(operation=>operation.id===operationId))return state;
+  validateGardenGoal(candidate);
+  const prior=state.goals.find(goal=>goal.id===candidate.id);
+  if(expectedRevision!==undefined&&(prior?.revision??0)!==expectedRevision)throw new Error('gardenConflict');
+  if(prior&&prior.currency!==candidate.currency&&prior.currentSaved>0)throw new Error('gardenCurrencyLocked');
+  if(prior?.fundingMode==='legacy-total'&&candidate.currentSaved!==prior.currentSaved)throw new Error('gardenLegacyLocked');
+  const goal={...candidate,createdAt:prior?.createdAt??candidate.createdAt,updatedAt:at,
+    revision:(prior?.revision??0)+1,
+    bloomedAt:prior?.bloomedAt??(goalProgress(candidate.currentSaved,candidate.targetAmount).complete?at:null),
+    bloomedThemeId:prior?.bloomedThemeId??(goalProgress(candidate.currentSaved,candidate.targetAmount).complete?candidate.themeId:null)};
+  return {...state,goals:prior?state.goals.map(item=>item.id===goal.id?goal:item):[...state.goals,goal],
+    operations:[...state.operations,{id:operationId,kind:prior?'goal.update':'goal.create',at,goalId:goal.id,
+      before:prior?.currentSaved??0,after:goal.currentSaved,currency:goal.currency,fundingMode:goal.fundingMode,themeId:goal.themeId,targetBefore:prior?.targetAmount??null,targetAfter:goal.targetAmount}]};
+}
+
+function transferGardenFunds(state,fromId,toId,amount,operationId,at) {
+  if(state.operations.some(operation=>operation.id===operationId))return state;
+  const from=state.goals.find(goal=>goal.id===fromId),to=state.goals.find(goal=>goal.id===toId);
+  if(!from||!to||fromId===toId||from.currency!==to.currency)throw new Error('gardenInvalidTransfer');
+  if(from.paused||to.paused)throw new Error('gardenPausedTransfer');
+  if(from.fundingMode!=='manual'||to.fundingMode!=='manual')throw new Error('gardenLegacyLocked');
+  if(!gardenMinor(amount)||amount===0||amount>from.currentSaved||!Number.isSafeInteger(to.currentSaved+amount))throw new Error('gardenInvalidTransfer');
+  const goals=state.goals.map(goal=>goal.id===fromId?{...goal,currentSaved:goal.currentSaved-amount,updatedAt:at,revision:goal.revision+1}:
+    goal.id===toId?{...goal,currentSaved:goal.currentSaved+amount,updatedAt:at,revision:goal.revision+1,
+      bloomedAt:goal.bloomedAt??(goalProgress(goal.currentSaved+amount,goal.targetAmount).complete?at:null),
+      bloomedThemeId:goal.bloomedThemeId??(goalProgress(goal.currentSaved+amount,goal.targetAmount).complete?goal.themeId:null)}:goal);
+  return {...state,goals,operations:[...state.operations,{id:operationId,kind:'goal.transfer',at,fromId,toId,amount,currency:from.currency}]};
+}
+
+function legacyGardenPreview(raw) {
+  let legacy;
+  try{legacy=JSON.parse(raw);}catch{throw new Error('gardenInvalidLegacy');}
+  if(!legacy||!Array.isArray(legacy.accounts)||!Array.isArray(legacy.transactions)||!legacy.goal)throw new Error('gardenInvalidLegacy');
+  let total=0;
+  for(const account of legacy.accounts){
+    if(!account||!gardenMinor(account.amount)||typeof account.id!=='string'||typeof account.name!=='string'||!isCalendarDate(account.updated))throw new Error('gardenInvalidLegacy');
+    total+=account.amount;if(!Number.isSafeInteger(total))throw new Error('gardenInvalidLegacy');
+  }
+  for(const transaction of legacy.transactions){
+    if(!transaction||!gardenMinor(transaction.amount)||!isCalendarDate(transaction.date)||!['income','expense'].includes(transaction.type)||
+       ['id','category','account','note'].some(key=>typeof transaction[key]!=='string'))throw new Error('gardenInvalidLegacy');
+  }
+  if(typeof legacy.goal.name!=='string'||!legacy.goal.name.trim()||!gardenMinor(legacy.goal.amount)||legacy.goal.amount===0)throw new Error('gardenInvalidLegacy');
+  return {name:legacy.goal.name,targetAmount:legacy.goal.amount,currentSaved:total,accountCount:legacy.accounts.length,transactionCount:legacy.transactions.length};
+}
+
+function applyLegacyGarden(state,raw,digest,operationId,at,goalId) {
+  if(state.receipts.some(receipt=>receipt.digest===digest))return state;
+  const source=legacyGardenPreview(raw),prior=state.goals.find(goal=>goal.fundingMode==='legacy-total');
+  if(prior)throw new Error('gardenLegacyAlreadyImported');
+  const goal={id:goalId,name:source.name,targetAmount:source.targetAmount,currentSaved:source.currentSaved,
+    themeId:'eternal-bloom',currency:'CNY',targetDate:null,paused:false,fundingMode:'legacy-total',
+    createdAt:at,updatedAt:at,revision:1,bloomedAt:goalProgress(source.currentSaved,source.targetAmount).complete?at:null,
+    bloomedThemeId:goalProgress(source.currentSaved,source.targetAmount).complete?'eternal-bloom':null};
+  validateGardenGoal(goal);
+  return {...state,goals:[...state.goals,goal],operations:[...state.operations,{id:operationId,kind:'legacy.import',goalId,at}],
+    receipts:[...state.receipts,{digest,raw,at,goalId}]};
+}
+
+const ERA_MESSAGES = {
+  en:{
+    eras:'Eras',garden:'Garden',collection:'Collection',wrapped:'Wrapped',later:'After Garden review',
+    eyebrow:'MORROW ERAS / 01',title:'A little room to bloom.',subtitle:'Every little saving has its own era. A quiet place for the things you’re growing toward.',
+    local:'Saved on this browser · cloud sync is not connected',localHelp:'Garden records are saved locally. The Dashboard ledger is still a demo; its transactions never grow these gardens.',
+    myGardens:'Your savings gardens',newGoal:'Plant a goal',editGoal:'Tend your goal',noGoals:'Your next chapter starts small.',emptyHelp:'Create a savings goal and record its current saved amount. No fictional balances will be added.',
+    explore:'Find your era',exploreHelp:'An artwork studio: these stage samples never change your savings.',sample:'Artwork sample · not financial data',showcase:'Four eras, five ways to grow',showcaseHelp:'All 20 original vector artworks. Growth thresholds are the same for every theme.',
+    seed:'Seed',sprout:'Sprout',growing:'Growing',blooming:'Blooming',fullBloom:'Full Bloom',
+    eternalDescription:'Pearl light, lavender skies and soft, unfolding petals.',ponyDescription:'Velvet rose, quiet spotlights and flowers with stage presence.',
+    charmDescription:'Wild daisies, oat light and sage. Intimate, warm, effortless.',blueDescription:'Dust-blue dusk, a pale moon and cinematic, romantic blooms.',
+    goalName:'Goal name',targetAmount:'Target amount',currentSaved:'Currently saved',currency:'Currency',targetDate:'Target date · optional',theme:'Your era',pause:'Pause this goal',
+    pauseHelp:'Take your time. Pausing never removes your progress or memories.',save:'Save goal',cancel:'Cancel',edit:'Edit goal',paused:'Taking a pause',
+    due:'Target date',noDate:'No deadline — your own pace',plannedDate:'Your chosen date, not a predicted completion date.',remaining:'Still to grow',fullyFunded:'Your goal is fully funded.',
+    noForecast:'Not enough contribution history for a reliable forecast.',firstBloom:'First full bloom',memory:'Save a memory card',memoryHelp:'The card hides names, amounts, account information and notes. Export does not share anything automatically.',
+    historicBloom:'A bloom to remember. Your current progress can change; this moment stays.',stageChanged:'Your garden has reached a new stage.',saved:'Your garden is saved on this browser.',
+    transfer:'Move an allocation',transferHelp:'Reassign recorded savings between goals in the same currency. This does not move bank funds, create income or add assets.',from:'From goal',to:'To goal',amount:'Amount',move:'Move allocation',moved:'Allocation moved. The combined amount is unchanged.',
+    backup:'Back up Garden',restore:'Restore Garden backup',importLegacy:'Import Xiaoman goal',backupHelp:'Backups include private goal data. Keep them somewhere safe.',backupDone:'Garden backup downloaded.',
+    restoreTitle:'Restore your Garden backup?',restoreHelp:'This replaces only the Garden records on this browser. Your original Xiaoman key and demo ledger are untouched. Download a current backup first; an additional recovery snapshot is kept locally.',
+    importTitle:'Bring your original goal along',importHelp:'Only the original goal is added. Its progress retains the sum of the original account balances; the full imported JSON is preserved for recovery. Original transactions and accounts are not replayed or changed.',
+    sourceAccounts:'Source accounts',sourceTransactions:'Source transactions',sourceBalance:'Original savings total',sourceGoal:'Goal',
+    beforeImport:'Download a backup, then confirm',confirmImport:'Import goal',confirmRestore:'Replace Garden records',imported:'Your original goal was imported once. Original data is untouched.',alreadyImported:'This exact backup has already been imported.',
+    legacyMode:'Legacy total-savings mode',legacyHint:'This imported balance is a snapshot of all original savings accounts. It is not a separate asset or freely transferable allocation.',
+    motion:'Garden animation',system:'Follow reduced-motion settings',reduce:'Reduce animation',close:'Close',errorTitle:'Could not save',retry:'Retry local storage',
+    gardenInvalidName:'Give your goal a name of 1–80 characters.',gardenInvalidAmount:'Use a positive target and a non-negative saved amount, with at most two decimal places.',
+    gardenInvalidCurrency:'Choose one of the supported currencies.',gardenInvalidTheme:'Choose one of the four era themes.',gardenInvalidBackup:'This Garden backup is invalid. Existing data has not been replaced.',
+    gardenInvalidLegacy:'This is not a valid original Xiaoman JSON backup with a goal. Export it from the original app first.',
+    gardenCurrencyLocked:'A funded goal cannot be relabeled into another currency. Create a separate goal for that currency.',gardenConflict:'This goal changed in another tab. Close this form and reopen the latest record before saving.',gardenLegacyLocked:'The imported total-savings balance is preserved. It cannot be edited or transferred as a separate allocation.',
+    gardenLegacyAlreadyImported:'An original Xiaoman goal is already present. A different backup will not overwrite it automatically.',
+    gardenInvalidTransfer:'Choose two different goals in the same currency and an amount within the available allocation.',gardenPausedTransfer:'Resume these goals before moving their allocations.',
+    gardenStorageUnavailable:'Local storage is unavailable. Nothing has been marked as saved. Try another browser or allow site storage.',
+    gardenExportFailed:'The image could not be exported. Your goal data is still saved.',invalidDate:'Choose a valid calendar date.',
+    currentEra:'Your current era',allLocal:'Local goals, not additional assets',loading:'Opening your Garden…',
+    pendingCloud:'Cloud sync is not configured',confirmBackup:'I have downloaded the current Garden backup',
+    memoryTitle:'A little victory, remembered.',memoryCaption:'An original Morrow Garden keepsake',
+    allocationNote:'Balances are manually recorded allocations, not bank-verified funds.',invalidStage:'Set a valid target to start your garden.'
+  },
+  zh:{
+    eras:'Eras',garden:'花园',collection:'收藏',wrapped:'年度回顾',later:'花园确认后开发',
+    eyebrow:'MORROW ERAS / 01',title:'给未来，种一点期待。',subtitle:'每一份小小的积累，都有属于自己的时代。慢慢靠近，你想要的生活。',
+    local:'已保存到当前浏览器 · 云同步尚未连接',localHelp:'花园目标在本机保存。首页账本仍为演示数据，其中的交易不会让花园生长。',
+    myGardens:'我的储蓄花园',newGoal:'种下一个目标',editGoal:'照顾这个目标',noGoals:'生活的下一章，从一点点开始。',emptyHelp:'创建储蓄目标，记录已经存下的金额。这里不会自动添加虚构余额。',
+    explore:'找到你的 Era',exploreHelp:'这里是视觉展台：阶段样本不会改变你的储蓄。',sample:'视觉样本 · 非财务数据',showcase:'四种主题，五个生长阶段',showcaseHelp:'20 张原创矢量图。每个主题都遵循同一套真实进度规则。',
+    seed:'种子',sprout:'萌芽',growing:'生长',blooming:'初绽',fullBloom:'盛放',
+    eternalDescription:'珍珠微光、淡紫天空与轻轻舒展的花瓣。',ponyDescription:'丝绒玫瑰、柔和追光与有舞台感的花朵。',
+    charmDescription:'野雏菊、燕麦暖光与鼠尾草绿。亲密、温暖、自在。',blueDescription:'灰蓝黄昏、浅月与电影般浪漫的花。',
+    goalName:'目标名称',targetAmount:'目标金额',currentSaved:'当前已存',currency:'货币',targetDate:'目标日期 · 选填',theme:'花园主题',pause:'暂停这个目标',
+    pauseHelp:'慢慢来。暂停不会清空进度或纪念。',save:'保存目标',cancel:'取消',edit:'编辑目标',paused:'暂时歇一歇',
+    due:'目标日期',noDate:'不设期限，按自己的节奏',plannedDate:'这是你设定的日期，不是系统预测的完成时间。',remaining:'还差一点点',fullyFunded:'这个目标已经存够了。',
+    noForecast:'尚无足够的储蓄记录，暂不预测完成日期。',firstBloom:'首次盛放',memory:'保存纪念卡',memoryHelp:'纪念卡默认隐藏名称、金额、账户和备注。导出不会自动发布到任何平台。',
+    historicBloom:'这次盛放值得记住。当前进度可以改变，纪念仍会保留。',stageChanged:'你的花园进入了新的生长阶段。',saved:'花园已保存到当前浏览器。',
+    transfer:'调整目标分配',transferHelp:'在相同货币的目标之间重新分配已记录的储蓄。不移动银行资金，不产生收入，也不增加总资产。',from:'转出目标',to:'转入目标',amount:'金额',move:'调整分配',moved:'分配已调整，合计金额保持不变。',
+    backup:'备份花园',restore:'恢复花园备份',importLegacy:'导入小满旧目标',backupHelp:'备份包含私人目标数据，请妥善保管。',backupDone:'花园备份已下载。',
+    restoreTitle:'恢复花园备份？',restoreHelp:'只替换当前浏览器中的花园记录，不修改旧版小满存储或演示账本。请先下载当前备份；本机也会保存一份恢复快照。',
+    importTitle:'把原来的目标，一起带来',importHelp:'只添加旧版目标，保留“所有储蓄账户合计”的进度规则；导入的完整 JSON 会留存供恢复使用。不会回放、修改旧账单或旧账户。',
+    sourceAccounts:'原账户数量',sourceTransactions:'原账单数量',sourceBalance:'原储蓄合计',sourceGoal:'目标',
+    beforeImport:'先下载备份，再确认',confirmImport:'导入目标',confirmRestore:'替换花园记录',imported:'旧目标已导入一次，原数据保持不变。',alreadyImported:'这份备份已经导入过，不会重复添加。',
+    legacyMode:'旧版储蓄合计模式',legacyHint:'导入余额是旧版所有储蓄账户的合计快照，不是另一份资产，也不能当作独立分配随意转移。',
+    motion:'花园动效',system:'跟随系统减弱动态效果',reduce:'减弱动效',close:'关闭',errorTitle:'保存未完成',retry:'重试本机存储',
+    gardenInvalidName:'请填写 1–80 个字符的目标名称。',gardenInvalidAmount:'目标金额须大于零，已存金额可为零，最多保留两位小数。',
+    gardenInvalidCurrency:'请选择支持的货币。',gardenInvalidTheme:'请选择四个花园主题之一。',gardenInvalidBackup:'花园备份格式无效，现有数据未被替换。',
+    gardenInvalidLegacy:'不是包含有效目标的旧版小满 JSON 备份，请先从原版导出。',
+    gardenCurrencyLocked:'已有余额的目标不能直接更换币种，请为该币种另建目标。',gardenConflict:'另一个页面已修改该目标，请关闭表单并重新打开最新记录。',gardenLegacyLocked:'导入的储蓄合计会被保留，不能当作独立分配修改余额或转移。',
+    gardenLegacyAlreadyImported:'已经导入过一个旧目标，不会用另一份备份自动覆盖。',
+    gardenInvalidTransfer:'请选择两个不同的同币种目标，金额不得超过可分配余额。',gardenPausedTransfer:'请先恢复这两个目标，再调整分配。',
+    gardenStorageUnavailable:'本机存储不可用，没有将操作标记为保存成功。请允许网站存储或换用浏览器。',
+    gardenExportFailed:'图片暂时无法导出，已保存的目标数据不受影响。',invalidDate:'请选择有效的日期。',
+    currentEra:'正在经历的 Era',allLocal:'本机目标，不是额外资产',loading:'正在打开你的花园……',
+    pendingCloud:'云同步尚未配置',confirmBackup:'我已下载当前花园备份',
+    memoryTitle:'把这一点小小的胜利，留住。',memoryCaption:'Morrow 原创花园纪念卡',
+    allocationNote:'金额由你手动记录，不代表银行已核验的资金。',invalidStage:'设置有效目标金额后，花园就可以开始生长。'
+  }
+};
+
+
+const artEscape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function gardenFlower(x,y,size,theme,openness=1) {
+  const petals=theme.flower==='daisy'?10:theme.flower==='star'?6:7;
+  const shape=Array.from({length:petals},(_,i)=>{
+    const angle=360/petals*i;
+    return theme.flower==='star'
+      ? `<path d="M0 3 Q${-size*.65} ${-size*.4} 0 ${-size*openness} Q${size*.65} ${-size*.4} 0 3" transform="rotate(${angle})"/>`
+      : `<ellipse cy="${-size*.44*openness}" rx="${size*.32}" ry="${size*.59*openness}" transform="rotate(${angle})"/>`;
+  }).join('');
+  return `<g class="garden-flower" transform="translate(${x} ${y})"><g fill="${theme.palette[3]}" stroke="${theme.palette[2]}" stroke-opacity=".36" stroke-width=".8">${shape}</g><circle r="${size*.19}" fill="${theme.flower==='daisy'?'#c8b689':theme.palette[1]}"/><circle r="${size*.09}" fill="#f4ece3" fill-opacity=".8"/></g>`;
+}
+
+function renderGardenSvg(themeId,stage,{prefix='garden',label='Original savings garden'}={}) {
+  const theme=ERA_THEMES.find(item=>item.id===themeId)??ERA_THEMES[0];
+  const phase=Math.max(0,Math.min(4,Math.trunc(Number(stage)||0)));
+  const id='garden-'+String(prefix).replace(/[^a-zA-Z0-9_-]/g,'');
+  const [background,accent,shadow,petal]=theme.palette;
+  let atmosphere='';
+  if(theme.id==='eternal-bloom')atmosphere=`<ellipse cx="450" cy="84" rx="92" ry="29" fill="#fff" opacity=".23"/><ellipse cx="120" cy="120" rx="68" ry="24" fill="#fff" opacity=".22"/><circle cx="440" cy="65" r="26" fill="url(#${id}-pearl)"/>${[[108,62,3],[480,155,2],[154,203,2],[377,41,2]].map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#fff" opacity=".7"/>`).join('')}`;
+  if(theme.id==='pink-pony')atmosphere=`<path d="m135 0 90 270H10ZM455 0 140 270h290Z" fill="#be8c9f" opacity=".13"/><path d="M0 38q300 100 600 0" fill="none" stroke="${shadow}" stroke-opacity=".13"/>${[[100,100],[478,78],[427,160]].map(([x,y])=>`<path d="M${x-7} ${y}h14m-7-7v14" stroke="${shadow}" stroke-opacity=".48" stroke-width="1"/>`).join('')}`;
+  if(theme.id==='charm')atmosphere=`<circle cx="448" cy="83" r="33" fill="#f6efd9" opacity=".82"/><path d="m0 0 220 0L80 245H0Z" fill="#fff" opacity=".16"/><path d="M42 250q30-19 57-4m390 2q20-12 43-2" fill="none" stroke="${accent}" stroke-opacity=".35"/><ellipse cx="139" cy="283" rx="20" ry="7" fill="#bab9a7" opacity=".45"/>`;
+  if(theme.id==='blue-hour')atmosphere=`<path d="M0 163q135-38 280 0t320 0V0H0Z" fill="${accent}" opacity=".12"/><path d="M0 176q135-38 280 0t320 0" fill="none" stroke="${shadow}" stroke-opacity=".25"/><circle cx="462" cy="66" r="22" fill="#f1e9d9" opacity=".8"/><ellipse cx="462" cy="202" rx="48" ry="3" fill="#eae4d9" opacity=".45"/>`;
+  const rootY=283;
+  let plants='';
+  if(phase===0){
+    plants=`<path d="M281 278q12-22 30-6-2 22-30 6Z" fill="${accent}" stroke="${shadow}" stroke-width="1.2"/><path d="m286 280 16-9" stroke="${petal}" stroke-opacity=".7"/>`;
+  } else {
+    const stems=phase===1?[[300,211,0]]:phase===2?[[300,156,1],[251,211,0],[350,204,0]]:
+      phase===3?[[300,117,2],[230,161,1],[373,171,1],[181,222,0]]:
+      [[300,106,3],[225,149,3],[378,151,3],[167,205,2],[435,212,2]];
+    plants=stems.map(([x,y,bloom],index)=>{
+      const bend=x<300?x+25:x-22;
+      const leafY=y+(rootY-y)*.55;
+      const stem=`<path class="garden-stem" d="M300 ${rootY}Q${bend} ${leafY} ${x} ${y}" fill="none" stroke="${theme.id==='charm'?'#7e8e72':shadow}" stroke-width="${index===0?2:1.7}" stroke-linecap="round"/>`;
+      const leaves=`<path d="M${bend} ${leafY+10}q-35-4-38-28 31-5 38 28Z" fill="${accent}" fill-opacity=".75"/><path d="M${bend+1} ${leafY-1}q33-6 33-28-30 1-33 28Z" fill="${accent}" fill-opacity=".48"/>`;
+      const flower=bloom>0?gardenFlower(x,y,phase===4?(index<3?30:21):phase===3?24:13,theme,bloom===1?.54:1):`<ellipse cx="${x}" cy="${y}" rx="6" ry="10" fill="${accent}"/>`;
+      return stem+leaves+flower;
+    }).join('');
+  }
+  return `<svg class="garden-art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" role="img" aria-labelledby="${id}-title"><title id="${id}-title">${artEscape(label)}</title><defs><linearGradient id="${id}-sky" x2="0" y2="1"><stop stop-color="${background}"/><stop offset="1" stop-color="${petal}"/></linearGradient><radialGradient id="${id}-pearl"><stop stop-color="#fff"/><stop offset=".6" stop-color="#efe8ed"/><stop offset="1" stop-color="${accent}" stop-opacity=".4"/></radialGradient><filter id="${id}-grain"><feTurbulence type="fractalNoise" baseFrequency=".68" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter></defs><rect width="600" height="360" rx="20" fill="url(#${id}-sky)"/>${atmosphere}<ellipse cx="300" cy="302" rx="186" ry="30" fill="${shadow}" opacity=".08"/><ellipse cx="300" cy="293" rx="160" ry="23" fill="${petal}"/><ellipse cx="300" cy="290" rx="146" ry="19" fill="${accent}" fill-opacity=".10" stroke="${shadow}" stroke-opacity=".18"/>${plants}<path d="M275 292q26 5 51-1" fill="none" stroke="${shadow}" stroke-opacity=".25" stroke-linecap="round"/><rect width="600" height="360" rx="20" filter="url(#${id}-grain)" opacity=".035" pointer-events="none"/></svg>`;
+}
+
+const ACHIEVEMENT_DEFINITIONS = [
+  ['save-1','saving','First little reserve','第一份小小的储备','Reach your first configurable savings threshold.','达到你设置的第一档储蓄门槛。','beginning'],
+  ['save-2','saving','A little more room','再多一点余地','Reach your second configurable savings threshold.','达到你设置的第二档储蓄门槛。','story'],
+  ['save-3','saving','Tomorrow, taking shape','明天慢慢成形','Reach your third configurable savings threshold.','达到你设置的第三档储蓄门槛。','keepsake'],
+  ['goal-1','saving','A dream in full bloom','一个愿望，盛放了','Complete one actual savings goal.','完成一个实际储蓄目标。','keepsake'],
+  ['goal-3','saving','Three little victories','三次小小的胜利','Complete three distinct actual savings goals.','完成三个不同的实际储蓄目标。','keepsake'],
+  ['transaction-1','tracking','The opening note','生活的第一笔','Record or explicitly import your first actual transaction.','记录或明确导入第一笔实际账单。','beginning'],
+  ['week-1','tracking','Seven days of noticing','看见生活的一周','Have a transaction on each of seven consecutive calendar days. No streak can be lost.','连续七个日期都有账单；已获纪念不会因中断清零。','story'],
+  ['review-1','tracking','A moment of clarity','一次清楚的回望','Review a month with actual financial records.','复盘一个有实际财务记录的月份。','beginning'],
+  ['tracker','tracking','A rhythm of your own','找到自己的节奏','Record on 20 distinct days within any 30-day window; no daily streak required.','在任意 30 天内的 20 个不同日期记录，无需每天连续。','story'],
+  ['budget-1','awareness','An intention, set','为生活设一个方向','Create an actual budget. The demo budget does not qualify.','建立实际预算，首页演示预算不计入。','beginning'],
+  ['budget-review','awareness','Room to reflect','留一点反思的空间','Review an actual saved budget.','复盘实际保存的预算。','story'],
+  ['wishlist','awareness','A thoughtful pause','想清楚，再决定','Finish a real wishlist cooldown before reviewing it.','实际愿望清单冷静期结束后再复盘。','story'],
+  ['allocation','awareness','A place for tomorrow','给明天安排一个位置','Record a positive manual savings allocation. Transfers do not create extra savings.','记录一次正的储蓄分配；目标间转移不增加储蓄。','beginning'],
+  ['era-1','eras','Your first era','属于你的第一个 Era','Choose a theme for an actual saved goal.','为实际保存的目标选择主题。','beginning'],
+  ['bloom-1','eras','A bloom to remember','值得记住的盛放','Reach Full Bloom with an actual goal.','实际目标达到盛放阶段。','keepsake'],
+  ['eras-4','eras','Every shade of you','每一种颜色，都是你','Use all four themes on actual saved goals; studio samples do not count.','在实际目标上使用过四种主题，视觉展台不计入。','story'],
+  ['wrapped-1','eras','Your money era','你的财务时代','Generate a yearly story with actual records or milestones.','使用实际记录或里程碑生成年度回顾。','keepsake']
+].map(([code,group,en,zh,descriptionEn,descriptionZh,rarity])=>({id:code,code,group,name:{en,zh},description:{en:descriptionEn,zh:descriptionZh},rarity,version:1}));
+
+function actualLedger(state) {
+  const receipt=state.receipts.find(item=>item.raw);
+  if(!receipt)return {available:false,transactions:[]};
+  try{return {available:true,transactions:JSON.parse(receipt.raw).transactions.map(item=>({...item,currency:'CNY'}))};}
+  catch{return {available:false,transactions:[]};}
+}
+
+function safeSum(values){const amount=values.reduce((sum,value)=>sum+BigInt(value),0n);if(amount>BigInt(Number.MAX_SAFE_INTEGER)||amount<BigInt(Number.MIN_SAFE_INTEGER))throw new Error('totalOverflow');return Number(amount);}
+function activeDayWindows(records){
+  const days=[...new Set(records.map(record=>record.date))].sort();
+  const numbers=days.map(day=>Math.floor(Date.parse(day+'T12:00:00Z')/86400000));
+  let consecutive=0,bestConsecutive=0,bestThirty=0,left=0;
+  numbers.forEach((day,index)=>{consecutive=index&&day===numbers[index-1]+1?consecutive+1:1;bestConsecutive=Math.max(bestConsecutive,consecutive);while(day-numbers[left]>29)left++;bestThirty=Math.max(bestThirty,index-left+1);});
+  return {days:days.length,bestConsecutive,bestThirty};
+}
+
+function monthlyActualSummary(state,month,at) {
+  if(!/^\d{4}-(0[1-9]|1[0-2])$/.test(month))return {recordCount:0,income:null,spending:null};
+  const records=actualLedger(state).transactions.filter(record=>record.date.startsWith(month)&&record.date<=at.slice(0,10));
+  return {recordCount:records.length,income:safeSum(records.filter(record=>record.type==='income').map(record=>record.amount)),spending:safeSum(records.filter(record=>record.type==='expense').map(record=>record.amount))};
+}
+
+function achievementConditions(state,at) {
+  const today=at.slice(0,10),records=actualLedger(state).transactions.filter(record=>record.date<=today);
+  const windows=activeDayWindows(records),currency=state.settings.milestoneCurrency??'CNY';
+  const thresholds=state.settings.milestoneThresholds??[10000,50000,100000];
+  // Use a single goal's current allocation, never sum potentially overlapping
+  // imported total-savings snapshots and individually allocated goals.
+  const largest=Math.max(0,...state.goals.filter(goal=>goal.currency===currency).map(goal=>goal.currentSaved));
+  const currentComplete=state.goals.filter(goal=>goal.currentSaved>=goal.targetAmount).length;
+  const themes=new Set([...state.goals.map(goal=>goal.themeId),...state.operations.filter(operation=>operation.themeId).map(operation=>operation.themeId)]);
+  return {
+    'save-1':{current:largest,target:thresholds[0],currency},'save-2':{current:largest,target:thresholds[1],currency},'save-3':{current:largest,target:thresholds[2],currency},
+    'goal-1':{current:currentComplete,target:1},'goal-3':{current:currentComplete,target:3},
+    'transaction-1':{current:records.length,target:1},'week-1':{current:windows.bestConsecutive,target:7},
+    'review-1':{current:state.reviews.filter(review=>review.kind==='monthly').length,target:1},'tracker':{current:windows.bestThirty,target:20},
+    'budget-1':{current:(state.budgets??[]).length,target:1,upstream:true},
+    'budget-review':{current:state.reviews.filter(review=>review.kind==='budget').length,target:1,upstream:true},
+    'wishlist':{current:(state.wishlist??[]).filter(item=>item.reviewedAt&&item.reviewedAt>=item.cooldownUntil).length,target:1,upstream:true},
+    'allocation':{current:state.operations.filter(operation=>['goal.create','goal.update'].includes(operation.kind)&&operation.after>operation.before&&operation.fundingMode!=='legacy-total').length,target:1},
+    'era-1':{current:state.goals.length,target:1},'bloom-1':{current:currentComplete,target:1},'eras-4':{current:themes.size,target:4},
+    'wrapped-1':{current:state.wrappedSnapshots.length,target:1}
+  };
+}
+
+function reconcileAchievements(state,at) {
+  const existing=new Set(state.achievements.map(item=>item.code));const conditions=achievementConditions(state,at);
+  const theme=state.goals.at(-1)?.themeId??'eternal-bloom';
+  const additions=ACHIEVEMENT_DEFINITIONS.filter(definition=>!existing.has(definition.code)&&conditions[definition.code].current>=conditions[definition.code].target)
+    .map(definition=>({id:definition.code,code:definition.code,unlockedAt:at,themeId:theme,
+      metadata:{version:definition.version,conditionAtUnlock:conditions[definition.code],observedFromImport:state.receipts.length>0}}));
+  return additions.length?{...state,achievements:[...state.achievements,...additions]}:state;
+}
+
+function annualGardenSummary(state,year,currency,at) {
+  if(!Number.isInteger(year)||year<1900||year>9999)throw new Error('invalidDate');
+  const source=actualLedger(state),records=source.transactions.filter(record=>record.currency===currency&&record.date.startsWith(year+'-')&&record.date<=at.slice(0,10));
+  const hasLedger=source.available&&currency==='CNY';
+  const income=hasLedger?safeSum(records.filter(record=>record.type==='income').map(record=>record.amount)):null;
+  const spending=hasLedger?safeSum(records.filter(record=>record.type==='expense').map(record=>record.amount)):null;
+  const expenses=records.filter(record=>record.type==='expense');const categoryAmounts=new Map(),categoryCounts=new Map();
+  for(const record of expenses){categoryAmounts.set(record.category,safeSum([categoryAmounts.get(record.category)??0,record.amount]));categoryCounts.set(record.category,(categoryCounts.get(record.category)??0)+1);}
+  const operations=state.operations.filter(operation=>operation.at.startsWith(year+'-')&&operation.currency===currency);
+  // Initial balances/imported snapshots have no known original savings date.
+  // Only subsequent, explicitly recorded allocation adjustments enter this sum.
+  const adjustments=operations.filter(operation=>operation.kind==='goal.update'&&operation.fundingMode!=='legacy-total');
+  const allocated=adjustments.length?safeSum(adjustments.map(operation=>operation.after-operation.before)):null;
+  const completed=state.goals.filter(goal=>goal.currency===currency&&goal.fundingMode!=='legacy-total'&&goal.bloomedAt?.startsWith(year+'-'));
+  const largest=completed.sort((a,b)=>a.bloomedAt.localeCompare(b.bloomedAt))[0];
+  return {schemaVersion:1,year,currency,hasLedger,recordCount:records.length,income,spending,
+    netCashFlow:hasLedger?income-spending:null,savingsRate:income>0?(income-spending)/income*100:null,
+    recordedAllocations:allocated,activeDays:new Set(records.map(record=>record.date)).size,
+    frequentCategory:[...categoryCounts].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]))[0]?.[0]??null,
+    topCategories:[...categoryAmounts].sort((a,b)=>b[1]-a[1]).slice(0,5).map(([name,amount])=>({name,amount})),
+    goalsCompleted:completed.length,favoriteMilestone:largest?{kind:'goal.bloom',at:largest.bloomedAt,themeId:largest.bloomedThemeId}:null,
+    hasAnyData:records.length>0||adjustments.length>0||completed.length>0};
+}
+
+
+function createGardenStore() {
+  let database;
+  const changes=typeof BroadcastChannel==='function'?new BroadcastChannel('morrow-garden-updates'):null;
+  async function open() {
+    if(database)return database;
+    database=await new Promise((resolve,reject)=>{
+      const request=indexedDB.open('morrow-garden-v1',1);
+      request.onupgradeneeded=()=>{
+        request.result.createObjectStore('state');
+        request.result.createObjectStore('recovery',{autoIncrement:true});
+      };
+      request.onsuccess=()=>{
+        const result=request.result;
+        result.onversionchange=()=>{result.close();database=null;};resolve(result);
+      };
+      request.onerror=()=>reject(new Error('gardenStorageUnavailable'));
+      request.onblocked=()=>reject(new Error('gardenStorageUnavailable'));
+    });
+    return database;
+  }
+  async function read() {
+    const db=await open();
+    return new Promise((resolve,reject)=>{
+      const transaction=db.transaction('state','readonly');
+      const request=transaction.objectStore('state').get('current');let state;
+      request.onsuccess=()=>{try{state=validateGardenState(request.result??emptyGardenState());}catch(error){reject(error);}};
+      transaction.oncomplete=()=>resolve(state);transaction.onerror=()=>reject(new Error('gardenStorageUnavailable'));
+      transaction.onabort=()=>reject(new Error('gardenStorageUnavailable'));
+    });
+  }
+  async function update(reducer,{recovery=false}={}) {
+    const db=await open();
+    return new Promise((resolve,reject)=>{
+      const transaction=db.transaction(['state','recovery'],'readwrite');
+      const table=transaction.objectStore('state');const request=table.get('current');let next,error,changed=false;
+      request.onsuccess=()=>{
+        try{
+          const current=validateGardenState(request.result??emptyGardenState());
+          next=validateGardenState(reconcileAchievements(validateGardenState(reducer(current)),new Date().toISOString()));
+          if(recovery||request.result?.schemaVersion===1){
+            // Upgrade only adds metadata; retain the original raw snapshot.
+            if(!transaction.objectStoreNames.contains('recovery'))throw new Error('gardenMigrationRequired');
+            transaction.objectStore('recovery').add({createdAt:new Date().toISOString(),state:request.result??current});
+          }
+          changed=JSON.stringify(request.result??emptyGardenState())!==JSON.stringify(next);
+          if(changed)table.put(next,'current');
+        }catch(problem){error=problem;transaction.abort();}
+      };
+      transaction.oncomplete=()=>{if(changed)changes?.postMessage('changed');resolve(next);};
+      transaction.onerror=()=>reject(error??new Error('gardenStorageUnavailable'));
+      transaction.onabort=()=>reject(error??new Error('gardenStorageUnavailable'));
+    });
+  }
+  return {read,update,onchange(callback){if(changes)changes.onmessage=callback;}};
+}
+
+
+const EXPERIENCE_MESSAGES={
+  en:{moneyEra:'YOUR MONEY ERA',savingEra:'YOUR SAVING ERA',soundtrack:'YOUR EVERYDAY SOUNDTRACK',characterMoment:'YOUR MAIN CHARACTER MOMENT',monthIncome:'Monthly income',monthSpending:'Monthly spending',collection:'Your little victories, collected.',collectionSub:'A personal record of awareness, patience and making room. There is no race.',all:'All eras',newest:'Newest first',oldest:'Oldest first',unlocked:'Unlocked',locked:'Still to discover',historical:'A remembered milestone · current progress may differ',current:'Current progress',source:'Based on actual local goals and explicitly imported records. Demo data never qualifies.',upstream:'Requires the actual budget or wishlist feature, which is not available yet.',saving:'Saving milestones',tracking:'Tracking habits',awareness:'Financial awareness',eras:'Personal eras',beginning:'A little beginning',story:'A growing story',keepsake:'A keepsake',export:'Export private keepsake',close:'Close',unlockDate:'Discovered on',settings:'Your savings thresholds',settingsSub:'Choose three increasing thresholds in a single currency. Changing these does not erase previously earned memories.',currency:'Currency',save:'Save preferences',saved:'Preferences saved.',invalid:'Use three positive, increasing amounts.',wrapped:'Your Money Era',wrappedSub:'A year of little choices and bigger dreams.',year:'Year',generate:'Save this annual story',generated:'Your annual story was saved once for this version.',noData:'Your story has room to begin.',noDataSub:'No actual records or milestones are available for this year and currency. Import your original JSON or keep recording real goals; demo transactions are excluded.',sourceLedger:'Financial totals come from your explicitly imported Xiaoman snapshot, not from a live bank connection.',sourceGoals:'No actual transaction source is connected. Goal milestones can appear, but income, spending and savings rates remain unavailable.',income:'Total income',spending:'Total spending',net:'Net cash-flow savings',rate:'Cash-flow savings rate',rateHelp:'(Income − spending) ÷ income. This is not a change in bank assets; no rate is shown when income is zero.',allocation:'Recorded allocation adjustments',allocationHelp:'Only subsequent manual changes are included; opening balances, imported balances and transfers are excluded.',categories:'The shape of your everyday',frequent:'Most frequent spending category',top:'Top spending categories',goals:'Goals first recorded in Full Bloom',days:'Days with actual transactions',milestone:'Your main character moment',noMilestone:'No goal first bloomed in this year.',stage:'A goal reached Full Bloom',consistencyHelp:'Distinct calendar dates with actual transactions. No daily streak or punishment.',previous:'Previous card',next:'Next card',exportCard:'Export this card',exportAmounts:'Include annual income/spending in exports',exportPrivacy:'Off by default. Private exports omit money amounts, goal names, categories, accounts and transactions. Nothing is auto-posted.',saveFirst:'Save an annual story before earning its keepsake.',monthly:'A moment to review',monthlySub:'Review an actual imported month. Empty and demo months do not unlock this achievement.',review:'Mark month reviewed',reviewed:'This month has been reviewed.',noMonth:'No actual transactions in this month.',threshold:'Current threshold',observed:'Historical data is discovered on import; discovery dates are not invented original activity dates.',privacyTitle:'A little victory, remembered.',privacySubtitle:'A personal Morrow keepsake',reviewPeriod:'Month',noCategories:'No actual spending categories in this year.',notAvailable:'Not available',snapshot:'Last saved story',goalMilestones:'Goal milestones'},
+  zh:{moneyEra:'你的财务时代',savingEra:'你的储蓄时代',soundtrack:'日常生活的旋律',characterMoment:'属于你的高光时刻',monthIncome:'本月收入',monthSpending:'本月支出',collection:'把小小的胜利，慢慢收藏。',collectionSub:'记住觉察、耐心和为生活留出的余地。这里没有竞赛。',all:'全部 Era',newest:'最近解锁优先',oldest:'最早解锁优先',unlocked:'已收藏',locked:'等待发现',historical:'历史纪念 · 当前进度可能已经改变',current:'当前进度',source:'依据本机实际目标和明确导入的记录判定，演示数据不计入。',upstream:'需要实际预算或愿望清单功能，该基础功能目前尚未提供。',saving:'储蓄里程碑',tracking:'记录习惯',awareness:'财务觉察',eras:'个人时代',beginning:'小小的开始',story:'慢慢生长的故事',keepsake:'值得留存的纪念',export:'导出隐私纪念卡',close:'关闭',unlockDate:'发现于',settings:'你的储蓄门槛',settingsSub:'选择同一币种的三档递增门槛。调整门槛不会抹去已经获得的纪念。',currency:'货币',save:'保存偏好',saved:'偏好已保存。',invalid:'请填写三档大于零且依次递增的金额。',wrapped:'你的财务时代',wrappedSub:'一年里的小小选择，和慢慢变大的梦想。',year:'年份',generate:'保存这份年度回顾',generated:'这一版本的年度回顾已保存，不会重复创建。',noData:'你的故事，还有很多可能。',noDataSub:'这个年份与币种尚无实际记录或里程碑。可以导入原版 JSON 或继续记录真实目标；演示账单不会被计入。',sourceLedger:'财务合计来自你明确导入的小满备份快照，不代表实时银行数据。',sourceGoals:'尚未接入实际账单来源。可以展示目标里程碑，但收入、支出和储蓄率会保持未知。',income:'年度收入',spending:'年度支出',net:'净现金流结余',rate:'现金流储蓄率',rateHelp:'（收入－支出）÷收入，不等同于银行资产变动；收入为零时不显示比率。',allocation:'已记录的分配调整',allocationHelp:'只计入后续手动调整，初始余额、导入余额和目标间转移不计入。',categories:'这一年，生活的形状',frequent:'最常出现的支出分类',top:'主要支出分类',goals:'本年首次记录盛放的目标',days:'实际记账日期数',milestone:'属于你的高光时刻',noMilestone:'这一年尚无首次盛放的目标。',stage:'一个目标达到了盛放',consistencyHelp:'按实际账单的不同日期计数，不要求连续打卡，也不设置惩罚。',previous:'上一张',next:'下一张',exportCard:'导出这张卡',exportAmounts:'在导出中包含年度收入／支出',exportPrivacy:'默认关闭。隐私导出不包含金额、目标名、分类、账户或详细账单，不会自动发布。',saveFirst:'先保存一份真实的年度回顾，再收藏它的纪念。',monthly:'留一点复盘的时间',monthlySub:'复盘一个有实际导入账单的月份。空月份和演示月份不会解锁成就。',review:'标记这个月已复盘',reviewed:'这个月已复盘。',noMonth:'这个月没有实际账单。',threshold:'当前门槛',observed:'历史数据在导入时被发现；发现日期不会伪装成原始活动日期。',privacyTitle:'把这一点小小的胜利，留住。',privacySubtitle:'Morrow 私人纪念卡',reviewPeriod:'月份',noCategories:'这一年没有实际支出分类。',notAvailable:'暂无数据',snapshot:'最近保存的回顾',goalMilestones:'目标里程碑'}
+};
+
+function renderErasExperiences({host,state,store,getLanguage,onState,view,preferences}) {
+  const locale=getLanguage()==='en'?'en-US':'zh-CN';
+  const text=key=>EXPERIENCE_MESSAGES[getLanguage()][key]??key;
+  const escape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const money=(amount,currency)=>amount===null?'—':new Intl.NumberFormat(locale,{style:'currency',currency,currencyDisplay:'narrowSymbol'}).format(amount/100);
+  const instant=()=>new Date().toISOString();
+  const oldNotice=document.getElementById('eras-extra-status');if(oldNotice&&!oldNotice.hidden&&oldNotice.dataset.experienceKey)oldNotice.textContent=text(oldNotice.dataset.experienceKey);
+  const unlocked=new Map(state.achievements.map(item=>[item.code,item]));
+  const conditions=achievementConditions(state,instant());
+  const parent=document.createElement('section');parent.className='eras-experiences';host.append(parent);
+  let modalHost=document.getElementById('eras-experience-dialogs');
+  if(!modalHost){modalHost=document.createElement('div');modalHost.id='eras-experience-dialogs';document.body.append(modalHost);}
+  function status(key){let element=document.getElementById('eras-extra-status');if(!element){element=document.createElement('div');element.id='eras-extra-status';element.className='toast';element.setAttribute('role','status');document.body.append(element);}element.dataset.experienceKey=key;element.textContent=text(key);element.hidden=false;clearTimeout(preferences.toast);preferences.toast=setTimeout(()=>element.hidden=true,6000);}
+  function cardArtwork(themeId,locked=false){const theme=ERA_THEMES.find(item=>item.id===themeId)??ERA_THEMES[0];return `<div class="era-vinyl ${locked?'locked':''}" style="--record-one:${theme.palette[1]};--record-two:${theme.palette[0]}"><i></i><span>m.</span></div>`;}
+  function downloadPng(svg,name){
+    return new Promise((resolve,reject)=>{const url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'})),image=new Image();image.onerror=()=>{URL.revokeObjectURL(url);reject();};image.onload=()=>{try{const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=900;canvas.getContext('2d').drawImage(image,0,0);canvas.toBlob(blob=>{URL.revokeObjectURL(url);if(!blob){reject();return;}const downloadURL=URL.createObjectURL(blob),link=document.createElement('a');link.href=downloadURL;link.download=name;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(downloadURL),1000);resolve();},'image/png');}catch(error){URL.revokeObjectURL(url);reject(error);}};image.src=url;});
+  }
+  function privateImage(themeId,title,subtitle,optional=''){
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900"><rect width="1200" height="900" fill="#f4f0ed"/><text x="70" y="85" font-family="sans-serif" font-size="19" letter-spacing="5" fill="#68768c">MORROW ERAS</text><svg x="50" y="120" width="1100" height="580">${renderGardenSvg(themeId,4,{prefix:'experience-export',label:'Original Morrow artwork'})}</svg><text x="70" y="735" font-family="sans-serif" font-size="34" fill="#343a46">${escape(title)}</text><text x="70" y="787" font-family="sans-serif" font-size="21" fill="#68768c">${escape(subtitle)}</text><text x="70" y="837" font-family="sans-serif" font-size="23" fill="#68768c">${escape(optional)}</text></svg>`;
+  }
+  async function collectionExport(code){const earned=unlocked.get(code);if(!earned)return;await downloadPng(privateImage(earned.themeId,text('privacyTitle'),text('privacySubtitle')),'Morrow-Private-Keepsake.png');}
+  function openDetail(code){
+    const definition=ACHIEVEMENT_DEFINITIONS.find(item=>item.code===code),earned=unlocked.get(code),condition=conditions[code];
+    modalHost.innerHTML=`<dialog id="era-achievement-dialog" class="garden-dialog"><div class="dialog-title"><h2>${escape(definition.name[getLanguage()])}</h2><button type="button" aria-label="${text('close')}">×</button></div>${cardArtwork(earned?.themeId??'eternal-bloom',!earned)}<p class="dialog-help">${escape(definition.description[getLanguage()])}</p><p class="dialog-help">${text('current')}: ${condition.currency?money(condition.current,condition.currency):condition.current} / ${condition.currency?money(condition.target,condition.currency):condition.target}</p>${earned?`<p class="dialog-help">${text('unlockDate')} · ${new Date(earned.unlockedAt).toLocaleDateString(locale)}</p><p class="dialog-help">${text('historical')}</p><p class="dialog-help">${text('observed')}</p><button class="garden-button" id="era-export-achievement">${text('export')}</button>`:condition.upstream?`<p class="dialog-help">${text('upstream')}</p>`:''}<p class="era-detail-code">${escape(definition.id)} · v${definition.version} · ${text(definition.rarity)}</p></dialog>`;
+    modalHost.querySelector('.dialog-title button').onclick=()=>modalHost.querySelector('dialog').close();
+    const exportButton=modalHost.querySelector('#era-export-achievement');if(exportButton)exportButton.onclick=()=>collectionExport(code).catch(()=>status('notAvailable'));
+    modalHost.querySelector('dialog').showModal();
+  }
+
+  function renderCollection(){
+    const filter=preferences.collectionTheme??'all',sort=preferences.collectionSort??'newest';
+    const definitions=ACHIEVEMENT_DEFINITIONS.filter(definition=>filter==='all'||unlocked.get(definition.code)?.themeId===filter)
+      .sort((a,b)=>{const first=unlocked.get(a.code)?.unlockedAt,second=unlocked.get(b.code)?.unlockedAt;if(!first&&!second)return a.id.localeCompare(b.id);if(!first)return 1;if(!second)return -1;return sort==='newest'?second.localeCompare(first):first.localeCompare(second);});
+    parent.innerHTML=`<div class="garden-section-title"><div><span class="garden-eyebrow">ERA COLLECTION</span><h3>${text('collection')}</h3><p>${text('collectionSub')}</p></div><span class="collection-count">${state.achievements.length} / ${ACHIEVEMENT_DEFINITIONS.length}</span></div><p class="garden-boundary">${text('source')}</p><div class="collection-filters"><select id="collection-theme" aria-label="Era"><option value="all">${text('all')}</option>${ERA_THEMES.map(theme=>`<option value="${theme.id}">${theme.name}</option>`).join('')}</select><select id="collection-sort" aria-label="${text('newest')}"><option value="newest">${text('newest')}</option><option value="oldest">${text('oldest')}</option></select></div><div class="collection-grid">${definitions.map(definition=>{const earned=unlocked.get(definition.code);return `<button class="achievement-card ${earned?'is-unlocked':'is-locked'}" data-achievement="${definition.code}">${cardArtwork(earned?.themeId??'eternal-bloom',!earned)}<span class="achievement-group">${text(definition.group)}</span><h4>${escape(definition.name[getLanguage()])}</h4><p>${escape(definition.description[getLanguage()])}</p><span class="achievement-state">${text(earned?'unlocked':'locked')}${earned?' · '+new Date(earned.unlockedAt).toLocaleDateString(locale):''}</span></button>`;}).join('')}</div><details class="garden-contact-sheet"><summary>${text('settings')}</summary><p>${text('settingsSub')}</p><form id="era-threshold-form" class="era-threshold-form"><label>${text('currency')}<select name="currency">${['CNY','USD','EUR','GBP'].map(currency=>`<option>${currency}</option>`).join('')}</select></label>${state.settings.milestoneThresholds.map((amount,index)=>`<label>${text('threshold')} ${index+1}<input name="threshold${index}" inputmode="decimal" maxlength="24" value="${(amount/100).toFixed(2)}"></label>`).join('')}<button class="garden-button">${text('save')}</button><p class="field-error" id="era-threshold-error" role="alert" hidden></p></form></details>`;
+    parent.querySelector('#collection-theme').value=filter;parent.querySelector('#collection-sort').value=sort;
+    parent.querySelector('#collection-theme').onchange=event=>{preferences.collectionTheme=event.target.value;renderCollection();};
+    parent.querySelector('#collection-sort').onchange=event=>{preferences.collectionSort=event.target.value;renderCollection();};
+    parent.querySelectorAll('[data-achievement]').forEach(button=>button.onclick=()=>openDetail(button.dataset.achievement));
+    const form=parent.querySelector('#era-threshold-form');form.elements.currency.value=state.settings.milestoneCurrency;
+    form.onsubmit=async event=>{event.preventDefault();try{const fields=Object.fromEntries(new FormData(form)),thresholds=[0,1,2].map(index=>parseAmount(fields['threshold'+index]));if(thresholds.some((amount,index)=>index>0&&amount<=thresholds[index-1]))throw Error();const changed=await store.update(current=>({...current,settings:{...current.settings,milestoneCurrency:fields.currency,milestoneThresholds:thresholds}}));onState(changed);status('saved');}catch{parent.querySelector('#era-threshold-error').textContent=text('invalid');parent.querySelector('#era-threshold-error').hidden=false;}};
+  }
+
+  function renderWrapped(){
+    const currentYear=new Date().getFullYear(),source=actualLedger(state);
+    const years=[...new Set([currentYear,...source.transactions.map(record=>Number(record.date.slice(0,4))),...state.goals.filter(goal=>goal.bloomedAt).map(goal=>new Date(goal.bloomedAt).getFullYear())])].sort((a,b)=>b-a);
+    const year=preferences.wrappedYear??currentYear,currency=preferences.wrappedCurrency??'CNY',slide=Math.max(0,Math.min(3,preferences.wrappedSlide??0));
+    let summary;try{summary=annualGardenSummary(state,year,currency,instant());}catch{parent.innerHTML=`<p class="garden-error">${text('notAvailable')}</p>`;return;}
+    const theme=ERA_THEMES[slide];
+    const slides=[
+      `<span class="wrapped-kicker">${year} · ${text('moneyEra')}</span><h3>${text('wrappedSub')}</h3><dl><div><dt>${text('income')}</dt><dd>${money(summary.income,currency)}</dd></div><div><dt>${text('spending')}</dt><dd>${money(summary.spending,currency)}</dd></div></dl>`,
+      `<span class="wrapped-kicker">${text('savingEra')}</span><h3>${getLanguage()==='en'?'You made room for tomorrow.':'给明天，留一点余地。'}</h3><dl><div><dt>${text('net')}</dt><dd>${money(summary.netCashFlow,currency)}</dd></div><div><dt>${text('rate')}</dt><dd>${summary.savingsRate===null?'—':summary.savingsRate.toFixed(1)+'%'}</dd></div></dl><p>${text('rateHelp')}</p><p>${text('allocation')}: ${money(summary.recordedAllocations,currency)} · ${text('allocationHelp')}</p>`,
+      `<span class="wrapped-kicker">${text('soundtrack')}</span><h3>${text('categories')}</h3><p>${text('frequent')}: ${escape(summary.frequentCategory??text('notAvailable'))}</p><ul class="wrapped-categories">${summary.topCategories.map(category=>`<li><span>${escape(category.name)}</span><b>${money(category.amount,currency)}</b></li>`).join('')||`<li>${text('noCategories')}</li>`}</ul>`,
+      `<span class="wrapped-kicker">${text('characterMoment')}</span><h3>${text('milestone')}</h3><dl><div><dt>${text('goals')}</dt><dd>${summary.goalsCompleted}</dd></div><div><dt>${text('days')}</dt><dd>${summary.hasLedger?summary.activeDays:'—'}</dd></div></dl><p>${summary.favoriteMilestone?text('stage')+' · '+new Date(summary.favoriteMilestone.at).toLocaleDateString(locale):text('noMilestone')}</p><p>${text('consistencyHelp')}</p>`
+    ];
+    const latest=state.wrappedSnapshots.filter(item=>item.year===year&&item.summary.currency===currency).at(-1);
+    parent.innerHTML=`<div class="garden-section-title"><div><span class="garden-eyebrow">MONEY WRAPPED</span><h3>${text('wrapped')}</h3><p>${text('wrappedSub')}</p></div><div class="wrapped-selectors"><select id="wrapped-year" aria-label="${text('year')}">${years.map(value=>`<option>${value}</option>`).join('')}</select><select id="wrapped-currency" aria-label="${text('currency')}">${['CNY','USD','EUR','GBP'].map(value=>`<option>${value}</option>`).join('')}</select></div></div><p class="garden-boundary">${text(summary.hasLedger?'sourceLedger':'sourceGoals')}</p>${summary.hasAnyData?`<article class="wrapped-card" style="--wrapped-light:${theme.palette[0]};--wrapped-accent:${theme.palette[1]};--wrapped-ink:${theme.palette[2]}">${slides[slide]}<span class="wrapped-page">0${slide+1} / 04</span></article><div class="wrapped-controls"><button class="garden-button" id="wrapped-prev" ${slide===0?'disabled':''}>${text('previous')}</button><div class="wrapped-dots">${[0,1,2,3].map(index=>`<button data-wrapped-slide="${index}" aria-label="${index+1}" aria-pressed="${index===slide}"></button>`).join('')}</div><button class="garden-button" id="wrapped-next" ${slide===3?'disabled':''}>${text('next')}</button></div><div class="garden-data-actions"><button class="garden-button" id="save-wrapped">${text('generate')}</button><button class="garden-button" id="export-wrapped">${text('exportCard')}</button></div><label class="garden-checkbox"><input id="wrapped-export-money" type="checkbox" ${preferences.exportMoney?'checked':''}><span>${text('exportAmounts')}</span></label><p class="garden-boundary">${text('exportPrivacy')}</p>${latest?`<p class="garden-boundary">${text('snapshot')}: ${new Date(latest.generatedAt).toLocaleString(locale)}</p>`:''}`:`<div class="garden-empty"><h3>${text('noData')}</h3><p>${text('noDataSub')}</p></div>`}<section class="monthly-review-box"><h3>${text('monthly')}</h3><p>${text('monthlySub')}</p><label>${text('reviewPeriod')} <input id="era-review-month" type="month" value="${preferences.reviewMonth??year+'-01'}"></label><div id="monthly-review-details"></div></section>`;
+    parent.querySelector('#wrapped-year').value=year;parent.querySelector('#wrapped-currency').value=currency;
+    parent.querySelector('#wrapped-year').onchange=event=>{preferences.wrappedYear=Number(event.target.value);renderWrapped();};
+    parent.querySelector('#wrapped-currency').onchange=event=>{preferences.wrappedCurrency=event.target.value;renderWrapped();};
+    function go(index){preferences.wrappedSlide=index;renderWrapped();}
+    if(summary.hasAnyData){
+      parent.querySelector('#wrapped-prev').onclick=()=>go(slide-1);parent.querySelector('#wrapped-next').onclick=()=>go(slide+1);
+      parent.querySelectorAll('[data-wrapped-slide]').forEach(button=>button.onclick=()=>go(Number(button.dataset.wrappedSlide)));
+      parent.querySelector('#wrapped-export-money').onchange=event=>preferences.exportMoney=event.target.checked;
+      parent.querySelector('#save-wrapped').onclick=async event=>{
+        event.target.disabled=true;
+        try{const currentSummary=annualGardenSummary(await store.read(),year,currency,instant());if(!currentSummary.hasAnyData)return;const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(currentSummary)));const id='wrapped-'+Array.from(new Uint8Array(digest),n=>n.toString(16).padStart(2,'0')).join('');
+          const changed=await store.update(current=>{
+            if(JSON.stringify(annualGardenSummary(current,year,currency,instant()))!==JSON.stringify(currentSummary))throw new Error('gardenConflict');
+            return current.wrappedSnapshots.some(item=>item.id===id)?current:{...current,wrappedSnapshots:[...current.wrappedSnapshots,{id,year,summary:currentSummary,generatedAt:instant()}]};
+          });onState(changed);status('generated');
+        }catch{status('notAvailable');event.target.disabled=false;}
+      };
+      parent.querySelector('#export-wrapped').onclick=()=>{
+        const financial=preferences.exportMoney?text('income')+': '+money(summary.income,currency)+' · '+text('spending')+': '+money(summary.spending,currency):'';
+        downloadPng(privateImage(theme.id,year+' · '+text('wrapped'),text('wrappedSub'),financial),'Morrow-Private-Wrapped-'+year+'.png').catch(()=>status('notAvailable'));
+      };
+    }
+    function reviewMonth(){
+      const month=parent.querySelector('#era-review-month').value;preferences.reviewMonth=month;
+      const details=parent.querySelector('#monthly-review-details');
+      let actual;try{actual=monthlyActualSummary(state,month,instant());}catch{details.innerHTML=`<p>${text('notAvailable')}</p>`;return;}
+      if(!actual.recordCount){details.innerHTML=`<p>${text('noMonth')}</p>`;return;}
+      const {income,spending}=actual;
+      const reviewed=state.reviews.some(review=>review.kind==='monthly'&&review.period===month);
+      details.innerHTML=`<p>${text('monthIncome')}: ${money(income,'CNY')} · ${text('monthSpending')}: ${money(spending,'CNY')}</p><button class="garden-button" id="review-actual-month" ${reviewed?'disabled':''}>${text(reviewed?'reviewed':'review')}</button>`;
+      const button=details.querySelector('button');button.onclick=async()=>{button.disabled=true;try{const changed=await store.update(current=>current.reviews.some(review=>review.kind==='monthly'&&review.period===month)?current:{...current,reviews:[...current.reviews,{kind:'monthly',period:month,at:instant()}]});onState(changed);status('reviewed');}catch{status('notAvailable');button.disabled=false;}};
+    }
+    parent.querySelector('#era-review-month').onchange=reviewMonth;reviewMonth();
+  }
+  if(view==='collection')renderCollection();else renderWrapped();
+}
+
+
+function mountEras({getLanguage}) {
+  const query=selector=>document.querySelector(selector);
+  const translate=key=>ERA_MESSAGES[getLanguage()][key]??key;
+  const escape=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  const format=(amount,currency='CNY')=>new Intl.NumberFormat(getLanguage()==='en'?'en-US':'zh-CN',{style:'currency',currency,currencyDisplay:'narrowSymbol',minimumFractionDigits:2,maximumFractionDigits:2}).format(amount/100);
+  const identifier=()=>crypto.randomUUID();
+  const now=()=>new Date().toISOString();
+  const store=createGardenStore();
+  let state=emptyGardenState(),ready=false,storageError=null,selectedTheme='eternal-bloom',sampleStage=2;
+  let editingGoal=null,pendingImport=null,backupAcknowledged=false,busy=false,noticeTimer;
+  let activeView='garden';const extraPreferences={};
+  const container=document.createElement('section');container.id='eras-section';container.className='eras-section';
+  query('main footer').before(container);
+  const dashboard=document.createElement('section');dashboard.className='garden-dashboard panel';dashboard.id='garden-dashboard';
+  query('.dashboard-grid').before(dashboard);
+  const nav=document.createElement('a');nav.href='#eras-section';nav.className='eras-nav';nav.innerHTML='<svg aria-hidden="true"><use href="#leaf"/></svg><span>Eras</span>';
+  query('.navigation').append(nav);
+  const mobile=query('.tabbar a[href="#goals-section"]');mobile.href='#eras-section';mobile.classList.add('eras-nav');mobile.querySelector('span').removeAttribute('data-i');mobile.querySelector('span').textContent='Eras';
+  const motionSetting=document.createElement('label');motionSetting.className='setting-row';motionSetting.id='garden-motion-setting';
+  query('#settings-dialog .settings-info').before(motionSetting);
+  const dialogs=document.createElement('div');dialogs.id='garden-dialogs';document.body.append(dialogs);
+  const status=document.createElement('div');status.className='toast garden-toast';status.setAttribute('role','status');status.hidden=true;document.body.append(status);
+
+  function announce(key){status.dataset.eraKey=key;status.textContent=translate(key);status.hidden=false;clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>status.hidden=true,6500);}
+  function dateText(value){return new Intl.DateTimeFormat(getLanguage()==='en'?'en-US':'zh-CN',{dateStyle:'medium',timeZone:'UTC'}).format(new Date(value.length===10?value+'T12:00:00Z':value));}
+  function button(action,label,extra=''){return `<button class="garden-button" data-garden-action="${action}" ${extra}>${translate(label)}</button>`;}
+  function themeOptions(value){return ERA_THEMES.map(theme=>`<option value="${theme.id}" ${theme.id===value?'selected':''}>${theme.name}</option>`).join('');}
+  function goalOptions(value){return state.goals.filter(goal=>goal.fundingMode==='manual'&&!goal.paused).map(goal=>`<option value="${escape(goal.id)}" ${goal.id===value?'selected':''}>${escape(goal.name)} · ${goal.currency}</option>`).join('');}
+  function goalCard(goal,index){
+    const progress=goalProgress(goal.currentSaved,goal.targetAmount),theme=ERA_THEMES.find(item=>item.id===goal.themeId);
+    return `<article class="saved-garden" data-goal-id="${escape(goal.id)}" style="--era-accent:${theme.palette[1]}">
+      <div class="garden-art-wrap">${renderGardenSvg(theme.id,progress.stage,{prefix:'saved-'+goal.id,label:theme.name+' — '+translate(GARDEN_STAGES[progress.stage])})}<span class="garden-stage-tag">${translate(GARDEN_STAGES[progress.stage])}</span>${goal.paused?`<span class="garden-pause-tag">${translate('paused')}</span>`:''}</div>
+      <div class="saved-garden-body"><div class="saved-garden-heading"><div><span class="garden-theme-name">${theme.name}</span><h3>${escape(goal.name)}</h3></div><button class="garden-edit" data-garden-action="edit" data-id="${escape(goal.id)}" aria-label="${translate('edit')}"><svg aria-hidden="true"><use href="#edit"/></svg></button></div>
+      <div class="garden-amounts"><strong>${format(goal.currentSaved,goal.currency)}</strong><span>/ ${format(goal.targetAmount,goal.currency)}</span></div>
+      <div class="garden-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress.percent}" aria-label="${escape(goal.name)}"><span style="width:${progress.percent}%"></span></div>
+      <div class="garden-progress-label"><span>${progress.percent.toLocaleString(getLanguage()==='en'?'en-US':'zh-CN',{maximumFractionDigits:2})}%</span><span>${progress.complete?translate('fullyFunded'):translate('remaining')+' '+format(goal.targetAmount-goal.currentSaved,goal.currency)}</span></div>
+      <p class="garden-date" title="${translate('plannedDate')}">${goal.targetDate?translate('due')+' · '+dateText(goal.targetDate):translate('noDate')}</p><p class="garden-forecast">${translate('noForecast')}</p>
+      ${goal.fundingMode==='legacy-total'?`<p class="garden-legacy">${translate('legacyMode')}</p>`:''}
+      ${goal.bloomedAt?`<div class="garden-memory"><span>${translate('firstBloom')} · ${dateText(goal.bloomedAt)}</span>${button('memory','memory',`data-id="${escape(goal.id)}"`)}</div><p class="garden-memory-note">${translate('historicBloom')}</p>`:''}</div></article>`;
+  }
+
+  function render(){
+    if(!status.hidden&&status.dataset.eraKey)status.textContent=translate(status.dataset.eraKey);
+    const current=state.goals.find(goal=>!goal.paused)??state.goals[0];
+    dashboard.innerHTML=current?`<a class="dashboard-garden-link" href="#eras-section"><div class="dashboard-garden-art">${renderGardenSvg(current.themeId,goalProgress(current.currentSaved,current.targetAmount).stage,{prefix:'dashboard',label:translate('currentEra')})}</div><div><span class="garden-eyebrow">${translate('currentEra')}</span><h2>${escape(current.name)}</h2><p>${ERA_THEMES.find(theme=>theme.id===current.themeId).name} · ${goalProgress(current.currentSaved,current.targetAmount).percent}%</p></div><span class="dashboard-garden-arrow">↗</span></a>`:
+      `<div class="dashboard-garden-empty"><div><span class="garden-eyebrow">MORROW ERAS</span><h2>${translate('noGoals')}</h2><p>${translate('allLocal')}</p></div>${button('new','newGoal',!ready?'disabled':'')}</div>`;
+    container.innerHTML=`<div class="eras-heading"><div><div class="garden-eyebrow">${translate('eyebrow')}</div><h2>${translate('title')}</h2><p>${translate('subtitle')}</p></div><div class="garden-local-status"><i></i>${translate(ready?'local':'loading')}</div></div>
+      <nav class="eras-tabs" aria-label="Eras">${['garden','collection','wrapped'].map(view=>`<button type="button" data-era-view="${view}" aria-pressed="${view===activeView}" class="${view===activeView?'selected':''}">${translate(view)}</button>`).join('')}</nav>
+      <p class="garden-boundary">${translate('localHelp')}</p>
+      ${storageError?`<div class="garden-error" role="alert">${translate(storageError)} ${button('retry','retry')}</div>`:''}
+      <div class="garden-section-title" id="garden-live"><div><h3>${translate('myGardens')}</h3><p>${translate('allocationNote')}</p></div><div class="garden-actions">${button('new','newGoal',!ready?'disabled':'')}${button('transfer','transfer',!ready||state.goals.filter(goal=>goal.fundingMode==='manual'&&!goal.paused).length<2?'disabled':'')}</div></div>
+      <div class="saved-gardens">${state.goals.length?state.goals.map(goalCard).join(''):`<div class="garden-empty"><span class="garden-seed-mark">◦</span><h3>${translate('noGoals')}</h3><p>${translate('emptyHelp')}</p>${button('new','newGoal',!ready?'disabled':'')}</div>`}</div>
+      <div class="garden-data-actions">${button('backup','backup',!ready?'disabled':'')}${button('pick-restore','restore',!ready?'disabled':'')}${button('pick-legacy','importLegacy',!ready?'disabled':'')}<span>${translate('pendingCloud')}</span></div>
+      <section class="garden-studio"><div class="garden-section-title"><div><span class="garden-eyebrow">ERA ATELIER</span><h3>${translate('explore')}</h3><p>${translate('exploreHelp')}</p></div><span class="garden-sample-pill">${translate('sample')}</span></div>
+      <div class="era-theme-picker" role="group" aria-label="${translate('theme')}">${ERA_THEMES.map(theme=>`<button class="era-theme-option ${selectedTheme===theme.id?'selected':''}" data-garden-action="sample-theme" data-theme="${theme.id}" aria-pressed="${selectedTheme===theme.id}"><span class="era-theme-swatch" style="background:linear-gradient(135deg,${theme.palette[0]},${theme.palette[1]})"></span><span>${theme.name}</span></button>`).join('')}</div>
+      <div class="garden-studio-scene"><div class="garden-studio-art">${renderGardenSvg(selectedTheme,sampleStage,{prefix:'studio',label:ERA_THEMES.find(theme=>theme.id===selectedTheme).name+' — '+translate(GARDEN_STAGES[sampleStage])})}</div><div class="garden-studio-copy"><span class="garden-eyebrow">${translate('sample')}</span><h3>${ERA_THEMES.find(theme=>theme.id===selectedTheme).name}</h3><p>${translate(ERA_THEMES.find(theme=>theme.id===selectedTheme).descriptionKey)}</p><div class="garden-stage-number">0${sampleStage+1}<span>/ 05</span></div><b>${translate(GARDEN_STAGES[sampleStage])}</b></div></div>
+      <div class="garden-stage-picker" role="group" aria-label="${translate('showcase')}">${GARDEN_STAGES.map((stage,index)=>`<button data-garden-action="sample-stage" data-stage="${index}" class="${sampleStage===index?'selected':''}" aria-pressed="${sampleStage===index}"><span>0${index+1}</span><b>${translate(stage)}</b><small>${['0–24%','25–49%','50–74%','75–99%','100%'][index]}</small></button>`).join('')}</div></section>
+      <details class="garden-contact-sheet" open><summary>${translate('showcase')}</summary><p>${translate('showcaseHelp')}</p><div class="garden-matrix">${ERA_THEMES.map(theme=>`<div class="garden-matrix-row"><h4>${theme.name}</h4><div class="garden-matrix-stages">${GARDEN_STAGES.map((stage,index)=>`<figure>${renderGardenSvg(theme.id,index,{prefix:'matrix-'+theme.id+'-'+index,label:theme.name+' — '+translate(stage)})}<figcaption>${translate(stage)} <span>${['0–24%','25–49%','50–74%','75–99%','100%'][index]}</span></figcaption></figure>`).join('')}</div></div>`).join('')}</div></details>
+      <input type="file" id="garden-legacy-file" accept=".json,application/json" hidden><input type="file" id="garden-restore-file" accept=".json,application/json" hidden>`;
+    motionSetting.innerHTML=`<span>${translate('motion')}</span><select id="garden-motion"><option value="system">${translate('system')}</option><option value="reduce">${translate('reduce')}</option></select>`;
+    query('#garden-motion').value=state.settings.motion;
+    query('#garden-motion').onchange=async event=>{try{state=await store.update(current=>({...current,settings:{...current.settings,motion:event.target.value}}));document.documentElement.dataset.gardenMotion=state.settings.motion;}catch(error){announce(error.message);}};
+    document.documentElement.dataset.gardenMotion=state.settings.motion;
+    query('#garden-legacy-file').onchange=event=>loadImport(event.target.files[0],'legacy');
+    query('#garden-restore-file').onchange=event=>loadImport(event.target.files[0],'restore');
+    if(activeView!=='garden'){
+      [...container.children].filter(element=>!element.classList.contains('eras-heading')&&!element.classList.contains('eras-tabs')).forEach(element=>element.hidden=true);
+      renderErasExperiences({host:container,state,store,getLanguage,view:activeView,preferences:extraPreferences,onState:updated=>{state=updated;render();}});
+    }
+    queryAllDialogTranslations();
+  }
+
+  function queryAllDialogTranslations(){
+    dialogs.querySelectorAll('[data-era-i]').forEach(element=>element.textContent=translate(element.dataset.eraI));
+  }
+  function openGoal(id=null){
+    if(!ready)return;editingGoal=state.goals.find(goal=>goal.id===id)??null;
+    const goal=editingGoal??{name:'',targetAmount:0,currentSaved:0,currency:'CNY',themeId:selectedTheme,targetDate:'',paused:false};
+    dialogs.innerHTML=`<dialog id="garden-goal-dialog" class="garden-dialog"><form id="garden-goal-form" novalidate><div class="dialog-title"><h2>${translate(editingGoal?'editGoal':'newGoal')}</h2><button type="button" data-garden-close aria-label="${translate('close')}">×</button></div><p class="dialog-help">${translate('allocationNote')}</p><div class="form-grid"><label class="full-width"><span>${translate('goalName')}</span><input name="name" required maxlength="80" value="${escape(goal.name)}"></label><label><span>${translate('targetAmount')}</span><input name="target" inputmode="decimal" maxlength="24" required value="${goal.targetAmount?(goal.targetAmount/100).toFixed(2):''}" placeholder="0.00"></label><label><span>${translate('currentSaved')}</span><input name="saved" inputmode="decimal" maxlength="24" required value="${(goal.currentSaved/100).toFixed(2)}" ${goal.fundingMode==='legacy-total'?'readonly':''}></label><label><span>${translate('currency')}</span><select name="currency">${GARDEN_CURRENCIES.map(currency=>`<option ${currency===goal.currency?'selected':''}>${currency}</option>`).join('')}</select></label><label><span>${translate('targetDate')}</span><input type="date" name="date" min="1900-01-01" max="9999-12-31" value="${goal.targetDate??''}"></label><label class="full-width"><span>${translate('theme')}</span><select name="theme">${themeOptions(goal.themeId)}</select></label></div><label class="garden-checkbox"><input type="checkbox" name="paused" ${goal.paused?'checked':''}><span>${translate('pause')}</span></label><p class="dialog-help">${translate(goal.fundingMode==='legacy-total'?'legacyHint':'pauseHelp')}</p><p id="garden-form-error" role="alert" class="field-error" hidden></p><button class="primary form-submit">${translate('save')}</button></form></dialog>`;
+    const form=query('#garden-goal-form');
+    form.onsubmit=async event=>{
+      event.preventDefault();if(busy)return;
+      try{
+        const fields=Object.fromEntries(new FormData(form));const at=now();
+        const saved=/^0(?:\.0{1,2})?$/.test(fields.saved.trim())?0:parseAmount(fields.saved);
+        const candidate={id:editingGoal?.id??identifier(),name:fields.name.trim(),targetAmount:parseAmount(fields.target),currentSaved:saved,
+          currency:fields.currency,themeId:fields.theme,targetDate:fields.date||null,paused:fields.paused==='on',fundingMode:editingGoal?.fundingMode??'manual',
+          createdAt:editingGoal?.createdAt??at,updatedAt:at,revision:editingGoal?.revision??1,bloomedAt:editingGoal?.bloomedAt??null,bloomedThemeId:editingGoal?.bloomedThemeId??null};
+        if(editingGoal&&editingGoal.currency!==candidate.currency&&editingGoal.currentSaved>0)throw new Error('gardenCurrencyLocked');
+        const operationId=identifier();busy=true;form.querySelector('[type="submit"],.form-submit').disabled=true;
+        const oldStage=editingGoal?goalProgress(editingGoal.currentSaved,editingGoal.targetAmount).stage:0;
+        state=await store.update(current=>saveGardenGoal(current,candidate,operationId,at,editingGoal?.revision??0));
+        const newStage=goalProgress(candidate.currentSaved,candidate.targetAmount).stage;
+        query('#garden-goal-dialog').close();render();announce(newStage>oldStage?'stageChanged':'saved');
+        if(newStage>oldStage){const card=container.querySelector(`[data-goal-id="${candidate.id}"]`);card?.classList.add('garden-milestone');}
+      }catch(error){query('#garden-form-error').textContent=translate(error.message==='invalidAmount'?'gardenInvalidAmount':error.message);query('#garden-form-error').hidden=false;}
+      finally{busy=false;form.querySelector('.form-submit').disabled=false;}
+    };
+    bindClose();query('#garden-goal-dialog').showModal();form.elements.name.focus();
+  }
+
+  function openTransfer(){
+    dialogs.innerHTML=`<dialog id="garden-transfer-dialog" class="garden-dialog"><form id="garden-transfer-form"><div class="dialog-title"><h2>${translate('transfer')}</h2><button type="button" data-garden-close aria-label="${translate('close')}">×</button></div><p class="dialog-help">${translate('transferHelp')}</p><div class="form-grid"><label class="full-width"><span>${translate('from')}</span><select name="from">${goalOptions()}</select></label><label class="full-width"><span>${translate('to')}</span><select name="to">${goalOptions()}</select></label><label class="full-width"><span>${translate('amount')}</span><input name="amount" required inputmode="decimal" maxlength="24"></label></div><p class="field-error" id="garden-transfer-error" role="alert" hidden></p><button class="primary form-submit">${translate('move')}</button></form></dialog>`;
+    query('#garden-transfer-form').elements.to.selectedIndex=1;
+    query('#garden-transfer-form').onsubmit=async event=>{
+      event.preventDefault();if(busy)return;const form=event.target;
+      try{busy=true;form.querySelector('.form-submit').disabled=true;const fields=Object.fromEntries(new FormData(form)),amount=parseAmount(fields.amount),operationId=identifier(),at=now();
+        state=await store.update(current=>transferGardenFunds(current,fields.from,fields.to,amount,operationId,at));query('#garden-transfer-dialog').close();render();announce('moved');
+      }catch(error){query('#garden-transfer-error').textContent=translate(error.message==='invalidAmount'?'gardenInvalidTransfer':error.message);query('#garden-transfer-error').hidden=false;}
+      finally{busy=false;form.querySelector('.form-submit').disabled=false;}
+    };bindClose();query('#garden-transfer-dialog').showModal();
+  }
+
+  function download(name,content,type){
+    const url=URL.createObjectURL(new Blob([content],{type})),link=document.createElement('a');link.href=url;link.download=name;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  }
+  async function backup(){const current=await store.read();download('Morrow-Garden-'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify({format:'morrow-garden',exportedAt:now(),state:current},null,2),'application/json');return current;}
+  async function loadImport(file,kind){
+    if(!file)return;
+    try{
+      if(file.size>(kind==='legacy'?2000000:8000000))throw new Error(kind==='legacy'?'gardenInvalidLegacy':'gardenInvalidBackup');
+      const raw=await file.text();let preview,digest;
+      if(kind==='legacy'){
+        preview=legacyGardenPreview(raw);const bytes=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(raw));digest=Array.from(new Uint8Array(bytes),byte=>byte.toString(16).padStart(2,'0')).join('');
+        if(state.receipts.some(receipt=>receipt.digest===digest)){announce('alreadyImported');return;}
+      }else{let envelope;try{envelope=JSON.parse(raw);}catch{throw new Error('gardenInvalidBackup');}if(envelope.format!=='morrow-garden')throw new Error('gardenInvalidBackup');preview=validateGardenState(envelope.state);}
+      pendingImport={kind,raw,preview,digest};backupAcknowledged=false;
+      dialogs.innerHTML=`<dialog id="garden-import-dialog" class="garden-dialog"><div class="dialog-title"><h2>${translate(kind==='legacy'?'importTitle':'restoreTitle')}</h2><button data-garden-close aria-label="${translate('close')}">×</button></div><p class="dialog-help">${translate(kind==='legacy'?'importHelp':'restoreHelp')}</p>${kind==='legacy'?`<dl class="garden-import-summary"><div><dt>${translate('sourceGoal')}</dt><dd>${escape(preview.name)}</dd></div><div><dt>${translate('sourceBalance')}</dt><dd>${format(preview.currentSaved)}</dd></div><div><dt>${translate('sourceAccounts')}</dt><dd>${preview.accountCount}</dd></div><div><dt>${translate('sourceTransactions')}</dt><dd>${preview.transactionCount}</dd></div></dl>`:`<p class="dialog-help">${preview.goals.length} · ${translate('myGardens')}</p>`}<button id="garden-before-backup" class="garden-button">${translate('beforeImport')}</button><label class="garden-checkbox"><input id="garden-backup-confirmed" type="checkbox" disabled><span>${translate('confirmBackup')}</span></label><button id="garden-confirm-import" class="primary form-submit" disabled>${translate(kind==='legacy'?'confirmImport':'confirmRestore')}</button><p id="garden-import-error" class="field-error" role="alert" hidden></p></dialog>`;
+      query('#garden-before-backup').onclick=async()=>{try{await backup();query('#garden-backup-confirmed').disabled=false;backupAcknowledged=true;}catch(error){announce(error.message);}};
+      query('#garden-backup-confirmed').onchange=event=>query('#garden-confirm-import').disabled=!event.target.checked;
+      query('#garden-confirm-import').onclick=async()=>{
+        if(busy||!backupAcknowledged||!query('#garden-backup-confirmed').checked)return;busy=true;query('#garden-confirm-import').disabled=true;
+        try{
+          const operationId=identifier(),at=now(),goalId=identifier();
+          state=await store.update(current=>kind==='legacy'?applyLegacyGarden(current,raw,digest,operationId,at,goalId):preview,{recovery:true});
+          query('#garden-import-dialog').close();render();announce(kind==='legacy'?'imported':'saved');pendingImport=null;
+        }catch(error){query('#garden-import-error').textContent=translate(error.message);query('#garden-import-error').hidden=false;query('#garden-confirm-import').disabled=false;}
+        finally{busy=false;}
+      };
+      bindClose();query('#garden-import-dialog').showModal();
+    }catch(error){announce(error.message);}
+  }
+
+  async function memoryCard(id){
+    const goal=state.goals.find(item=>item.id===id);if(!goal?.bloomedAt)return;
+    const theme=ERA_THEMES.find(item=>item.id===(goal.bloomedThemeId??goal.themeId));
+    const content=`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1000" viewBox="0 0 1200 1000"><rect width="1200" height="1000" fill="#f4f0ed"/><text x="90" y="105" fill="#68768c" font-family="sans-serif" font-size="20" letter-spacing="5">MORROW ERAS · A LITTLE VICTORY</text><svg x="60" y="150" width="1080" height="648">${renderGardenSvg(theme.id,4,{prefix:'keepsake',label:theme.name})}</svg><text x="90" y="870" fill="#343a46" font-family="sans-serif" font-size="42">${theme.name}</text><text x="90" y="920" fill="#68768c" font-family="sans-serif" font-size="23">${escape(translate('firstBloom'))} · ${dateText(goal.bloomedAt)}</text><text x="90" y="964" fill="#68768c" font-family="sans-serif" font-size="18">${escape(translate('memoryCaption'))}</text></svg>`;
+    const url=URL.createObjectURL(new Blob([content],{type:'image/svg+xml'}));
+    try{const image=new Image();await new Promise((resolve,reject)=>{image.onload=resolve;image.onerror=reject;image.src=url;});const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=1000;canvas.getContext('2d').drawImage(image,0,0);const png=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!png)throw Error();download('Morrow-Era-Memory.png',png,'image/png');}
+    catch{announce('gardenExportFailed');}finally{URL.revokeObjectURL(url);}
+  }
+  function bindClose(){dialogs.querySelectorAll('[data-garden-close]').forEach(button=>button.onclick=()=>button.closest('dialog').close());}
+  function actions(event){
+    const view=event.target.closest('[data-era-view]');if(view){activeView=view.dataset.eraView;render();return;}
+    const control=event.target.closest('[data-garden-action]');if(!control||control.disabled)return;
+    const action=control.dataset.gardenAction;
+    if(action==='new')openGoal();else if(action==='edit')openGoal(control.dataset.id);
+    else if(action==='sample-theme'){selectedTheme=control.dataset.theme;render();}
+    else if(action==='sample-stage'){sampleStage=Number(control.dataset.stage);render();}
+    else if(action==='transfer')openTransfer();else if(action==='memory')memoryCard(control.dataset.id);
+    else if(action==='backup')backup().then(()=>announce('backupDone')).catch(error=>announce(error.message));
+    else if(action==='pick-legacy')query('#garden-legacy-file').click();else if(action==='pick-restore')query('#garden-restore-file').click();
+    else if(action==='retry')load();
+  }
+  container.onclick=actions;dashboard.onclick=actions;
+  async function load(){try{state=await store.update(current=>current);ready=true;storageError=null;}catch(error){storageError=error.message;ready=false;}render();}
+  store.onchange(load);window.addEventListener('focus',load);window.addEventListener('morrow:language',render);
+  render();load();
+  return {render};
+}
+
+
+const $ = selector => document.querySelector(selector);
+let language = 'en', appearance = 'system', selectedMonth = '2026-10';
+let editingId = null, deletingId = null, errorKey = null, toastTimer, sequence = 0;
+const media = matchMedia('(prefers-color-scheme: dark)');
+const locale = () => language === 'en' ? 'en-US' : 'zh-CN';
+const t = key => messages[language][key] ?? key;
+const money = (amount, digits = 2) => '¥' + (amount / 100).toLocaleString(locale(), {
+  minimumFractionDigits: digits, maximumFractionDigits: digits
+});
+const esc = value => String(value).replace(/[&<>"']/g, c => ({
+  '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+}[c]));
+const categories = ['housing', 'dining', 'shopping', 'transport', 'other', 'salaryCategory'];
+const accountKeys = ['cash', 'wechat', 'alipay', 'bank'];
+const colors = ['#7f8ca3', '#c1a3ab', '#a9b698', '#d3c9c2', '#dce0e7', '#b0a9ac'];
+const accountData = [['savingsAccount',3600000], ['alipayPocket',1480000], ['wechat',742076], ['cash',20000]];
+let transactions = [
+  {id:'demo-1',label:'coffee',category:'dining',account:'wechat',amount:3200,type:'expense',date:'2026-10-17',icon:'food',note:''},
+  {id:'demo-2',label:'groceries',category:'shopping',account:'alipay',amount:18650,type:'expense',date:'2026-10-17',icon:'bag',note:''},
+  {id:'demo-3',label:'metro',category:'transport',account:'wechat',amount:600,type:'expense',date:'2026-10-16',icon:'train',note:''},
+  {id:'demo-4',label:'salary',category:'salaryCategory',account:'bank',amount:1800000,type:'income',date:'2026-10-16',icon:'wallet',note:''},
+  {id:'demo-5',label:'rental',category:'housing',account:'bank',amount:320000,type:'expense',date:'2026-10-16',icon:'home',note:''},
+  {id:'demo-6',label:'coffee',category:'dining',account:'wechat',amount:2800,type:'expense',date:'2026-09-17',icon:'food',note:''},
+  {id:'demo-7',label:'groceries',category:'shopping',account:'alipay',amount:15000,type:'expense',date:'2026-09-16',icon:'bag',note:''}
+];
+
+// The overview includes fictional earlier entries in addition to the recent rows.
+// Subtract recent rows from the fixture once, then derive every edit from records.
+// This avoids mutation-by-delta bugs when changing dates, types or categories.
+const base = {};
+for (const [month, income, expense] of [
+  ['2026-04',1400000,870000], ['2026-05',1500000,820000],
+  ['2026-06',1650000,690000], ['2026-07',1500000,950000],
+  ['2026-08',1750000,780000], ['2026-09',1650000,712000],
+  ['2026-10',1800000,628450]
+]) {
+  const amounts = month === '2026-10' ? [320000,125000,100000,40000,43450]
+    : [42,24,16,10].map(percent => Math.floor(expense * percent / 100));
+  if (amounts.length === 4) amounts.push(expense - amounts.reduce((sum,n) => sum+n,0));
+  base[month] = {income,expense,categories:Object.fromEntries(categories.slice(0,5).map((key,i)=>[key,amounts[i]]))};
+}
+for (const record of transactions) {
+  const snapshot = base[record.date.slice(0,7)];
+  snapshot[record.type] -= record.amount;
+  if(record.type === 'expense') snapshot.categories[record.category] -= record.amount;
+}
+
+const knownMonths = new Set(Object.keys(base));
+
+function dateLabel(date) {
+  return new Intl.DateTimeFormat(locale(), {month:'short',day:'numeric',timeZone:'UTC'})
+    .format(new Date(date + 'T12:00:00Z'));
+}
+function monthLabel(month) {
+  return new Intl.DateTimeFormat(locale(), {year:'numeric',month:'long',timeZone:'UTC'})
+    .format(new Date(month + '-15T12:00:00Z'));
+}
+function nameOf(record) { return record.customName ?? t(record.label); }
+
+function applyTheme() {
+  const effective = appearance === 'system' ? (media.matches ? 'dark' : 'light') : appearance;
+  document.documentElement.dataset.theme = effective;
+  $('#theme').setAttribute('aria-label',t('appearance') + ': ' + t(effective));
+  $('meta[name="theme-color"]').content = effective === 'dark' ? '#20232b' : '#f5f5f7';
+}
+media.addEventListener('change',applyTheme);
+
+function renderLedger() {
+  const search = $('#search').value.trim().toLocaleLowerCase(locale());
+  const type = $('#transaction-filter').value, category = $('#category-filter').value;
+  const rows = transactions.filter(record => {
+    const searchable = [nameOf(record),record.note,t(record.category),t(record.account)].join(' ').toLocaleLowerCase(locale());
+    return record.date.startsWith(selectedMonth) && (type === 'all' || record.type === type) &&
+      (category === 'all' || record.category === category) && (!search || searchable.includes(search));
+  }).sort((a,b) => b.date.localeCompare(a.date));
+  $('#transaction-rows').innerHTML = rows.map(record => `
+    <tr><td><div class="transaction-name"><span class="transaction-icon"><svg aria-hidden="true"><use href="#${record.icon}"/></svg></span>
+    <div><b>${esc(nameOf(record))}</b><small>${dateLabel(record.date)}${record.note ? ' · ' + esc(record.note) : ''}</small></div></div></td>
+    <td><span class="category-pill">${esc(t(record.category))}</span></td><td class="account-text">${t(record.account)}</td>
+    <td class="transaction-amount ${record.type}">${record.type === 'income' ? '+' : '−'}${money(record.amount)}</td>
+    <td class="row-actions"><button class="edit-entry" data-edit="${record.id}" aria-label="${esc(t('editTransaction') + ': ' + nameOf(record))}"><svg aria-hidden="true"><use href="#edit"/></svg></button></td></tr>`).join('');
+  $('#empty-state').hidden = rows.length !== 0;
+  $('#empty-state').textContent = t('noTransactions') + ' ' + t('clearSearch');
+  $('#result-count').textContent = t('results').replace('{count}',String(rows.length));
+  $('#clear-filters').hidden = !(search || type !== 'all' || category !== 'all');
+}
+
+function render() {
+  const filter = $('#category-filter').value || 'all';
+  document.documentElement.lang = language === 'en' ? 'en' : 'zh-CN';
+  document.title = language === 'en' ? 'Morrow — Interface preview' : 'Morrow 马马记账 — 界面预览';
+  document.querySelectorAll('[data-i]').forEach(element => element.textContent = t(element.dataset.i));
+  document.querySelectorAll('[data-placeholder]').forEach(element => element.placeholder = t(element.dataset.placeholder));
+  $('#language').textContent = language === 'en' ? '中文' : 'EN';
+  $('#language-setting').value = language; $('#appearance').value = appearance;
+  knownMonths.add(selectedMonth);
+  transactions.forEach(record=>knownMonths.add(record.date.slice(0,7)));
+  const available = [...knownMonths].sort().reverse();
+  $('#month').innerHTML = available.map(month=>`<option value="${month}">${monthLabel(month)}</option>`).join('');
+  $('#month').value = selectedMonth;
+  ['allTransactions','onlyExpenses','onlyIncome'].forEach((key,i) => $('#transaction-filter').options[i].textContent = t(key));
+  $('#category-filter').innerHTML = `<option value="all">${t('allCategories')}</option>` + categories.map(key=>`<option value="${key}">${t(key)}</option>`).join('');
+  $('#category-filter').value = filter;
+  $('#month').setAttribute('aria-label',t('monthLabel')); $('#search').setAttribute('aria-label',t('searchLabel'));
+  $('#category-filter').setAttribute('aria-label',t('category')); $('#transaction-filter').setAttribute('aria-label',t('type'));
+  $('#mobile-add').setAttribute('aria-label',t('addTransaction')); $('#language').setAttribute('aria-label',t('language'));
+  document.querySelectorAll('[data-close]').forEach(button=>button.setAttribute('aria-label',t('close')));
+  document.querySelectorAll('[data-dialog="accounts"]').forEach(button=>button.setAttribute('aria-label',t('accountSummary')));
+  $('#entry-form h2').textContent = t(editingId ? 'editTransaction' : 'addTransaction');
+  $('.form-submit span').textContent = t(editingId ? 'updatePreview' : 'addToPreview');
+  if(errorKey) $('#entry-error').textContent = t(errorKey);
+  renderDeletePreview();
+
+  const data = summarize(base,transactions,selectedMonth);
+  $('#balance-value').textContent = money(accountData.reduce((sum,account)=>sum+account[1],0));
+  $('#income-value').textContent = money(data.income); $('#expense-value').textContent = money(data.expense);
+  $('#remaining-value').textContent = money(900000-data.expense);
+  $('#remaining-value').classList.toggle('over-budget',data.expense>900000);
+  $('#expense-note').textContent = (data.expense/900000*100).toFixed(1)+'%';
+  $('.budget-line span').style.width = Math.min(100,data.expense/900000*100)+'%';
+  $('.budget-line').setAttribute('role','meter'); $('.budget-line').setAttribute('aria-label',t('monthBudget'));
+  $('.budget-line').setAttribute('aria-valuemin','0'); $('.budget-line').setAttribute('aria-valuemax','9000');
+  $('.budget-line').setAttribute('aria-valuenow',String(Math.min(data.expense,900000)/100));
+  $('.budget-line').setAttribute('aria-valuetext',money(data.expense)+' / '+money(900000));
+  $('#donut-value').textContent = money(data.expense,0);
+  $('.chart-insight p').textContent = t(data.expense>900000?'overBudget':'insight');
+
+  const history = monthWindow(selectedMonth).map(month=>({month,...summarize(base,transactions,month)}));
+  const ceiling = Math.max(20000,...history.flatMap(month=>[month.income/100,month.expense/100]));
+  document.querySelectorAll('.axis-labels span').forEach((element,i)=>element.textContent = i===4?'0':Math.round(ceiling*(4-i)/4/1000)+'k');
+  $('#bars').innerHTML = history.map(month=>`<div class="bar-group"><i style="height:${month.income/100/ceiling*100}%" title="${t('income')}: ${money(month.income)}"></i><i style="height:${month.expense/100/ceiling*100}%" title="${t('expenses')}: ${money(month.expense)}"></i><span>${new Intl.DateTimeFormat(locale(),{month:'short',timeZone:'UTC'}).format(new Date(month.month+'-15T12:00:00Z'))}</span></div>`).join('');
+  $('#bar-chart').setAttribute('aria-label',t('chartSummary')+' '+history.map(month=>monthLabel(month.month)+': '+t('income')+' '+money(month.income)+', '+t('expenses')+' '+money(month.expense)).join('; '));
+
+  const breakdown = [...data.categories.entries()].filter(([,amount])=>amount>0).sort((a,b)=>b[1]-a[1]);
+  let cursor = 0;
+  const stops = breakdown.map(([,amount],index)=>{const from=cursor;cursor+=amount/data.expense*100;return `${colors[index%colors.length]} ${from}% ${cursor}%`;});
+  $('.donut').style.background = data.expense ? `conic-gradient(${stops.join(',')})` : 'var(--blue-soft)';
+  $('#category-list').innerHTML = breakdown.map(([key,amount],index)=>`<div class="category-row"><i class="category-dot" style="background:${colors[index%colors.length]}"></i><span class="category-name">${t(key)}</span><span class="category-value">${money(amount,0)}</span><small>${Math.round(amount/data.expense*100)}%</small></div>`).join('') || `<p class="dialog-help">${t('noSpending')}</p>`;
+  $('#account-list').innerHTML = accountData.map(([name,amount])=>`<div class="account-row"><svg aria-hidden="true"><use href="#wallet"/></svg><div><b>${t(name)}</b><small>${t('manualBalance')}</small></div><strong>${money(amount)}</strong></div>`).join('');
+  $('#accounts-dialog .dialog-help').textContent = t('manualAccounts')+' '+t('manualBalanceHint');
+  renderLedger(); applyTheme();
+  window.dispatchEvent(new Event('morrow:language'));
+}
+
+function setError(key,field) {
+  errorKey = key; $('#entry-error').textContent = t(key); $('#entry-error').hidden = false;
+  $('#entry-form').elements[field]?.setAttribute('aria-invalid','true');
+  $('#entry-form').elements[field]?.setAttribute('aria-describedby','entry-error');
+  $('#entry-form').elements[field]?.focus();
+}
+function clearError() {
+  errorKey = null; $('#entry-error').hidden = true;
+  $('#entry-form').querySelectorAll('[aria-invalid]').forEach(field=>{field.removeAttribute('aria-invalid');field.removeAttribute('aria-describedby');});
+}
+function openEntry(id=null) {
+  const form = $('#entry-form'); form.reset(); clearError(); editingId = id;
+  const record = transactions.find(record=>record.id===id);
+  if(record) {
+    form.elements.type.value=record.type; form.elements.amount.value=(record.amount/100).toFixed(2);
+    form.elements.name.value=nameOf(record); form.elements.category.value=record.category;
+    form.elements.date.value=record.date; form.elements.account.value=record.account; form.elements.note.value=record.note;
+  } else {
+    const now=new Date();const today=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+    form.elements.date.value=today.startsWith(selectedMonth)?today:selectedMonth+'-01';
+  }
+  render(); $('#entry-dialog').showModal(); form.elements.amount.focus();
+}
+function renderDeletePreview() {
+  const record=transactions.find(record=>record.id===deletingId);
+  $('#delete-preview').textContent=record?nameOf(record)+' · '+dateLabel(record.date)+' · '+money(record.amount):'';
+}
+function requestDelete(id) {
+  deletingId=id;renderDeletePreview();$('#delete-dialog').showModal();
+  $('#delete-dialog [data-close]').focus();
+}
+function toast(key) {
+  $('#toast').textContent=t(key);$('#toast').hidden=false;clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>$('#toast').hidden=true,5000);
+}
+
+$('#entry-form').onsubmit = event => {
+  event.preventDefault(); clearError(); const fields=Object.fromEntries(new FormData(event.target));
+  let amount;
+  try {amount=parseAmount(fields.amount);} catch {setError('invalidAmount','amount');return;}
+  if(!fields.name.trim()) {setError('invalidName','name');return;}
+  if(fields.name.trim().length>60) {setError('nameTooLong','name');return;}
+  if(!isCalendarDate(fields.date)) {setError('invalidDate','date');return;}
+  if(!accountKeys.includes(fields.account)) {setError('invalidAccount','account');return;}
+  if(!categories.includes(fields.category)) {setError('invalidCategory','category');return;}
+  if(!['income','expense'].includes(fields.type)) {setError('invalidType','type');return;}
+  if(fields.note.length>160) {setError('noteTooLong','note');return;}
+  const prior=transactions.find(record=>record.id===editingId);
+  const next={id:editingId??'preview-'+(++sequence),customName:fields.name.trim(),category:fields.category,
+    account:fields.account,amount,type:fields.type,date:fields.date,icon:prior?.icon??'wallet',note:fields.note.trim()};
+  // Keep translated sample names translated unless the user actually renames one.
+  if(prior?.label && fields.name.trim()===nameOf(prior)) {delete next.customName;next.label=prior.label;}
+  let updated;
+  try {
+    updated=upsertRecord(transactions,next);
+    for(const month of new Set([next.date.slice(0,7),prior?.date.slice(0,7)].filter(Boolean))) summarize(base,updated,month);
+  } catch(error) {setError(error.message,'amount');return;}
+  const edited=Boolean(editingId);transactions=updated;selectedMonth=next.date.slice(0,7);
+  $('#transaction-filter').value='all';$('#category-filter').value='all';$('#search').value='';
+  $('#entry-dialog').close();render();toast(edited?'updated':'saved');
+};
+
+// Add delete as an explicit secondary action in the edit form, with a safe confirmation.
+const deleteButton=document.createElement('button');deleteButton.type='button';deleteButton.className='delete-from-form';
+deleteButton.dataset.i='deleteTransaction';$('#entry-form').append(deleteButton);
+deleteButton.onclick=()=>{if(editingId){$('#entry-dialog').close();requestDelete(editingId);}};
+$('#entry-dialog').addEventListener('close',()=>clearError());
+$('#delete-dialog').addEventListener('close',()=>{
+  // Cancelling deletion returns to the same draft, including unsaved edits.
+  if(deletingId){deletingId=null;$('#entry-dialog').showModal();}
+});
+function showEntry(id=null){openEntry(id);deleteButton.hidden=!id;}
+$('#confirm-delete').onclick=()=>{
+  if(!deletingId)return;
+  transactions=transactions.filter(record=>record.id!==deletingId);deletingId=null;
+  $('#delete-dialog').close();render();toast('removed');$('#search').focus({preventScroll:true});
+};
+$('#transaction-rows').onclick=event=>{const button=event.target.closest('[data-edit]');if(button)showEntry(button.dataset.edit);};
+$('#language').onclick=()=>{language=language==='en'?'zh':'en';render();};
+$('#language-setting').onchange=event=>{language=event.target.value;render();};
+$('#appearance').onchange=event=>{appearance=event.target.value;applyTheme();};
+$('#theme').onclick=()=>$('#settings-dialog').showModal();
+document.querySelectorAll('[data-dialog]').forEach(button=>button.onclick=()=>$('#'+button.dataset.dialog+'-dialog').showModal());
+document.querySelectorAll('[data-close]').forEach(button=>button.onclick=()=>button.closest('dialog').close());
+$('#add').onclick=()=>showEntry();$('#mobile-add').onclick=()=>showEntry();
+$('#month').onchange=event=>{selectedMonth=event.target.value;render();};
+$('#transaction-filter').onchange=renderLedger;$('#category-filter').onchange=renderLedger;$('#search').oninput=renderLedger;
+$('#clear-filters').onclick=()=>{$('#transaction-filter').value='all';$('#category-filter').value='all';$('#search').value='';renderLedger();$('#search').focus();};
+document.addEventListener('keydown',event=>{
+  const typing=event.target.closest('input,textarea,select');
+  if((event.metaKey||event.ctrlKey)&&event.key.toLowerCase()==='k'){
+    if(document.querySelector('dialog[open]'))return;event.preventDefault();showEntry();
+  } else if(event.key==='/'&&!typing&&!document.querySelector('dialog[open]')){
+    event.preventDefault();$('#search').scrollIntoView({block:'center'});$('#search').focus();
+  }
+});
+function activeSection(id) {
+  document.querySelectorAll('.navigation a,.tabbar a').forEach(link=>{
+    const active=link.getAttribute('href')==='#'+id;link.classList.toggle('active',active);
+    if(active)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');
+  });
+}
+document.querySelectorAll('.navigation a,.tabbar a,.brand').forEach(link=>link.addEventListener('click',()=>activeSection(link.hash.slice(1))));
+let scrollFrame;
+window.addEventListener('scroll',()=>{
+  if(scrollFrame)return;scrollFrame=requestAnimationFrame(()=>{
+    scrollFrame=null;let current='dashboard-section';
+    for(const id of ['transactions-section','goals-section','eras-section']) if($('#'+id).getBoundingClientRect().top<window.innerHeight*.45)current=id;
+    activeSection(current);
+  });
+},{passive:true});
+const erasApp = mountEras({getLanguage:()=>language});
+activeSection('dashboard-section');render();
+
+})();
+</script><script>window.addEventListener("load",()=>document.getElementById("eras-section").scrollIntoView());</script></body></html>
