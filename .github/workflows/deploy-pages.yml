@@ -1,6 +1,12 @@
 name: Publish Wordlane trial
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'cike/**'
+      - 'scripts/build.mjs'
+      - '.github/workflows/deploy-pages.yml'
 permissions:
   contents: read
   pages: write
