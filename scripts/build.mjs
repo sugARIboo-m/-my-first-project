@@ -4,7 +4,7 @@ import path from 'node:path';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const out=path.join(root,'dist');
 await rm(out,{recursive:true,force:true});await mkdir(path.join(out,'vendor'),{recursive:true});
-const files=['cike/index.html','cike/mood.css','cike/mood.js','index.html','styles.css','features.css','level.css','app.js','core.js','course.js','data.js','glossary.js','epub.js','office.js','icon.svg','manifest.webmanifest','activities.js','features.js','dictionary.js','level.js','level-ui.js','selection.js','frequency.js','frequency-DATA-NOTICE.txt','selection-lexicon.js'];
+const files=['cike/index.html','cike/mood.css','cike/mood.js','cike/catalog.js','cike/recommendations.js','index.html','styles.css','features.css','level.css','app.js','core.js','course.js','data.js','glossary.js','epub.js','office.js','icon.svg','manifest.webmanifest','activities.js','features.js','dictionary.js','level.js','level-ui.js','selection.js','frequency.js','frequency-DATA-NOTICE.txt','selection-lexicon.js'];
 await mkdir(path.join(out,'cike'),{recursive:true});
 await cp(path.join(root,'dictionary'),path.join(out,'dictionary'),{recursive:true});
 for(const file of files){

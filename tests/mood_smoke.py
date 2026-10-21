@@ -30,6 +30,43 @@ with sync_playwright() as p:
  page.set_viewport_size({'width':390,'height':844})
  assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
  page.screenshot(path=str(__import__('pathlib').Path(__file__).resolve().parents[1]/'.test-artifacts/mood-mobile.png'),full_page=True)
+ # Extended catalogue: browsing, language selection, cycling and old favourites.
+ page.locator('[data-intent=understand]').click()
+ before=page.locator('.card').evaluate_all('(cards)=>cards.map(c=>c.dataset.id)')
+ page.locator('#shuffle').click()
+ assert page.locator('.card').evaluate_all('(cards)=>cards.map(c=>c.dataset.id)')!=before
+ page.locator('#song-language').select_option('fr')
+ assert page.locator('.card .type').all_text_contents().count('♫ 法语')==2
+ page.locator('#library-toggle').click()
+ assert page.locator('.card').count()==12
+ page.locator('#load-more').click()
+ assert page.locator('.card').count()==24
+ page.locator('[data-filter=song]').click()
+ assert page.locator('.card').count()==8
+ assert all(t=='♫ 法语' for t in page.locator('.card .type').all_text_contents())
+ assert page.locator('#load-more').is_hidden()
+ page.locator('#song-language').select_option('ja')
+ assert page.locator('.card').count()==7
+ assert all(t=='♫ 日语' for t in page.locator('.card .type').all_text_contents())
+ page.locator('#movie-collection').select_option('all')
+ page.locator('#song-language').select_option('all')
+ page.locator('[data-filter=all]').click()
+ while page.locator('#load-more').is_visible(): page.locator('#load-more').click()
+ assert page.locator('.card').count()==100
+ assert len(set(page.locator('.card').evaluate_all('(cards)=>cards.map(c=>c.dataset.id)')))==100
+ assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
+ page.locator('#library-toggle').click()
+ page.locator('#song-language').select_option('it')
+ assert page.locator('.card').count()==3
+ assert '1 首歌' in page.locator('#status').inner_text()
+ page.evaluate("localStorage.setItem('moment-fm.favorites',JSON.stringify(['loveletter','sun']))")
+ page.reload(wait_until='networkidle')
+ page.locator('#saved-toggle').click()
+ assert set(page.locator('.card').evaluate_all('(cards)=>cards.map(c=>c.dataset.id)'))=={'loveletter','sun'}
+ page.locator('[data-filter=song]').click()
+ assert page.locator('.card').count()==1
+ page.locator('.save').click()
+ assert page.locator('.empty').is_visible()
  assert not errors,errors
- print('PASS: recommendations respond to moods and intent; filters; favorite persistence; desktop/mobile layout; no page errors')
+ print('PASS: mood and intent matching; cycling; 100-work catalogue pagination; French/Japanese/Italian filters; legacy favorites; mobile layout; no page errors')
  b.close()
