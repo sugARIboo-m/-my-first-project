@@ -640,8 +640,8 @@ function annualGardenSummary(state,year,currency,at) {
 
 // Public browser configuration. Never put secret/service_role keys here.
 const MORROW_CLOUD_CONFIG = Object.freeze({
-  url: 'https://mzptoebqxxpearklbqhy.supabase.co',
-  publishableKey: 'sb_publishable_don1cMC8VmYEm_WCy_oBxw_QaEtFaKj'
+  url: 'https://hvyuzeqxxkovjshywnhc.supabase.co',
+  publishableKey: 'sb_publishable_QDn0ndWx15C2aZSeBsDAEw_harPwJfH'
 });
 
 function cloudCanonical(value) {
@@ -771,6 +771,8 @@ function createMorrowCloudClient({config=MORROW_CLOUD_CONFIG,fetcher=fetch,stora
   }
   return {
     getSession:()=>session,
+    // Separate sync revisions/outboxes even if user IDs match across projects.
+    getDatabaseName:()=>session?'morrow-garden-user-'+new URL(config.url).hostname+'-'+session.user.id:'morrow-garden-v1',
     sessionKey,
     async signIn(email,password){const next=await request('/auth/v1/token?grant_type=password',{method:'POST',body:{email,password}});if(!next?.user?.id)throw new Error('cloudAuthRequired');saveSession(next);return next;},
     async signUp(email,password){const result=await request('/auth/v1/signup',{method:'POST',body:{email,password}});if(result?.access_token)saveSession(result);return result;},
@@ -848,7 +850,7 @@ const CLOUD_MESSAGES={
 function mountMorrowCloud({getLanguage}) {
   const client=createMorrowCloudClient(),session=client.getSession();
   // Login/logout reloads before changing namespaces. No guest/account auto-merge.
-  const store=createGardenStore(session?{name:'morrow-garden-user-'+session.user.id}:{});
+  const store=createGardenStore({name:client.getDatabaseName()});
   const t=key=>CLOUD_MESSAGES[getLanguage()][key]??CLOUD_MESSAGES[getLanguage()].cloudRequestFailed;
   const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const host=document.createElement('section');host.id='morrow-cloud';host.className='morrow-cloud panel';

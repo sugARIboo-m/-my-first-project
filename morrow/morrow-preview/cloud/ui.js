@@ -6,7 +6,7 @@ import {CLOUD_MESSAGES} from './messages.js';
 export function mountMorrowCloud({getLanguage}) {
   const client=createMorrowCloudClient(),session=client.getSession();
   // Login/logout reloads before changing namespaces. No guest/account auto-merge.
-  const store=createGardenStore(session?{name:'morrow-garden-user-'+session.user.id}:{});
+  const store=createGardenStore({name:client.getDatabaseName()});
   const t=key=>CLOUD_MESSAGES[getLanguage()][key]??CLOUD_MESSAGES[getLanguage()].cloudRequestFailed;
   const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const host=document.createElement('section');host.id='morrow-cloud';host.className='morrow-cloud panel';

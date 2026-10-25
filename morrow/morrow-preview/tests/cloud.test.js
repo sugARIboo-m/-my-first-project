@@ -24,6 +24,17 @@ test('late acknowledgements from another tab cannot clear a newer pending reques
   assert.throws(()=>cloudAcknowledge({balance:100},meta,{version:0},'new'),/cloudInvalidResponse/);
 });
 function memoryStorage(){const values=new Map();return {getItem:key=>values.get(key)??null,setItem:(key,value)=>values.set(key,value),removeItem:key=>values.delete(key)};}
+test('switching projects preserves old sessions and isolates databases even for the same user ID',async()=>{
+  const storage=memoryStorage(),oldConfig={url:'https://old-project.supabase.co',publishableKey:'sb_publishable_old'},newConfig={url:'https://new-project.supabase.co',publishableKey:'sb_publishable_new'};
+  const session={access_token:'synthetic-access',refresh_token:'synthetic-refresh',expires_at:Math.floor(Date.now()/1000)+3600,user:{id:'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'}};
+  const fetcher=async()=>({ok:true,json:async()=>session});
+  const oldClient=createMorrowCloudClient({config:oldConfig,storage,fetcher});await oldClient.signIn('test@example.test','synthetic-password');
+  const before=storage.getItem(oldClient.sessionKey),next=createMorrowCloudClient({config:newConfig,storage,fetcher});
+  assert.equal(next.getSession(),null);assert.equal(next.getDatabaseName(),'morrow-garden-v1');
+  await next.signIn('test@example.test','synthetic-password');
+  assert.notEqual(next.getDatabaseName(),oldClient.getDatabaseName());assert.equal(storage.getItem(oldClient.sessionKey),before);
+  assert(next.getDatabaseName().includes('new-project.supabase.co'));
+});
 test('public key goes in apikey; RPC uses the authenticated access token and normalizes failures',async()=>{
   const calls=[],storage=memoryStorage(),config={url:'https://example.supabase.co',publishableKey:'sb_publishable_test'};
   const session={access_token:'synthetic-access',refresh_token:'synthetic-refresh',expires_at:Math.floor(Date.now()/1000)+3600,user:{id:'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'}};

@@ -1,15 +1,22 @@
 # 连接 Supabase：下一步操作
 
-项目已创建，客户端已配置公开地址 `https://mzptoebqxxpearklbqhy.supabase.co` 和 publishable key。这里使用项目根地址，不带 `/rest/v1/`。**这不代表托管数据库已初始化或真实云同步已验收。**
+项目已创建，客户端已配置公开地址 `https://hvyuzeqxxkovjshywnhc.supabase.co` 和 publishable key。这里使用项目根地址，不带 `/rest/v1/`。**这不代表托管数据库已初始化或真实云同步已验收。**
+
+## 切换项目时的数据保护
+
+2026-10-25 按用户提供的新公开配置切换项目。旧项目、旧登录令牌和本地数据库未清空。新项目不会自动继承旧项目的数据库或账户。登录后的本地数据库按项目域名和用户 ID 隔离，防止旧项目的版本号或待同步请求发往新项目。未登录花园继续使用原本的本机空间。
+
+如需迁移旧账户数据，请先在旧版本／旧项目的原运行环境导出花园 JSON，保存副本，再在新账户中使用已提供的恢复流程。不要删除旧项目。新数据库是否已建表尚未验证；若之前已在新项目运行 SQL，请先做只读检查，不要重复创建或删除表。
 
 ## 现在先做这一件事
 
-1. 在 GitHub 打开 [当前同步 SQL 脚本](supabase/migrations/202610180002_eras_snapshot_sync.sql)，点 **Raw**，复制全部内容。
-2. 打开 [Supabase 项目](https://supabase.com/dashboard/project/mzptoebqxxpearklbqhy)。
-3. 左侧选择 **SQL Editor → New query**，粘贴脚本，点 **Run**。
-4. 执行成功后，告诉开发者“SQL 执行成功”。如果失败，发送错误文字即可，不需要发送任何密码。
+1. 打开 [新的 Supabase 项目](https://supabase.com/dashboard/project/hvyuzeqxxkovjshywnhc)，进入 **SQL Editor → New query**。
+2. 先复制并运行 [只读检查脚本](supabase/check_eras_setup.sql)，不会修改任何数据。
+3. 如果四项都是 `NULL`，说明四个对象尚未创建；这时再复制 [当前同步 SQL 脚本](supabase/migrations/202610180002_eras_snapshot_sync.sql) 的全部内容，在新查询中运行一次。
+4. 如果任一项不是 `NULL`，把结果反馈给开发者，检查已有结构后再决定；不要重复创建或删除表。
+5. 执行成功后，回复“新项目 SQL 执行成功”。失败时发送错误文字，不需要任何密码。
 
-**只运行这份 `202610180002_eras_snapshot_sync.sql`。前两份是早期关系型架构提案，不是本次同步的前置步骤。** 如果提示表或函数已经存在，请保留原表并反馈错误，先检查实际结构，不要删除重建。脚本故意在名称冲突时失败，事务会回滚，不会覆盖已有表。
+**建表时只使用 `202610180002_eras_snapshot_sync.sql`。前两份是早期关系型架构提案，不是前置步骤。** 当前迁移故意在名称冲突时失败，事务会回滚，不会覆盖已有表。
 
 本次新增 `morrow_eras.sync_documents`、`morrow_eras.sync_commits` 和 `public.morrow_eras_read` / `public.morrow_eras_commit` 两个 RPC。通过公开 schema 的受认证 RPC 访问，不需要把 `morrow_eras` 加入暴露 schema。用户 ID 来自已验证的登录身份，客户端不能指定其他用户 ID。匿名调用被拒绝，直接表写入被拒绝，RLS 限制查询只读本人记录。
 
@@ -41,11 +48,11 @@
 
 ## 开发环境网络
 
-本次真实请求在代理建立隧道时返回 `403 Forbidden`，尚未到达 Supabase，无法判断公开 key 或项目是否可用。已在环境配置草稿新增域名 `mzptoebqxxpearklbqhy.supabase.co`，平台返回 `requires_publish: true`；需要在环境设置中检查、保存并发布配置，然后重新验证连接。保存草稿本身不会改变当前运行环境。
+本次真实请求在代理建立隧道时返回 `403 Forbidden`，尚未到达 Supabase，无法判断公开 key 或项目是否可用。已在环境配置草稿新增域名 `hvyuzeqxxkovjshywnhc.supabase.co`，平台返回 `requires_publish: true`；需要在环境设置中检查、保存并发布配置，然后重新验证连接。保存草稿本身不会改变当前运行环境。
 
 ## 本次验证
 
-- 原版 4 项测试、Morrow/Eras/Cloud 33 项单元测试通过。
+- 原版 4 项测试、Morrow/Eras/Cloud 34 项单元测试通过。
 - Chromium：原首页交互、花园、收藏/Wrapped 原有流程通过。
 - 使用两个独立 Chromium profile 和合成 API 验证：登录/未登录隔离、显式同意、完整状态上传/拉取、冲突双方备份、响应丢失后刷新重试不重复提交、离线恢复、中英切换、360/390/768/1440 布局。
 - PostgreSQL-WASM 本地执行当前 SQL，通过用户隔离/RLS、匿名 RPC 拒绝、直接表写入拒绝、版本 CAS、幂等、重复请求 ID 载荷校验及畸形文档拒绝。这里使用模拟 `auth.uid()` 的测试环境。

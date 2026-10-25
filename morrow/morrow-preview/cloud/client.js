@@ -33,6 +33,8 @@ export function createMorrowCloudClient({config=MORROW_CLOUD_CONFIG,fetcher=fetc
   }
   return {
     getSession:()=>session,
+    // Separate sync revisions/outboxes even if user IDs match across projects.
+    getDatabaseName:()=>session?'morrow-garden-user-'+new URL(config.url).hostname+'-'+session.user.id:'morrow-garden-v1',
     sessionKey,
     async signIn(email,password){const next=await request('/auth/v1/token?grant_type=password',{method:'POST',body:{email,password}});if(!next?.user?.id)throw new Error('cloudAuthRequired');saveSession(next);return next;},
     async signUp(email,password){const result=await request('/auth/v1/signup',{method:'POST',body:{email,password}});if(result?.access_token)saveSession(result);return result;},
