@@ -1,5 +1,22 @@
 import {MORROW_CLOUD_CONFIG} from './config.js';
 
+const CLOUD_AUTH_ERRORS=Object.freeze({
+  invalid_credentials:'cloudInvalidCredentials',
+  email_not_confirmed:'cloudEmailNotConfirmed',
+  user_already_exists:'cloudAccountExists',
+  email_exists:'cloudAccountExists',
+  signup_disabled:'cloudSignupDisabled',
+  email_provider_disabled:'cloudSignupDisabled',
+  weak_password:'cloudWeakPassword',
+  email_address_invalid:'cloudInvalidEmail',
+  email_address_not_authorized:'cloudEmailNotAuthorized',
+  over_email_send_rate_limit:'cloudEmailRateLimit',
+  over_request_rate_limit:'cloudRateLimit',
+  captcha_failed:'cloudCaptchaRequired',
+  hook_timeout:'cloudRequestFailed',
+  unexpected_failure:'cloudAuthServiceError'
+});
+
 export function createMorrowCloudClient({config=MORROW_CLOUD_CONFIG,fetcher=fetch,storage=localStorage}={}) {
   const sessionKey='morrow-auth-'+new URL(config.url).hostname;
   const readSession=()=>{try{const s=JSON.parse(storage.getItem(sessionKey));return s?.access_token&&s?.refresh_token&&/^[a-f0-9-]{36}$/i.test(s.user?.id)?s:null;}catch{return null;}};
@@ -10,7 +27,12 @@ export function createMorrowCloudClient({config=MORROW_CLOUD_CONFIG,fetcher=fetc
     try {
       const response=await fetcher(config.url+path,{method,headers:{apikey:config.publishableKey,...(body?{'Content-Type':'application/json'}:{}),...(token?{Authorization:'Bearer '+token}:{})},body:body?JSON.stringify(body):undefined,signal:controller.signal});
       const data=await response.json().catch(()=>null);
-      if(!response.ok){const error=new Error(response.status===401||response.status===403?'cloudAuthRequired':data?.code==='PGRST202'||response.status===404?'cloudSchemaRequired':response.status===429?'cloudRateLimit':'cloudRequestFailed');error.status=response.status;throw error;}
+      if(!response.ok){
+        const authError=path.startsWith('/auth/v1/')?CLOUD_AUTH_ERRORS[data?.error_code??data?.code]:null;
+        const fallback=response.status===401||response.status===403?'cloudAuthRequired':response.status===429?'cloudRateLimit':path.startsWith('/rest/v1/')&&(data?.code==='PGRST202'||response.status===404)?'cloudSchemaRequired':'cloudRequestFailed';
+        // Map only recognized codes; never display arbitrary server details.
+        const error=new Error(authError??fallback);error.status=response.status;throw error;
+      }
       return data;
     } catch(error){if(error.status)throw error;throw new Error('cloudNetworkError');}
     finally{clearTimeout(timer);}

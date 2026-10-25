@@ -19,26 +19,39 @@ export function mountMorrowCloud({getLanguage}) {
   function render(){
     settings.textContent=t('subtitle');
     host.innerHTML=`<div class="cloud-heading"><div><span class="garden-eyebrow">${t('subtitle')}</span><h2>${t('title')}</h2></div><p class="cloud-status" role="status">${esc(t(status))}</p></div><p class="cloud-help">${t('scope')}</p><p class="cloud-help">${t('guestNote')}</p>
-      ${session?`<p class="cloud-help">${t('account')} · ${esc(session.user.email??'')}</p>${!enabled?`<label class="garden-checkbox"><input id="cloud-consent" type="checkbox" ${consentApproved?'checked':''}><span>${t('consent')}</span></label>`:''}<div class="cloud-actions"><button class="garden-button" data-cloud="${enabled?'pause':'enable'}">${t(enabled?'pause':'enable')}</button><button class="garden-button" data-cloud="retry" ${!enabled?'disabled':''}>${t('retry')}</button><button class="garden-button" data-cloud="logout">${t('logout')}</button></div>`:`<div class="cloud-actions"><button class="garden-button" data-cloud="login">${t('login')}</button><button class="garden-button" data-cloud="signup">${t('signup')}</button></div>`}
+      ${session?`<p class="cloud-help">${t('account')} · ${esc(session.user.email??'')}</p>${!enabled?`<label class="garden-checkbox"><input id="cloud-consent" type="checkbox" ${consentApproved?'checked':''}><span>${t('consent')}</span></label>`:''}<div class="cloud-actions"><button class="garden-button" data-cloud="${enabled?'pause':'enable'}">${t(enabled?'pause':'enable')}</button><button class="garden-button" data-cloud="retry" ${!enabled?'disabled':''}>${t('retry')}</button><button class="garden-button" data-cloud="logout">${t('logout')}</button></div>`:`<div class="cloud-actions"><button class="garden-button cloud-create-account" data-cloud="signup">${t('signup')}</button><button class="garden-button" data-cloud="login">${t('login')}</button></div>`}
       ${conflict?`<div class="cloud-conflict"><p>${t('conflictHelp')}</p><button class="garden-button" data-cloud="copies">${t('copies')}</button><label class="garden-checkbox"><input type="checkbox" id="cloud-backups" ${backupsConfirmed?'checked':''} ${copies?'':'disabled'}><span>${t('backups')}</span></label><div class="cloud-actions"><button class="garden-button" data-cloud="local" ${copies?'':'disabled'}>${t('useLocal')}</button><button class="garden-button" data-cloud="remote" ${copies?'':'disabled'}>${t('useRemote')}</button></div></div>`:''}
       <p class="cloud-help">${t('privacy')}</p><a class="cloud-setup" href="https://github.com/sugARIboo-m/-my-first-project/blob/morrow/eras-delivery-20261018/morrow/SUPABASE_SETUP.md" target="_blank" rel="noopener">${t('setup')} ↗</a>${notice?`<p class="field-error" role="alert">${esc(t(notice))}</p>`:''}`;
   }
   host.onchange=event=>{if(event.target.id==='cloud-consent')consentApproved=event.target.checked;if(event.target.id==='cloud-backups')backupsConfirmed=event.target.checked;};
-  function showAuth(kind){
+  function showAuth(kind,email=''){
     modal.innerHTML=`<form id="cloud-auth-form"><div class="dialog-title"><h2>${t(kind)}</h2><button type="button" data-cloud-close aria-label="${t('close')}">×</button></div><p class="dialog-help">${t('passwordHelp')}</p><div class="form-grid"><label class="full-width"><span>${t('email')}</span><input name="email" type="email" autocomplete="email" required maxlength="254"></label><label class="full-width"><span>${t('password')}</span><input name="password" type="password" autocomplete="${kind==='login'?'current-password':'new-password'}" required ${kind==='signup'?'minlength="8"':''} maxlength="256"></label></div><p class="field-error" id="cloud-auth-error" role="alert" hidden></p><button class="primary form-submit">${t('submit')}</button></form>`;
+    const formElement=modal.querySelector('form');
+    formElement.elements.email.value=email;
+    modal.setAttribute('aria-labelledby','cloud-auth-title');
+    modal.querySelector('h2').id='cloud-auth-title';
+    const switchButton=document.createElement('button');switchButton.type='button';switchButton.className='garden-button cloud-auth-switch';switchButton.id='cloud-auth-switch';switchButton.textContent=t(kind==='login'?'switchToSignup':'switchToLogin');
+    switchButton.onclick=()=>{if(!busy)showAuth(kind==='login'?'signup':'login',formElement.elements.email.value);};
+    formElement.append(switchButton);
+    modal.querySelector('.form-submit').textContent=t(kind==='login'?'login':'signup');
     modal.querySelector('[data-cloud-close]').onclick=()=>modal.close();
     modal.querySelector('form').onsubmit=async event=>{
-      event.preventDefault();if(busy)return;const form=event.target,submit=form.querySelector('.form-submit');busy=true;submit.disabled=true;
+      event.preventDefault();if(busy)return;const form=event.target,submit=form.querySelector('.form-submit');busy=true;submit.disabled=true;switchButton.disabled=true;
       try{
         const fields=Object.fromEntries(new FormData(form));
         if(kind==='login')await client.signIn(fields.email.trim(),fields.password);
         else await client.signUp(fields.email.trim(),fields.password);
         form.reset();
         if(client.getSession()){sync?.stop();location.reload();}
-        else{modal.close();notice='checkEmail';render();}
+        else{
+          const email=fields.email.trim();
+          modal.innerHTML=`<div class="dialog-title"><h2 id="cloud-auth-title">${t('confirmEmailTitle')}</h2><button type="button" aria-label="${t('close')}">×</button></div><p class="dialog-help" role="status">${t('checkEmail')}</p><p class="dialog-help">${esc(email)}</p><p class="dialog-help">${t('confirmationHelp')}</p><button type="button" class="primary form-submit" id="cloud-confirm-signin">${t('switchToLogin')}</button>`;
+          modal.querySelector('.dialog-title button').onclick=()=>modal.close();
+          modal.querySelector('#cloud-confirm-signin').onclick=()=>showAuth('login',email);
+        }
       }catch(error){const p=form.querySelector('#cloud-auth-error');p.textContent=t(error.message);p.hidden=false;}
-      finally{busy=false;submit.disabled=false;}
-    };modal.showModal();modal.querySelector('[name=email]').focus();
+      finally{busy=false;submit.disabled=false;switchButton.disabled=false;}
+    };if(!modal.open)modal.showModal();modal.querySelector('[name=email]').focus();
   }
   function download(name,state){const url=URL.createObjectURL(new Blob([JSON.stringify({format:'morrow-garden',exportedAt:new Date().toISOString(),state},null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
   host.onclick=async event=>{

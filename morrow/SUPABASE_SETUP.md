@@ -52,10 +52,16 @@
 
 ## 本次验证
 
-- 原版 4 项测试、Morrow/Eras/Cloud 34 项单元测试通过。
+- 原版 4 项测试、Morrow/Eras/Cloud 36 项单元测试通过。
 - Chromium：原首页交互、花园、收藏/Wrapped 原有流程通过。
 - 使用两个独立 Chromium profile 和合成 API 验证：登录/未登录隔离、显式同意、完整状态上传/拉取、冲突双方备份、响应丢失后刷新重试不重复提交、离线恢复、中英切换、360/390/768/1440 布局。
 - PostgreSQL-WASM 本地执行当前 SQL，通过用户隔离/RLS、匿名 RPC 拒绝、直接表写入拒绝、版本 CAS、幂等、重复请求 ID 载荷校验及畸形文档拒绝。这里使用模拟 `auth.uid()` 的测试环境。
 - **未验证：实际 Supabase Auth/邮箱确认、托管 SQL/RLS、真实 Mac/iPhone 同步、Safari、正式 HTTPS 部署、PWA。**
 
 本地 SQL 测试：在项目外临时安装 `@electric-sql/pglite`，通过 `MORROW_PGLITE_MODULE` 指定其模块路径，执行 `node morrow-preview/tests/cloud-sql.mjs`。浏览器测试执行 `node morrow-preview/tests/cloud-browser.cjs`，环境配置方式同交付文档。测试不会请求真实 Supabase。
+
+## 登录提示修复
+
+登录框内可直接切换到创建账户，邮箱会保留、密码会清空。注册响应要求确认邮箱时，显示独立确认步骤，并提供返回登录按钮。已识别的 Supabase 错误分别显示密码不匹配、邮箱未确认、邮箱发送限流等提示；未知错误不回显服务器原文。当前项目邮箱注册开启且需确认，但用户截图中的旧通用错误无法单独证明账户是否已注册；应以新提示及本人邮件为准。
+
+36 项单元测试及新的合成认证浏览器流程通过。没有创建真实测试账户或发送邮件。Netlify 页面有站点访问保护，开发环境匿名访问返回 HTTP 401，因此生产页面更新仍需以 Netlify 新部署记录及用户刷新后的页面确认。

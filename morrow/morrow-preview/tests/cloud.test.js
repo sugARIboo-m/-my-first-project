@@ -51,3 +51,15 @@ test('network errors never expose request contents, and signed-out clients canno
   await assert.rejects(()=>client.signIn('test@example.test','private'),/^Error: cloudNetworkError$/);
   await assert.rejects(()=>client.rpc('morrow_eras_read'),/cloudAuthRequired/);
 });
+test('authentication distinguishes invalid credentials, pending confirmation and email delivery limits',async()=>{
+  const config={url:'https://example.supabase.co',publishableKey:'sb_publishable_test'};
+  for(const [status,code,expected] of [[400,'invalid_credentials','cloudInvalidCredentials'],[400,'email_not_confirmed','cloudEmailNotConfirmed'],[429,'over_email_send_rate_limit','cloudEmailRateLimit']]){
+    const client=createMorrowCloudClient({config,storage:memoryStorage(),fetcher:async()=>({ok:false,status,json:async()=>({error_code:code,message:'sensitive internal details'})})});
+    await assert.rejects(()=>client.signIn('test@example.test','synthetic-password'),error=>error.message===expected);
+    assert.equal(client.getSession(),null);
+  }
+});
+test('an unknown authentication error never exposes server text or mislabels a missing database schema',async()=>{
+  const client=createMorrowCloudClient({config:{url:'https://example.supabase.co',publishableKey:'sb_publishable_test'},storage:memoryStorage(),fetcher:async()=>({ok:false,status:404,json:async()=>({code:'unknown',message:'private server contents'})})});
+  await assert.rejects(()=>client.signUp('test@example.test','synthetic-password'),error=>error.message==='cloudRequestFailed');
+});
