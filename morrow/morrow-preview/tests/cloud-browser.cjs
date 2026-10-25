@@ -66,12 +66,22 @@ let document={version:0,payload:empty()},loseNext=false,commitCalls=0;const comm
   await a.page.locator('[data-cloud=pause]').click();await a.context.setOffline(true);await edit(a.page,'500');
   await enable(a.page);await a.page.waitForFunction(()=>document.querySelector('.cloud-status').textContent.includes('Offline'));
   await a.context.setOffline(false);await synced(a.page);assert.equal(document.payload.goals[0].currentSaved,50000);
+  // Actual ledger entries use the same authenticated CAS envelope.
+  await a.page.evaluate(()=>location.hash='#quick-entry');await a.page.waitForFunction(()=>!document.querySelector('.quick-submit').disabled);
+  await a.page.locator('#quick-amount').fill('25.80');await a.page.locator('.quick-submit').click();await a.page.waitForFunction(()=>document.querySelector('#quick-amount').value==='');await synced(a.page);
+  assert.equal(document.payload.ledger.records[0].amount,2580);assert.equal(document.payload.goals[0].currentSaved,50000);
+  await b.page.locator('[data-cloud=retry]').click();await b.page.evaluate(()=>location.hash='#quick-entry');await b.page.waitForSelector('.quick-record');
+  await b.page.locator('.quick-record').first().click();await b.page.locator('#quick-amount').fill('11.22');await b.page.locator('.quick-submit').click();await b.page.waitForFunction(()=>document.querySelector('#quick-amount').value==='');await synced(b.page);assert.equal(document.payload.ledger.records[0].amount,1122);
+  await a.page.evaluate(()=>window.dispatchEvent(new Event('focus')));await a.page.waitForFunction(()=>document.querySelector('.quick-record-amount')?.textContent.includes('11.22'));
+  await a.page.locator('.quick-record').first().click();await a.page.locator('#quick-delete').click();await a.page.locator('#quick-confirm-delete').click();await a.page.waitForFunction(()=>!document.querySelector('#quick-delete-dialog').open);await synced(a.page);assert(document.payload.ledger.records[0].deletedAt);
+  await b.page.evaluate(()=>window.dispatchEvent(new Event('focus')));await b.page.waitForFunction(()=>document.querySelectorAll('.quick-record').length===0);assert.equal(document.payload.goals[0].currentSaved,50000);
+  await a.page.evaluate(()=>location.hash='#morrow-cloud');
   // Responsive and bilingual cloud controls do not expose raw server errors.
   await a.page.locator('#language').click();assert((await a.page.locator('.cloud-status').textContent()).includes('最新'));
   for(const width of [360,390,768,1440]){await a.page.setViewportSize({width,height:900});assert(await a.page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));}
   // Sign out returns to the untouched guest namespace.
   a.page.on('dialog',dialog=>dialog.accept());await a.page.locator('[data-cloud=logout]').click();await a.page.waitForSelector('[data-cloud=login]');await a.page.waitForFunction(()=>document.querySelector('.saved-garden h3')?.textContent==='Guest garden');
   assert.deepEqual(errors,[]);
-  console.log('PASS: mocked two-profile sync, explicit upload consent, guest/account isolation, CAS conflict with both backups, response-loss retry after reload, offline recovery, EN/ZH, 360/390/768/1440 layouts. This is not hosted Supabase verification.');
+  console.log('PASS: mocked two-profile ledger create/edit/delete sync, goal sync, explicit upload consent, guest/account isolation, CAS conflict with both backups, response-loss retry after reload, offline recovery, EN/ZH, 360/390/768/1440 layouts. This is not hosted Supabase verification.');
   await browser.close();
 })().catch(error=>{console.error(error);process.exit(1);});

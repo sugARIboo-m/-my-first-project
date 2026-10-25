@@ -1,5 +1,5 @@
 export const ERA_MESSAGES = {
-  en:{
+  en:{quickBackupMissingLedger:'This old backup has no Quick entry ledger. Your current entries were kept; restore a complete Morrow backup.',quickInvalidRecord:'The ledger in this backup is invalid. No data was replaced.',
     eras:'Eras',garden:'Garden',collection:'Collection',wrapped:'Wrapped',later:'After Garden review',
     eyebrow:'MORROW ERAS / 01',title:'A little room to bloom.',subtitle:'Every little saving has its own era. A quiet place for the things you’re growing toward.',
     local:'Saved on this browser · see Cloud for sync status',localHelp:'Garden records are saved locally. The Dashboard ledger is still a demo; its transactions never grow these gardens.',
@@ -34,7 +34,7 @@ export const ERA_MESSAGES = {
     memoryTitle:'A little victory, remembered.',memoryCaption:'An original Morrow Garden keepsake',
     allocationNote:'Balances are manually recorded allocations, not bank-verified funds.',invalidStage:'Set a valid target to start your garden.'
   },
-  zh:{
+  zh:{quickBackupMissingLedger:'这份旧备份不包含快速记账账本，当前账单已保留，请使用完整 Morrow 备份。',quickInvalidRecord:'备份中的账本无效，未替换任何数据。',
     eras:'Eras',garden:'花园',collection:'收藏',wrapped:'年度回顾',later:'花园确认后开发',
     eyebrow:'MORROW ERAS / 01',title:'给未来，种一点期待。',subtitle:'每一份小小的积累，都有属于自己的时代。慢慢靠近，你想要的生活。',
     local:'已保存到当前浏览器 · 同步状态见云端面板',localHelp:'花园目标在本机保存。首页账本仍为演示数据，其中的交易不会让花园生长。',

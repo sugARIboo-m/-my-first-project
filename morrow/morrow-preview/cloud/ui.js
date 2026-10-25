@@ -22,6 +22,7 @@ export function mountMorrowCloud({getLanguage}) {
       ${session?`<p class="cloud-help">${t('account')} · ${esc(session.user.email??'')}</p>${!enabled?`<label class="garden-checkbox"><input id="cloud-consent" type="checkbox" ${consentApproved?'checked':''}><span>${t('consent')}</span></label>`:''}<div class="cloud-actions"><button class="garden-button" data-cloud="${enabled?'pause':'enable'}">${t(enabled?'pause':'enable')}</button><button class="garden-button" data-cloud="retry" ${!enabled?'disabled':''}>${t('retry')}</button><button class="garden-button" data-cloud="logout">${t('logout')}</button></div>`:`<div class="cloud-actions"><button class="garden-button cloud-create-account" data-cloud="signup">${t('signup')}</button><button class="garden-button" data-cloud="login">${t('login')}</button></div>`}
       ${conflict?`<div class="cloud-conflict"><p>${t('conflictHelp')}</p><button class="garden-button" data-cloud="copies">${t('copies')}</button><label class="garden-checkbox"><input type="checkbox" id="cloud-backups" ${backupsConfirmed?'checked':''} ${copies?'':'disabled'}><span>${t('backups')}</span></label><div class="cloud-actions"><button class="garden-button" data-cloud="local" ${copies?'':'disabled'}>${t('useLocal')}</button><button class="garden-button" data-cloud="remote" ${copies?'':'disabled'}>${t('useRemote')}</button></div></div>`:''}
       <p class="cloud-help">${t('privacy')}</p><a class="cloud-setup" href="https://github.com/sugARIboo-m/-my-first-project/blob/morrow/eras-delivery-20261018/morrow/SUPABASE_SETUP.md" target="_blank" rel="noopener">${t('setup')} ↗</a>${notice?`<p class="field-error" role="alert">${esc(t(notice))}</p>`:''}`;
+    window.dispatchEvent(new CustomEvent('morrow:cloud-status',{detail:{status,enabled,signedIn:!!session}}));
   }
   host.onchange=event=>{if(event.target.id==='cloud-consent')consentApproved=event.target.checked;if(event.target.id==='cloud-backups')backupsConfirmed=event.target.checked;};
   function showAuth(kind,email=''){
@@ -78,5 +79,5 @@ export function mountMorrowCloud({getLanguage}) {
   // A different account in another tab must never use this tab's old namespace.
   window.addEventListener('storage',event=>{if(event.key===client.sessionKey){try{const next=JSON.parse(event.newValue);if(next?.user?.id!==session?.user?.id){sync?.stop();location.reload();}}catch{sync?.stop();location.reload();}}});
   window.addEventListener('morrow:language',()=>{if(modal.open)modal.close();render();});
-  render();return {store};
+  render();return {store,getStatus:()=>({status,enabled,signedIn:!!session})};
 }

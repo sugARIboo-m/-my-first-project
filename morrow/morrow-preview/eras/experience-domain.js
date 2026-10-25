@@ -1,3 +1,5 @@
+import {quickLocalDate} from '../ledger/domain.js';
+
 export const ACHIEVEMENT_DEFINITIONS = [
   ['save-1','saving','First little reserve','第一份小小的储备','Reach your first configurable savings threshold.','达到你设置的第一档储蓄门槛。','beginning'],
   ['save-2','saving','A little more room','再多一点余地','Reach your second configurable savings threshold.','达到你设置的第二档储蓄门槛。','story'],
@@ -20,9 +22,9 @@ export const ACHIEVEMENT_DEFINITIONS = [
 
 export function actualLedger(state) {
   const receipt=state.receipts.find(item=>item.raw);
-  if(!receipt)return {available:false,transactions:[]};
-  try{return {available:true,transactions:JSON.parse(receipt.raw).transactions.map(item=>({...item,currency:'CNY'}))};}
-  catch{return {available:false,transactions:[]};}
+  let imported=[];if(receipt){try{imported=JSON.parse(receipt.raw).transactions.map(item=>({...item,id:'legacy:'+item.id,currency:'CNY'}));}catch{/* Validation rejects malformed backups before storage. */}}
+  const manual=(state.ledger?.records??[]).filter(r=>!r.deletedAt).map(r=>({...r,type:r.kind}));
+  return {available:!!receipt||!!state.ledger,transactions:[...imported,...manual],currencies:[...new Set([...(receipt?['CNY']:[]),...(state.ledger?[state.ledger.preferences.currency]:[]),...(state.ledger?.records??[]).map(r=>r.currency)])]};
 }
 
 function safeSum(values){const amount=values.reduce((sum,value)=>sum+BigInt(value),0n);if(amount>BigInt(Number.MAX_SAFE_INTEGER)||amount<BigInt(Number.MIN_SAFE_INTEGER))throw new Error('totalOverflow');return Number(amount);}
@@ -34,14 +36,14 @@ function activeDayWindows(records){
   return {days:days.length,bestConsecutive,bestThirty};
 }
 
-export function monthlyActualSummary(state,month,at) {
+export function monthlyActualSummary(state,month,at,currency='CNY') {
   if(!/^\d{4}-(0[1-9]|1[0-2])$/.test(month))return {recordCount:0,income:null,spending:null};
-  const records=actualLedger(state).transactions.filter(record=>record.date.startsWith(month)&&record.date<=at.slice(0,10));
-  return {recordCount:records.length,income:safeSum(records.filter(record=>record.type==='income').map(record=>record.amount)),spending:safeSum(records.filter(record=>record.type==='expense').map(record=>record.amount))};
+  const records=actualLedger(state).transactions.filter(record=>record.currency===currency&&record.date.startsWith(month)&&record.date<=quickLocalDate(at));
+  return {recordCount:records.length,income:safeSum(records.filter(record=>record.type==='income').map(record=>record.amount)),spending:safeSum(records.filter(record=>['expense','refund'].includes(record.type)).map(record=>record.type==='refund'?-record.amount:record.amount))};
 }
 
 export function achievementConditions(state,at) {
-  const today=at.slice(0,10),records=actualLedger(state).transactions.filter(record=>record.date<=today);
+  const today=quickLocalDate(at),records=actualLedger(state).transactions.filter(record=>record.date<=today);
   const windows=activeDayWindows(records),currency=state.settings.milestoneCurrency??'CNY';
   const thresholds=state.settings.milestoneThresholds??[10000,50000,100000];
   // Use a single goal's current allocation, never sum potentially overlapping
@@ -74,12 +76,12 @@ export function reconcileAchievements(state,at) {
 
 export function annualGardenSummary(state,year,currency,at) {
   if(!Number.isInteger(year)||year<1900||year>9999)throw new Error('invalidDate');
-  const source=actualLedger(state),records=source.transactions.filter(record=>record.currency===currency&&record.date.startsWith(year+'-')&&record.date<=at.slice(0,10));
-  const hasLedger=source.available&&currency==='CNY';
+  const source=actualLedger(state),records=source.transactions.filter(record=>record.currency===currency&&record.date.startsWith(year+'-')&&record.date<=quickLocalDate(at));
+  const hasLedger=source.available&&source.currencies.includes(currency);
   const income=hasLedger?safeSum(records.filter(record=>record.type==='income').map(record=>record.amount)):null;
-  const spending=hasLedger?safeSum(records.filter(record=>record.type==='expense').map(record=>record.amount)):null;
-  const expenses=records.filter(record=>record.type==='expense');const categoryAmounts=new Map(),categoryCounts=new Map();
-  for(const record of expenses){categoryAmounts.set(record.category,safeSum([categoryAmounts.get(record.category)??0,record.amount]));categoryCounts.set(record.category,(categoryCounts.get(record.category)??0)+1);}
+  const spending=hasLedger?safeSum(records.filter(record=>['expense','refund'].includes(record.type)).map(record=>record.type==='refund'?-record.amount:record.amount)):null;
+  const expenses=records.filter(record=>['expense','refund'].includes(record.type));const categoryAmounts=new Map(),categoryCounts=new Map();
+  for(const record of expenses){categoryAmounts.set(record.category,safeSum([categoryAmounts.get(record.category)??0,record.type==='refund'?-record.amount:record.amount]));if(record.type==='expense')categoryCounts.set(record.category,(categoryCounts.get(record.category)??0)+1);}
   const operations=state.operations.filter(operation=>operation.at.startsWith(year+'-')&&operation.currency===currency);
   // Initial balances/imported snapshots have no known original savings date.
   // Only subsequent, explicitly recorded allocation adjustments enter this sum.
@@ -88,7 +90,7 @@ export function annualGardenSummary(state,year,currency,at) {
   const completed=state.goals.filter(goal=>goal.currency===currency&&goal.fundingMode!=='legacy-total'&&goal.bloomedAt?.startsWith(year+'-'));
   const largest=completed.sort((a,b)=>a.bloomedAt.localeCompare(b.bloomedAt))[0];
   return {schemaVersion:1,year,currency,hasLedger,recordCount:records.length,income,spending,
-    netCashFlow:hasLedger?income-spending:null,savingsRate:income>0?(income-spending)/income*100:null,
+    netCashFlow:hasLedger?safeSum([income,-spending]):null,savingsRate:income>0?(income-spending)/income*100:null,
     recordedAllocations:allocated,activeDays:new Set(records.map(record=>record.date)).size,
     frequentCategory:[...categoryCounts].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]))[0]?.[0]??null,
     topCategories:[...categoryAmounts].sort((a,b)=>b[1]-a[1]).slice(0,5).map(([name,amount])=>({name,amount})),

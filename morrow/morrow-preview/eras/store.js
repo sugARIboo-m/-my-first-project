@@ -11,7 +11,7 @@ export function createGardenStore({name='morrow-garden-v1'}={}) {
   async function open() {
     if(database)return database;
     database=await new Promise((resolve,reject)=>{
-      const request=indexedDB.open(name,1);
+      let request;try{request=indexedDB.open(name,1);}catch{reject(new Error('gardenStorageUnavailable'));return;}
       request.onupgradeneeded=()=>{request.result.createObjectStore('state');request.result.createObjectStore('recovery',{autoIncrement:true});};
       request.onsuccess=()=>{const result=request.result;result.onversionchange=()=>{result.close();database=null;};resolve(result);};
       request.onerror=request.onblocked=()=>reject(new Error('gardenStorageUnavailable'));

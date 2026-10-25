@@ -1,0 +1,11 @@
+{
+  "id": "./",
+  "name": "Morrow · 马马记账",
+  "short_name": "Morrow",
+  "start_url": "./#quick-entry",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f5f7",
+  "theme_color": "#68768c",
+  "icons": [{"src":"app-icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}]
+}

@@ -44,3 +44,8 @@ The original application remains at ../index.html. The owner accepted the initia
 ## Cloud integration update
 
 The `cloud/` module adds password authentication, isolated per-user IndexedDB, opt-in Eras snapshot sync, durable retry IDs, CAS conflicts and two-copy recovery. See [SUPABASE_SETUP.md](../SUPABASE_SETUP.md) for the current standalone SQL. Hosted Supabase connectivity, real devices and deployment are still unverified; prior local-only limitations above describe the earlier build.
+
+
+## Quick entry ledger
+
+`ledger/` is the actual persistent ledger, separate from the old overview demo. It uses the existing per-user store and cloud CAS envelope, integrates actual records with Wrapped, and keeps manual savings unchanged. On phones the root URL defaults to `#quick-entry`; the explicit `eras-review.html` remains the artwork/review entry. See [QUICK_ENTRY.md](../QUICK_ENTRY.md).

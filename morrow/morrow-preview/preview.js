@@ -2,9 +2,12 @@ import {parseAmount, isCalendarDate, monthWindow, summarize, upsertRecord} from 
 import {messages} from './messages.js';
 import {mountEras} from './eras/ui.js';
 import {mountMorrowCloud} from './cloud/ui.js';
+import {mountQuickLedger} from './ledger/ui.js';
 
 const $ = selector => document.querySelector(selector);
 let language = 'en', appearance = 'system', selectedMonth = '2026-10';
+try{const saved=JSON.parse(localStorage.getItem('morrow-interface-preferences'));if(['en','zh'].includes(saved?.language))language=saved.language;if(['system','light','dark'].includes(saved?.appearance))appearance=saved.appearance;}catch{}
+function saveInterfacePreferences(){try{localStorage.setItem('morrow-interface-preferences',JSON.stringify({language,appearance}));}catch{}}
 let editingId = null, deletingId = null, errorKey = null, toastTimer, sequence = 0;
 const media = matchMedia('(prefers-color-scheme: dark)');
 const locale = () => language === 'en' ? 'en-US' : 'zh-CN';
@@ -225,9 +228,9 @@ $('#confirm-delete').onclick=()=>{
   $('#delete-dialog').close();render();toast('removed');$('#search').focus({preventScroll:true});
 };
 $('#transaction-rows').onclick=event=>{const button=event.target.closest('[data-edit]');if(button)showEntry(button.dataset.edit);};
-$('#language').onclick=()=>{language=language==='en'?'zh':'en';render();};
-$('#language-setting').onchange=event=>{language=event.target.value;render();};
-$('#appearance').onchange=event=>{appearance=event.target.value;applyTheme();};
+$('#language').onclick=()=>{language=language==='en'?'zh':'en';saveInterfacePreferences();render();};
+$('#language-setting').onchange=event=>{language=event.target.value;saveInterfacePreferences();render();};
+$('#appearance').onchange=event=>{appearance=event.target.value;saveInterfacePreferences();applyTheme();};
 $('#theme').onclick=()=>$('#settings-dialog').showModal();
 document.querySelectorAll('[data-dialog]').forEach(button=>button.onclick=()=>$('#'+button.dataset.dialog+'-dialog').showModal());
 document.querySelectorAll('[data-close]').forEach(button=>button.onclick=()=>button.closest('dialog').close());
@@ -252,6 +255,7 @@ function activeSection(id) {
 document.querySelectorAll('.navigation a,.tabbar a,.brand').forEach(link=>link.addEventListener('click',()=>activeSection(link.hash.slice(1))));
 let scrollFrame;
 window.addEventListener('scroll',()=>{
+  if(document.documentElement.dataset.quickView==='true')return;
   if(scrollFrame)return;scrollFrame=requestAnimationFrame(()=>{
     scrollFrame=null;let current='dashboard-section';
     for(const id of ['transactions-section','goals-section','eras-section']) if($('#'+id).getBoundingClientRect().top<window.innerHeight*.45)current=id;
@@ -260,4 +264,6 @@ window.addEventListener('scroll',()=>{
 },{passive:true});
 const cloudApp = mountMorrowCloud({getLanguage:()=>language});
 const erasApp = mountEras({getLanguage:()=>language,store:cloudApp.store});
+const quickApp = mountQuickLedger({getLanguage:()=>language,store:cloudApp.store,cloud:cloudApp});
 activeSection('dashboard-section');render();
+quickApp.route();

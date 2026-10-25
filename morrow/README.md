@@ -38,3 +38,8 @@ Garden、Collection、Wrapped 可使用本机保存或明确导入的数据。�
 ## Supabase 配置更新
 
 已新增实际 Eras 登录与快照同步代码，托管部署仍待验证。请优先阅读 [SUPABASE_SETUP.md](SUPABASE_SETUP.md)，只运行其中指定的当前 SQL；旧版表结构提案不是前置步骤。
+
+
+## 快速记账
+
+当前实际账本入口与使用、同步、备份说明见 [QUICK_ENTRY.md](QUICK_ENTRY.md)。手机默认打开快速记账，Mac 可从侧栏进入。现有 SQL 不需要重新运行。

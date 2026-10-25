@@ -1,5 +1,6 @@
 import {isCalendarDate} from '../domain.js';
 import {ACHIEVEMENT_DEFINITIONS} from './experience-domain.js';
+import {validateQuickLedger} from '../ledger/domain.js';
 
 export const ERA_THEMES = [
   {id:'eternal-bloom',name:'Eternal Bloom',descriptionKey:'eternalDescription',palette:['#e9e3ed','#b9a8c8','#be98a7','#f4eef2'],flower:'pearl'},
@@ -41,6 +42,8 @@ export function validateGardenGoal(goal) {
 export function validateGardenState(state) {
   if(!state||![1,2].includes(state.schemaVersion)||!Array.isArray(state.goals)||!Array.isArray(state.operations)||!Array.isArray(state.receipts)) throw new Error('gardenInvalidBackup');
   const normalized={...state,schemaVersion:2,achievements:state.achievements??[],reviews:state.reviews??[],wrappedSnapshots:state.wrappedSnapshots??[],settings:{milestoneCurrency:'CNY',milestoneThresholds:[10000,50000,100000],...state.settings}};
+  // Optional additive extension: old snapshots keep their exact shape.
+  if(Object.hasOwn(state,'ledger'))validateQuickLedger(state.ledger);
   if(!Array.isArray(normalized.achievements)||!Array.isArray(normalized.reviews)||!Array.isArray(normalized.wrappedSnapshots))throw new Error('gardenInvalidBackup');
   const ids=new Set();
   for(const goal of state.goals){validateGardenGoal(goal);if(ids.has(goal.id))throw new Error('gardenInvalidBackup');ids.add(goal.id);}
